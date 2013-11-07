@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F1FFC584182C1929008ACBB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC583182C1929008ACBB0 /* Foundation.framework */; };
+		F1FFC586182C1929008ACBB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC585182C1929008ACBB0 /* CoreGraphics.framework */; };
+		F1FFC588182C1929008ACBB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC587182C1929008ACBB0 /* UIKit.framework */; };
+		F1FFC58E182C1929008ACBB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1FFC58C182C1929008ACBB0 /* InfoPlist.strings */; };
+		F1FFC590182C1929008ACBB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FFC58F182C1929008ACBB0 /* main.m */; };
+		F1FFC594182C1929008ACBB0 /* BomberAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FFC593182C1929008ACBB0 /* BomberAppDelegate.m */; };
+		F1FFC597182C1929008ACBB0 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1FFC595182C1929008ACBB0 /* Main_iPhone.storyboard */; };
+		F1FFC59A182C1929008ACBB0 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1FFC598182C1929008ACBB0 /* Main_iPad.storyboard */; };
+		F1FFC59D182C1929008ACBB0 /* BomberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FFC59C182C1929008ACBB0 /* BomberViewController.m */; };
+		F1FFC59F182C1929008ACBB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1FFC59E182C1929008ACBB0 /* Images.xcassets */; };
+		F1FFC5A6182C1929008ACBB0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC5A5182C1929008ACBB0 /* XCTest.framework */; };
+		F1FFC5A7182C1929008ACBB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC583182C1929008ACBB0 /* Foundation.framework */; };
+		F1FFC5A8182C1929008ACBB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC587182C1929008ACBB0 /* UIKit.framework */; };
+		F1FFC5B0182C1929008ACBB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1FFC5AE182C1929008ACBB0 /* InfoPlist.strings */; };
+		F1FFC5B2182C1929008ACBB0 /* BomberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FFC5B1182C1929008ACBB0 /* BomberTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1FFC5A9182C1929008ACBB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1FFC578182C1929008ACBB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1FFC57F182C1929008ACBB0;
+			remoteInfo = Bomber;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F1FFC580182C1929008ACBB0 /* Bomber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1FFC583182C1929008ACBB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F1FFC585182C1929008ACBB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F1FFC587182C1929008ACBB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F1FFC58B182C1929008ACBB0 /* Bomber-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bomber-Info.plist"; sourceTree = "<group>"; };
+		F1FFC58D182C1929008ACBB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1FFC58F182C1929008ACBB0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F1FFC591182C1929008ACBB0 /* Bomber-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bomber-Prefix.pch"; sourceTree = "<group>"; };
+		F1FFC592182C1929008ACBB0 /* BomberAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BomberAppDelegate.h; sourceTree = "<group>"; };
+		F1FFC593182C1929008ACBB0 /* BomberAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BomberAppDelegate.m; sourceTree = "<group>"; };
+		F1FFC596182C1929008ACBB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		F1FFC599182C1929008ACBB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		F1FFC59B182C1929008ACBB0 /* BomberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BomberViewController.h; sourceTree = "<group>"; };
+		F1FFC59C182C1929008ACBB0 /* BomberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BomberViewController.m; sourceTree = "<group>"; };
+		F1FFC59E182C1929008ACBB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F1FFC5A4182C1929008ACBB0 /* BomberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BomberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1FFC5A5182C1929008ACBB0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F1FFC5AD182C1929008ACBB0 /* BomberTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BomberTests-Info.plist"; sourceTree = "<group>"; };
+		F1FFC5AF182C1929008ACBB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1FFC5B1182C1929008ACBB0 /* BomberTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BomberTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F1FFC57D182C1929008ACBB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFC586182C1929008ACBB0 /* CoreGraphics.framework in Frameworks */,
+				F1FFC588182C1929008ACBB0 /* UIKit.framework in Frameworks */,
+				F1FFC584182C1929008ACBB0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FFC5A1182C1929008ACBB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFC5A6182C1929008ACBB0 /* XCTest.framework in Frameworks */,
+				F1FFC5A8182C1929008ACBB0 /* UIKit.framework in Frameworks */,
+				F1FFC5A7182C1929008ACBB0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F1FFC577182C1929008ACBB0 = {
+			isa = PBXGroup;
+			children = (
+				F1FFC589182C1929008ACBB0 /* Bomber */,
+				F1FFC5AB182C1929008ACBB0 /* BomberTests */,
+				F1FFC582182C1929008ACBB0 /* Frameworks */,
+				F1FFC581182C1929008ACBB0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F1FFC581182C1929008ACBB0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFC580182C1929008ACBB0 /* Bomber.app */,
+				F1FFC5A4182C1929008ACBB0 /* BomberTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1FFC582182C1929008ACBB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFC583182C1929008ACBB0 /* Foundation.framework */,
+				F1FFC585182C1929008ACBB0 /* CoreGraphics.framework */,
+				F1FFC587182C1929008ACBB0 /* UIKit.framework */,
+				F1FFC5A5182C1929008ACBB0 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1FFC589182C1929008ACBB0 /* Bomber */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFC592182C1929008ACBB0 /* BomberAppDelegate.h */,
+				F1FFC593182C1929008ACBB0 /* BomberAppDelegate.m */,
+				F1FFC595182C1929008ACBB0 /* Main_iPhone.storyboard */,
+				F1FFC598182C1929008ACBB0 /* Main_iPad.storyboard */,
+				F1FFC59B182C1929008ACBB0 /* BomberViewController.h */,
+				F1FFC59C182C1929008ACBB0 /* BomberViewController.m */,
+				F1FFC59E182C1929008ACBB0 /* Images.xcassets */,
+				F1FFC58A182C1929008ACBB0 /* Supporting Files */,
+			);
+			path = Bomber;
+			sourceTree = "<group>";
+		};
+		F1FFC58A182C1929008ACBB0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFC58B182C1929008ACBB0 /* Bomber-Info.plist */,
+				F1FFC58C182C1929008ACBB0 /* InfoPlist.strings */,
+				F1FFC58F182C1929008ACBB0 /* main.m */,
+				F1FFC591182C1929008ACBB0 /* Bomber-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1FFC5AB182C1929008ACBB0 /* BomberTests */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFC5B1182C1929008ACBB0 /* BomberTests.m */,
+				F1FFC5AC182C1929008ACBB0 /* Supporting Files */,
+			);
+			path = BomberTests;
+			sourceTree = "<group>";
+		};
+		F1FFC5AC182C1929008ACBB0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFC5AD182C1929008ACBB0 /* BomberTests-Info.plist */,
+				F1FFC5AE182C1929008ACBB0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F1FFC57F182C1929008ACBB0 /* Bomber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1FFC5B5182C1929008ACBB0 /* Build configuration list for PBXNativeTarget "Bomber" */;
+			buildPhases = (
+				F1FFC57C182C1929008ACBB0 /* Sources */,
+				F1FFC57D182C1929008ACBB0 /* Frameworks */,
+				F1FFC57E182C1929008ACBB0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bomber;
+			productName = Bomber;
+			productReference = F1FFC580182C1929008ACBB0 /* Bomber.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F1FFC5A3182C1929008ACBB0 /* BomberTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1FFC5B8182C1929008ACBB0 /* Build configuration list for PBXNativeTarget "BomberTests" */;
+			buildPhases = (
+				F1FFC5A0182C1929008ACBB0 /* Sources */,
+				F1FFC5A1182C1929008ACBB0 /* Frameworks */,
+				F1FFC5A2182C1929008ACBB0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1FFC5AA182C1929008ACBB0 /* PBXTargetDependency */,
+			);
+			name = BomberTests;
+			productName = BomberTests;
+			productReference = F1FFC5A4182C1929008ACBB0 /* BomberTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1FFC578182C1929008ACBB0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Bomber;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = CYCU;
+				TargetAttributes = {
+					F1FFC5A3182C1929008ACBB0 = {
+						TestTargetID = F1FFC57F182C1929008ACBB0;
+					};
+				};
+			};
+			buildConfigurationList = F1FFC57B182C1929008ACBB0 /* Build configuration list for PBXProject "Bomber" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F1FFC577182C1929008ACBB0;
+			productRefGroup = F1FFC581182C1929008ACBB0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1FFC57F182C1929008ACBB0 /* Bomber */,
+				F1FFC5A3182C1929008ACBB0 /* BomberTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F1FFC57E182C1929008ACBB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFC59A182C1929008ACBB0 /* Main_iPad.storyboard in Resources */,
+				F1FFC59F182C1929008ACBB0 /* Images.xcassets in Resources */,
+				F1FFC597182C1929008ACBB0 /* Main_iPhone.storyboard in Resources */,
+				F1FFC58E182C1929008ACBB0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FFC5A2182C1929008ACBB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFC5B0182C1929008ACBB0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1FFC57C182C1929008ACBB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFC590182C1929008ACBB0 /* main.m in Sources */,
+				F1FFC594182C1929008ACBB0 /* BomberAppDelegate.m in Sources */,
+				F1FFC59D182C1929008ACBB0 /* BomberViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FFC5A0182C1929008ACBB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFC5B2182C1929008ACBB0 /* BomberTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1FFC5AA182C1929008ACBB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1FFC57F182C1929008ACBB0 /* Bomber */;
+			targetProxy = F1FFC5A9182C1929008ACBB0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F1FFC58C182C1929008ACBB0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1FFC58D182C1929008ACBB0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F1FFC595182C1929008ACBB0 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1FFC596182C1929008ACBB0 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		F1FFC598182C1929008ACBB0 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1FFC599182C1929008ACBB0 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		F1FFC5AE182C1929008ACBB0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1FFC5AF182C1929008ACBB0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F1FFC5B3182C1929008ACBB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F1FFC5B4182C1929008ACBB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F1FFC5B6182C1929008ACBB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
+				INFOPLIST_FILE = "Bomber/Bomber-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F1FFC5B7182C1929008ACBB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
+				INFOPLIST_FILE = "Bomber/Bomber-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F1FFC5B9182C1929008ACBB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Bomber.app/Bomber";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BomberTests/BomberTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F1FFC5BA182C1929008ACBB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Bomber.app/Bomber";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
+				INFOPLIST_FILE = "BomberTests/BomberTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1FFC57B182C1929008ACBB0 /* Build configuration list for PBXProject "Bomber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FFC5B3182C1929008ACBB0 /* Debug */,
+				F1FFC5B4182C1929008ACBB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1FFC5B5182C1929008ACBB0 /* Build configuration list for PBXNativeTarget "Bomber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FFC5B6182C1929008ACBB0 /* Debug */,
+				F1FFC5B7182C1929008ACBB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F1FFC5B8182C1929008ACBB0 /* Build configuration list for PBXNativeTarget "BomberTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FFC5B9182C1929008ACBB0 /* Debug */,
+				F1FFC5BA182C1929008ACBB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1FFC578182C1929008ACBB0 /* Project object */;
+}
