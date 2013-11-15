@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F10901C5182C1A620033D9CA /* controlbut.png in Resources */ = {isa = PBXBuildFile; fileRef = F10901C3182C1A620033D9CA /* controlbut.png */; };
+		F10901C6182C1A620033D9CA /* iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = F10901C4182C1A620033D9CA /* iphone.png */; };
+		F1FA94291836980A00324401 /* atlas5.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94181836980900324401 /* atlas5.png */; };
+		F1FA942A1836980A00324401 /* blast.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94191836980900324401 /* blast.png */; };
+		F1FA942B1836980A00324401 /* bomb_64x64_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941A1836980A00324401 /* bomb_64x64_2.png */; };
+		F1FA942C1836980A00324401 /* character_crawling.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941B1836980A00324401 /* character_crawling.png */; };
+		F1FA942D1836980A00324401 /* character_flying.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941C1836980A00324401 /* character_flying.png */; };
+		F1FA942E1836980A00324401 /* character_gold.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941D1836980A00324401 /* character_gold.png */; };
+		F1FA942F1836980A00324401 /* character_jetpack.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941E1836980A00324401 /* character_jetpack.png */; };
+		F1FA94301836980A00324401 /* character_silver.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941F1836980A00324401 /* character_silver.png */; };
+		F1FA94311836980A00324401 /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94201836980A00324401 /* explosion.png */; };
+		F1FA94321836980A00324401 /* items.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94211836980A00324401 /* items.png */; };
+		F1FA94331836980A00324401 /* items_.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94221836980A00324401 /* items_.png */; };
+		F1FA94341836980A00324401 /* langolier.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94231836980A00324401 /* langolier.png */; };
+		F1FA94351836980A00324401 /* perks.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94241836980A00324401 /* perks.png */; };
+		F1FA94361836980A00324401 /* skins8bit.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94251836980A00324401 /* skins8bit.png */; };
+		F1FA94371836980A00324401 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94261836980A00324401 /* splash.png */; };
+		F1FA94381836980A00324401 /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94271836980A00324401 /* tileset.png */; };
+		F1FA94391836980A00324401 /* tileset_12_31.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94281836980A00324401 /* tileset_12_31.png */; };
 		F1FFC584182C1929008ACBB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC583182C1929008ACBB0 /* Foundation.framework */; };
 		F1FFC586182C1929008ACBB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC585182C1929008ACBB0 /* CoreGraphics.framework */; };
 		F1FFC588182C1929008ACBB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC587182C1929008ACBB0 /* UIKit.framework */; };
@@ -22,6 +41,7 @@
 		F1FFC5A8182C1929008ACBB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1FFC587182C1929008ACBB0 /* UIKit.framework */; };
 		F1FFC5B0182C1929008ACBB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1FFC5AE182C1929008ACBB0 /* InfoPlist.strings */; };
 		F1FFC5B2182C1929008ACBB0 /* BomberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FFC5B1182C1929008ACBB0 /* BomberTests.m */; };
+		F1FFC5BD182C195F008ACBB0 /* BomberFunView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FFC5BC182C195F008ACBB0 /* BomberFunView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +55,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F10901C3182C1A620033D9CA /* controlbut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controlbut.png; path = ../Bomber/controlbut.png; sourceTree = "<group>"; };
+		F10901C4182C1A620033D9CA /* iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iphone.png; path = ../Bomber/iphone.png; sourceTree = "<group>"; };
+		F1FA94181836980900324401 /* atlas5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas5.png; sourceTree = "<group>"; };
+		F1FA94191836980900324401 /* blast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blast.png; sourceTree = "<group>"; };
+		F1FA941A1836980A00324401 /* bomb_64x64_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb_64x64_2.png; sourceTree = "<group>"; };
+		F1FA941B1836980A00324401 /* character_crawling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_crawling.png; sourceTree = "<group>"; };
+		F1FA941C1836980A00324401 /* character_flying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_flying.png; sourceTree = "<group>"; };
+		F1FA941D1836980A00324401 /* character_gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_gold.png; sourceTree = "<group>"; };
+		F1FA941E1836980A00324401 /* character_jetpack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_jetpack.png; sourceTree = "<group>"; };
+		F1FA941F1836980A00324401 /* character_silver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_silver.png; sourceTree = "<group>"; };
+		F1FA94201836980A00324401 /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion.png; sourceTree = "<group>"; };
+		F1FA94211836980A00324401 /* items.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = items.png; sourceTree = "<group>"; };
+		F1FA94221836980A00324401 /* items_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = items_.png; sourceTree = "<group>"; };
+		F1FA94231836980A00324401 /* langolier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = langolier.png; sourceTree = "<group>"; };
+		F1FA94241836980A00324401 /* perks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perks.png; sourceTree = "<group>"; };
+		F1FA94251836980A00324401 /* skins8bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skins8bit.png; sourceTree = "<group>"; };
+		F1FA94261836980A00324401 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		F1FA94271836980A00324401 /* tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset.png; sourceTree = "<group>"; };
+		F1FA94281836980A00324401 /* tileset_12_31.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset_12_31.png; sourceTree = "<group>"; };
 		F1FFC580182C1929008ACBB0 /* Bomber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bomber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FFC583182C1929008ACBB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F1FFC585182C1929008ACBB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +94,8 @@
 		F1FFC5AD182C1929008ACBB0 /* BomberTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BomberTests-Info.plist"; sourceTree = "<group>"; };
 		F1FFC5AF182C1929008ACBB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F1FFC5B1182C1929008ACBB0 /* BomberTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BomberTests.m; sourceTree = "<group>"; };
+		F1FFC5BB182C195F008ACBB0 /* BomberFunView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BomberFunView.h; sourceTree = "<group>"; };
+		F1FFC5BC182C195F008ACBB0 /* BomberFunView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BomberFunView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +122,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1FA94171836980900324401 /* Bomber_img */ = {
+			isa = PBXGroup;
+			children = (
+				F10901C3182C1A620033D9CA /* controlbut.png */,
+				F10901C4182C1A620033D9CA /* iphone.png */,
+				F1FA94181836980900324401 /* atlas5.png */,
+				F1FA94191836980900324401 /* blast.png */,
+				F1FA941A1836980A00324401 /* bomb_64x64_2.png */,
+				F1FA941B1836980A00324401 /* character_crawling.png */,
+				F1FA941C1836980A00324401 /* character_flying.png */,
+				F1FA941D1836980A00324401 /* character_gold.png */,
+				F1FA941E1836980A00324401 /* character_jetpack.png */,
+				F1FA941F1836980A00324401 /* character_silver.png */,
+				F1FA94201836980A00324401 /* explosion.png */,
+				F1FA94211836980A00324401 /* items.png */,
+				F1FA94221836980A00324401 /* items_.png */,
+				F1FA94231836980A00324401 /* langolier.png */,
+				F1FA94241836980A00324401 /* perks.png */,
+				F1FA94251836980A00324401 /* skins8bit.png */,
+				F1FA94261836980A00324401 /* splash.png */,
+				F1FA94271836980A00324401 /* tileset.png */,
+				F1FA94281836980A00324401 /* tileset_12_31.png */,
+			);
+			path = Bomber_img;
+			sourceTree = SOURCE_ROOT;
+		};
 		F1FFC577182C1929008ACBB0 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +181,7 @@
 		F1FFC589182C1929008ACBB0 /* Bomber */ = {
 			isa = PBXGroup;
 			children = (
+				F1FA94171836980900324401 /* Bomber_img */,
 				F1FFC592182C1929008ACBB0 /* BomberAppDelegate.h */,
 				F1FFC593182C1929008ACBB0 /* BomberAppDelegate.m */,
 				F1FFC595182C1929008ACBB0 /* Main_iPhone.storyboard */,
@@ -122,6 +190,8 @@
 				F1FFC59C182C1929008ACBB0 /* BomberViewController.m */,
 				F1FFC59E182C1929008ACBB0 /* Images.xcassets */,
 				F1FFC58A182C1929008ACBB0 /* Supporting Files */,
+				F1FFC5BB182C195F008ACBB0 /* BomberFunView.h */,
+				F1FFC5BC182C195F008ACBB0 /* BomberFunView.m */,
 			);
 			path = Bomber;
 			sourceTree = "<group>";
@@ -233,8 +303,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1FFC59A182C1929008ACBB0 /* Main_iPad.storyboard in Resources */,
+				F1FA94371836980A00324401 /* splash.png in Resources */,
+				F1FA94341836980A00324401 /* langolier.png in Resources */,
+				F1FA94391836980A00324401 /* tileset_12_31.png in Resources */,
+				F1FA94291836980A00324401 /* atlas5.png in Resources */,
+				F1FA942A1836980A00324401 /* blast.png in Resources */,
 				F1FFC59F182C1929008ACBB0 /* Images.xcassets in Resources */,
+				F10901C5182C1A620033D9CA /* controlbut.png in Resources */,
 				F1FFC597182C1929008ACBB0 /* Main_iPhone.storyboard in Resources */,
+				F1FA94361836980A00324401 /* skins8bit.png in Resources */,
+				F1FA942C1836980A00324401 /* character_crawling.png in Resources */,
+				F1FA942E1836980A00324401 /* character_gold.png in Resources */,
+				F1FA942B1836980A00324401 /* bomb_64x64_2.png in Resources */,
+				F1FA94381836980A00324401 /* tileset.png in Resources */,
+				F1FA94311836980A00324401 /* explosion.png in Resources */,
+				F10901C6182C1A620033D9CA /* iphone.png in Resources */,
+				F1FA94331836980A00324401 /* items_.png in Resources */,
+				F1FA94351836980A00324401 /* perks.png in Resources */,
+				F1FA942D1836980A00324401 /* character_flying.png in Resources */,
+				F1FA942F1836980A00324401 /* character_jetpack.png in Resources */,
+				F1FA94301836980A00324401 /* character_silver.png in Resources */,
+				F1FA94321836980A00324401 /* items.png in Resources */,
 				F1FFC58E182C1929008ACBB0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1FFC590182C1929008ACBB0 /* main.m in Sources */,
+				F1FFC5BD182C195F008ACBB0 /* BomberFunView.m in Sources */,
 				F1FFC594182C1929008ACBB0 /* BomberAppDelegate.m in Sources */,
 				F1FFC59D182C1929008ACBB0 /* BomberViewController.m in Sources */,
 			);
@@ -475,6 +565,7 @@
 				F1FFC5B7182C1929008ACBB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1FFC5B8182C1929008ACBB0 /* Build configuration list for PBXNativeTarget "BomberTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +574,7 @@
 				F1FFC5BA182C1929008ACBB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
