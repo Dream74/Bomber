@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F107AA8E183BA6610000B911 /* Kernel.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA8D183BA6610000B911 /* Kernel.m */; };
+		F107AA91183BADD20000B911 /* Control.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA90183BADD20000B911 /* Control.m */; };
+		F107AA97183BB12A0000B911 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA96183BB12A0000B911 /* Player.m */; };
+		F107AA9A183BBED30000B911 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA99183BBED30000B911 /* Box.m */; };
+		F107AA9D183BBEE50000B911 /* MapData.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA9C183BBEE50000B911 /* MapData.m */; };
 		F10901C5182C1A620033D9CA /* controlbut.png in Resources */ = {isa = PBXBuildFile; fileRef = F10901C3182C1A620033D9CA /* controlbut.png */; };
 		F10901C6182C1A620033D9CA /* iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = F10901C4182C1A620033D9CA /* iphone.png */; };
+		F1A35AF3183BE9F9005EC776 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A35AF2183BE9F9005EC776 /* Bomb.m */; };
 		F1FA94291836980A00324401 /* atlas5.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94181836980900324401 /* atlas5.png */; };
 		F1FA942A1836980A00324401 /* blast.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94191836980900324401 /* blast.png */; };
 		F1FA942B1836980A00324401 /* bomb_64x64_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941A1836980A00324401 /* bomb_64x64_2.png */; };
@@ -55,8 +61,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F107AA87183BA0810000B911 /* Bomber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bomber.h; sourceTree = "<group>"; };
+		F107AA8C183BA6610000B911 /* Kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kernel.h; sourceTree = "<group>"; };
+		F107AA8D183BA6610000B911 /* Kernel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kernel.m; sourceTree = "<group>"; };
+		F107AA8F183BADD20000B911 /* Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Control.h; sourceTree = "<group>"; };
+		F107AA90183BADD20000B911 /* Control.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Control.m; sourceTree = "<group>"; };
+		F107AA95183BB12A0000B911 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		F107AA96183BB12A0000B911 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		F107AA98183BBED30000B911 /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		F107AA99183BBED30000B911 /* Box.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Box.m; sourceTree = "<group>"; };
+		F107AA9B183BBEE50000B911 /* MapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapData.h; path = ../MapData.h; sourceTree = "<group>"; };
+		F107AA9C183BBEE50000B911 /* MapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapData.m; path = ../MapData.m; sourceTree = "<group>"; };
 		F10901C3182C1A620033D9CA /* controlbut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controlbut.png; path = ../Bomber/controlbut.png; sourceTree = "<group>"; };
 		F10901C4182C1A620033D9CA /* iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iphone.png; path = ../Bomber/iphone.png; sourceTree = "<group>"; };
+		F1A35AF1183BE9F9005EC776 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bomb.h; path = ../Bomb.h; sourceTree = "<group>"; };
+		F1A35AF2183BE9F9005EC776 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bomb.m; path = ../Bomb.m; sourceTree = "<group>"; };
 		F1FA94181836980900324401 /* atlas5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas5.png; sourceTree = "<group>"; };
 		F1FA94191836980900324401 /* blast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blast.png; sourceTree = "<group>"; };
 		F1FA941A1836980A00324401 /* bomb_64x64_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb_64x64_2.png; sourceTree = "<group>"; };
@@ -192,6 +211,19 @@
 				F1FFC58A182C1929008ACBB0 /* Supporting Files */,
 				F1FFC5BB182C195F008ACBB0 /* BomberFunView.h */,
 				F1FFC5BC182C195F008ACBB0 /* BomberFunView.m */,
+				F107AA87183BA0810000B911 /* Bomber.h */,
+				F107AA8C183BA6610000B911 /* Kernel.h */,
+				F107AA8D183BA6610000B911 /* Kernel.m */,
+				F107AA9B183BBEE50000B911 /* MapData.h */,
+				F107AA9C183BBEE50000B911 /* MapData.m */,
+				F107AA8F183BADD20000B911 /* Control.h */,
+				F107AA90183BADD20000B911 /* Control.m */,
+				F107AA95183BB12A0000B911 /* Player.h */,
+				F107AA96183BB12A0000B911 /* Player.m */,
+				F107AA98183BBED30000B911 /* Box.h */,
+				F107AA99183BBED30000B911 /* Box.m */,
+				F1A35AF1183BE9F9005EC776 /* Bomb.h */,
+				F1A35AF2183BE9F9005EC776 /* Bomb.m */,
 			);
 			path = Bomber;
 			sourceTree = "<group>";
@@ -344,8 +376,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1FFC590182C1929008ACBB0 /* main.m in Sources */,
+				F107AA9A183BBED30000B911 /* Box.m in Sources */,
+				F107AA91183BADD20000B911 /* Control.m in Sources */,
+				F107AA8E183BA6610000B911 /* Kernel.m in Sources */,
 				F1FFC5BD182C195F008ACBB0 /* BomberFunView.m in Sources */,
+				F1A35AF3183BE9F9005EC776 /* Bomb.m in Sources */,
 				F1FFC594182C1929008ACBB0 /* BomberAppDelegate.m in Sources */,
+				F107AA97183BB12A0000B911 /* Player.m in Sources */,
+				F107AA9D183BBEE50000B911 /* MapData.m in Sources */,
 				F1FFC59D182C1929008ACBB0 /* BomberViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
 				INFOPLIST_FILE = "Bomber/Bomber-Info.plist";
@@ -496,6 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
 				INFOPLIST_FILE = "Bomber/Bomber-Info.plist";

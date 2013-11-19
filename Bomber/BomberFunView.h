@@ -7,17 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Kernel.h"
 
 @interface BomberFunView : UIView
 
-@property (nonatomic) CGPoint firstTouch;
 @property (nonatomic) CGPoint lastTouch;
-@property (nonatomic) CGPoint bomber ;
-@property (nonatomic) CGPoint control ;
+@property (nonatomic) Kernel * bomber_kernel ;
 
-@property (strong, nonatomic) UIColor *currentColor;
-@property (nonatomic, strong) UIImage *drawImage;
-@property (nonatomic, strong) UIImage *controlImage;
 
 @property CGRect redrawRect;
 
