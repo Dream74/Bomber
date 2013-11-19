@@ -47,7 +47,7 @@ MapData * map ;
 }
 
 - (void)draw{
-    // [ map draw ] ;
+    [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer doMove:[ctrlUI getMove]] ;
     [ onePlayer draw ];

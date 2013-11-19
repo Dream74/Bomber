@@ -17,4 +17,6 @@
 #define IPATHON_WIDTH 640
 #define IPATHON_HIGHT 1136
 
+#define SCREEN_WIDTH 320
+#define SCREEN_HIGHT 568
 #endif

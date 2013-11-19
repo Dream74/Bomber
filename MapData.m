@@ -14,14 +14,13 @@
 @synthesize groundImages;
 @synthesize originalImg;
 
-#define MAP_WIDTH_NUM IPATHON_WIDTH / MAP_SIZE
-#define MAP_HIGHT_NUM IPAD_HIGHT / MAP_SIZE
+#define MAP_WIDTH_NUM SCREEN_WIDTH / MAP_SIZE + 4
+#define MAP_HIGHT_NUM SCREEN_HIGHT / MAP_SIZE + 4
 
 
 
 int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
-//  bomb, box
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 - (id) init{
@@ -40,14 +39,25 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
         [groundImages addObject:[[Kernel class] subImage:originalImg offsetWidth:i*32 offsetHeight:38 imgWidth:32 imgHeight:32]];
     } // for
 
-
+    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
+        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
+            backgroud[j][i] = arc4random() % 13 ;
+        }
+    }
+    
+    
+    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
+        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
+            objgroupd[j][i] = arc4random() % 2 ;
+        }
+    }
     return self ;
 }
 
 - (void) draw {
     for( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ){
         for (int j = 0 ; j < MAP_WIDTH_NUM ; j++ ) {
-            [[groundImages objectAtIndex:arc4random() % 13] drawAtPoint: CGPointMake(i*32+_local.x,j*32+_local.y)]  ;
+            [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*32+_local.x,j*32+_local.y)]  ;
         }
     }
 }

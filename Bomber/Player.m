@@ -39,12 +39,12 @@ int bombNum ;
     playerImages = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 4; i++) {
-        NSMutableArray * array = [[NSMutableArray alloc] init];
+        [playerImages addObject: [[NSMutableArray alloc] init ] ];
         for( int j = 0 ; j < 4 ; j++ ) {
-            [array addObject:[[Kernel class] subImage:originalImg offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
+            [[ playerImages objectAtIndex: i ] addObject:[[Kernel class] subImage:originalImg offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
-        [playerImages addObject:array] ;
     } // for
+    
     
     return self ;
 }

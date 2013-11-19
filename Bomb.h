@@ -10,4 +10,7 @@
 
 @interface Bomb : Box
 
+@property (nonatomic) CGPoint local ;
+@property (nonatomic, strong) UIImage * originalImg;
+@property (nonatomic, strong) NSMutableArray * bombImages;
 @end
