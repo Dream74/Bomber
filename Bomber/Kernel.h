@@ -10,6 +10,7 @@
 #import "Control.h"
 #import "Player.h"
 #import "MapData.h"
+#import "Resource.h"
 
 @interface Kernel : NSObject {
 @public
@@ -27,6 +28,8 @@
 // nonatomic－預設為atomic。
 
 @property (nonatomic, strong) NSMutableArray * bombCollect;
+
+
 - (void)touchesBegan    :(CGPoint *)location ;
 - (void)touchesCancelled:(CGPoint *)location ;
 - (void)touchesMoved    :(CGPoint *)location ;
@@ -35,7 +38,7 @@
 - (void)stop  ;
 - (void)draw  ;
 
-@property (nonatomic) Control * ctrlUI  ;
-@property (nonatomic) Player  * onePlayer ;
-@property (nonatomic) MapData * map ;
+@property (nonatomic) Control *  ctrlUI  ;
+@property (nonatomic) Player  *  onePlayer ;
+@property (nonatomic) MapData *  map ;
 @end

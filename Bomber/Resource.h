@@ -24,7 +24,5 @@
 @property (nonatomic, strong) UIImage * tileset ;
 @property (nonatomic, strong) UIImage * tileset_12_31 ;
 
--(void) InitalResource ;
-
 
 @end
