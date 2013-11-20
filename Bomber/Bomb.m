@@ -96,6 +96,7 @@
         [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:3] drawAtPoint: local]  ;
         local.y += 32 ;
         
+        
     }
     
 }
