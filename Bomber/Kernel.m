@@ -13,10 +13,11 @@
 #include "Bomber.h"
 
 @implementation Kernel
-@synthesize ctrlUI    ;
-@synthesize onePlayer ;
-@synthesize map       ;
-@synthesize bombCollect       ;
+
+@synthesize ctrlUI         ;
+@synthesize onePlayer      ;
+@synthesize map            ;
+@synthesize bombCollect    ;
 
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
@@ -33,9 +34,15 @@
     CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
     UIImage *  _outImage ;
     if ( degree == 0 )
+<<<<<<< HEAD
         _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationUp];
     else if ( degree == 90 )
         _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationRight];
+=======
+      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationUp];
+    else if ( degree == 90 )
+      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationRight];
+>>>>>>> Dream
     else if ( degree == -90 )
         _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationLeft];
     else if ( degree == 180 )
@@ -57,12 +64,15 @@
 
 
 - (void)start{
+<<<<<<< HEAD
     [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(draw) userInfo:nil repeats:YES];
+=======
+>>>>>>> Dream
 }
 
 - (void)stop{
-    
 }
+
 
 - (void)draw{
     [ map draw ] ;

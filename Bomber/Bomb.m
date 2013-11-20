@@ -63,7 +63,11 @@
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :180]] ;
     // down
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :90]] ;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> Dream
     return self ;
 }
 
@@ -83,6 +87,7 @@
         [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
     else if ( bomb != 10 && imgIndex < 9 )
         [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+<<<<<<< HEAD
     else if ( bomb == 10 ){
         [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:0] drawAtPoint: local]  ;
         local.x += 32 ;
@@ -98,6 +103,9 @@
         
         
     }
+=======
+
+>>>>>>> Dream
     
 }
 
@@ -117,9 +125,12 @@
         [NSThread sleepForTimeInterval:((float)BOMB_SEC /BOMB_ANTION_NUM)];
         
     } // for
+<<<<<<< HEAD
     bomb = 10 ;
     [NSThread sleepForTimeInterval:((float)0.5)];
     bomb = 1 ;
+=======
+>>>>>>> Dream
     
     [self startbomb];}
 

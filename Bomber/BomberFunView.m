@@ -8,21 +8,50 @@
 
 #import "BomberFunView.h"
 #include "kernel.h"
+#define TIME_INTERVAL 0.010
 
 @implementation BomberFunView
-@synthesize bomber_kernel ;
+@synthesize bomber_kernel  ;
+@synthesize bThreadRunning ;
 
 
 
 - (id)initWithCoder:(NSCoder*)coder {
     if (self = [super initWithCoder:coder]) {
         bomber_kernel = [ [ Kernel alloc ] init ] ;
-        
-        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(setNeedsDisplay) userInfo:nil repeats:YES];
-
+        [self start] ;
     }
     return self;
 }
+
+
+
+
+- (void)start{
+    bThreadRunning = true ;
+    [ bomber_kernel start ] ;
+    [NSThread detachNewThreadSelector:@selector(sceneRun) toTarget:self withObject:nil];
+}
+
+- (void)stop{
+    bThreadRunning = false;
+    [ bomber_kernel stop ] ;
+}
+
+- (void) sceneRun{
+    
+    @autoreleasepool {
+        while(bThreadRunning)
+        {
+            [self performSelectorOnMainThread:@selector(updateGUI)withObject:nil waitUntilDone:NO];
+            [NSThread sleepForTimeInterval:TIME_INTERVAL];
+        }
+    }
+}
+
+
+- (void)updateGUI
+{    [self setNeedsDisplay];    }
 
 #pragma mark - Touch Handling
 
