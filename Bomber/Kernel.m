@@ -31,10 +31,15 @@
     
     CGRect rect = CGRectMake(x, y, width, height);
     CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
+    UIImage *  _outImage ;
     if ( degree == 0 )
-      UIImage * _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationUp];
+      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationUp];
     else if ( degree == 90 )
-      UIImage * _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationUP];
+      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationRight];
+    else if ( degree == -90 )
+        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationLeft];
+    else if ( degree == 180 )
+        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationDown];
     
     CGImageRelease(drawImage);
     return _outImage ;

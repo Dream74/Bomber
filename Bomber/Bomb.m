@@ -56,9 +56,13 @@
     // normal
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:32 offsetHeight:0 imgWidth:32 imgHeight:32]];
     // right
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32]];
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :0]] ;
     // top
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 ]];
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :-90]] ;
+    // left
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :180]] ;
+    // down
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :90]] ;
 
     return self ;
 }
@@ -77,8 +81,22 @@
 -(void) draw{
     if ( bomb == UNBOMB && imgIndex < 14 )
         [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
-    else if ( imgIndex < 9 )
+    else if ( bomb != 10 && imgIndex < 9 )
         [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+    else if ( bomb == 10 ){
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+        local.x += 32 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:2] drawAtPoint: local]  ;
+        local.x -= 64 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:4] drawAtPoint: local]  ;
+        local.x += 32 ;
+        local.y += 32 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:5] drawAtPoint: local]  ;
+        local.y -= 64 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:3] drawAtPoint: local]  ;
+        local.y += 32 ;
+        
+    }
     
 }
 
@@ -98,6 +116,12 @@
         [NSThread sleepForTimeInterval:((float)BOMB_SEC /BOMB_ANTION_NUM)];
         
     } // for
+    bomb = 10 ;
+    imgIndex = 0 ;
+    
+    [NSThread sleepForTimeInterval:((float)0.5)];
+    bomb = 0 ;
+    
     [self startbomb];}
 
 - (void) startbomb{
