@@ -29,14 +29,24 @@
     color = bombcolor ;
     
     originalImg = [UIImage imageNamed:@"blast.png"] ;
+    UIImage * originalImg2 = [UIImage imageNamed:@"bomb_32x32_2.png"] ;
     
     bombImages = [[NSMutableArray alloc] init ];
-    for ( int j = 0 ; j < 9 ; j++ ) {
+    for ( int j = 0 ; j < 10 ; j++ ) {
         [ bombImages addObject: [[NSMutableArray alloc] init ] ];
-        for ( int i = 0 ; i < 9 ; i++ ) {
-            [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:originalImg offsetWidth:i*32 offsetHeight:j*32 imgWidth:32 imgHeight:32]];
-        } // for
+        if ( j == 0 ) {
+            for ( int i = 0 ; i < 14 ; i++ ) {
+                [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:0 offsetHeight:i*32 imgWidth:32 imgHeight:32]];
+            } // for
+        } // if
+        
+        else {
+            for ( int i = 0 ; i < 9 ; i++ ) {
+                [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:originalImg offsetWidth:i*32 offsetHeight:(j-1)*32 imgWidth:32 imgHeight:32]];
+            } // for
+        } // else
     } // for
+
     return self ;
 }
 
@@ -52,7 +62,9 @@
 }
 
 -(void) draw{
-    if ( imgIndex < ANTION_NUM )
+    if ( color == 0 && imgIndex < 14 )
+        [ [ [ bombImages objectAtIndex:color ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+    else if ( imgIndex < 9 )
         [ [ [ bombImages objectAtIndex:color ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
 }
 
@@ -61,12 +73,18 @@
 }
 
 -(void) run{
-    for (int i = 0 ; i < ( ANTION_NUM + 1 ); i++) {
+    for (int i = 0 ; i < ( 15 ); i++) {
         imgIndex = i ;
-        [NSThread sleepForTimeInterval:((float)BOMB_SEC/ANTION_NUM)];  ;
-    }
-    [self startbomb];
-}
+        if ( i != 14 ) [NSThread sleepForTimeInterval:((float)5/14)];
+    } // for
+    color = random() %9 + 1;
+    
+    for ( int i = 0 ; i < ( ANTION_NUM + 1 ) ; i++ ) {
+        imgIndex = i ;
+        [NSThread sleepForTimeInterval:((float)BOMB_SEC /ANTION_NUM)];
+        
+    } // for
+    [self startbomb];}
 
 - (void) startbomb{
     NSLog(@"BOMB!!") ;
