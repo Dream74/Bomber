@@ -17,6 +17,7 @@
 }
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
++ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree;
 
 @property (nonatomic, strong) NSMutableArray * bombCollect;
 - (void)touchesBegan    :(CGPoint *)location ;

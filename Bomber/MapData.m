@@ -38,7 +38,6 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
         }
     }
     
-    
     for( int i = 0; i < MAP_WIDTH_NUM ; i++){
         for (int j = 0; j < MAP_HIGHT_NUM; j++) {
             objgroupd[j][i] = arc4random() % 2 ;
