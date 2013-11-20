@@ -7,8 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Control.h"
+#import "Player.h"
+#import "MapData.h"
 
-@interface Kernel : NSObject
+@interface Kernel : NSObject {
+@public
+    
+}
+
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
 
 @property (nonatomic, strong) NSMutableArray * bombCollect;
@@ -19,4 +26,8 @@
 - (void)start ;
 - (void)stop  ;
 - (void)draw  ;
+
+@property (nonatomic) Control * ctrlUI  ;
+@property (nonatomic) Player  * onePlayer ;
+@property (nonatomic) MapData * map ;
 @end

@@ -14,15 +14,19 @@
 @synthesize originalImg;
 @synthesize bombImages;
 @synthesize local;
+@synthesize color ;
+@synthesize imgIndex ;
+
+
 
 #define ANTION_NUM 9
-#define BOMB_SEC   2
+#define BOMB_SEC   1
 
 
 -(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor{
     self = [super init] ;
     local = localPoint ;
-    [self color] = bombcolor ;
+    color = bombcolor ;
     
     originalImg = [UIImage imageNamed:@"blast.png"] ;
     
@@ -66,7 +70,6 @@
 
 - (void) startbomb{
     NSLog(@"BOMB!!") ;
-    
 }
 
 @end

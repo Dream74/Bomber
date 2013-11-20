@@ -8,18 +8,12 @@
 
 #import "MapData.h"
 #import "Kernel.h"
-#import "Bomber.h"
+
 @implementation MapData
 @synthesize groundImages;
 @synthesize originalImg;
 
-#define MAP_WIDTH_NUM SCREEN_WIDTH / MAP_SIZE + 4
-#define MAP_HIGHT_NUM SCREEN_HIGHT / MAP_SIZE + 4
-
-
-
 int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
-
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 - (id) init{
@@ -31,11 +25,11 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     groundImages = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 8; i++) {
-        [groundImages addObject:[[Kernel class] subImage:originalImg offsetWidth:i*32 offsetHeight:0 imgWidth:32 imgHeight:32]];
+        [groundImages addObject:[[Kernel class] subImage:originalImg offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:0 imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
     } // for
     
     for ( int i = 0 ; i < 5 ; i++ ) {
-        [groundImages addObject:[[Kernel class] subImage:originalImg offsetWidth:i*32 offsetHeight:38 imgWidth:32 imgHeight:32]];
+        [groundImages addObject:[[Kernel class] subImage:originalImg offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:IMG_MAP_OFFSET_HIGHT imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
     } // for
 
     for( int i = 0; i < MAP_WIDTH_NUM ; i++){
@@ -57,7 +51,7 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 - (void) draw {
     for( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ){
         for (int j = 0 ; j < MAP_WIDTH_NUM ; j++ ) {
-            [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*32+_local.x,j*32+_local.y)]  ;
+            [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+_local.x,j*IMG_MAP_SIZE+_local.y)]  ;
         }
     }
 }

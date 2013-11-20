@@ -7,38 +7,70 @@
 //
 
 #import "Control.h"
-#undef DEBUG
 
 @implementation Control
-@synthesize lastTouch ;
-@synthesize location ;
+@synthesize firstTouch   ;
+@synthesize lastTouch    ;
 @synthesize controlImage ;
+@synthesize currentColor ;
+@synthesize canMove      ;
 
-int controlRadius ;
-bool canMove ;
+#define CONTROL_REDIUS   50
+#define CONTROL_DIAMETER CONTROL_REDIUS * 2
+
+#define TOUCH_REDIUS 10
+#define TOUCH_DIAMETER TOUCH_REDIUS * 2
+
+#undef DEBUG
+
 - (id) init{
     self = [super init] ;
-    location.x = 50 ;
-    location.y = 250 ;
     controlImage = [UIImage imageNamed:@"controlbut.png"] ;
-    controlRadius =  controlImage.size.width / 2; ;
-    canMove = false ;
+    
+    /* 可以利用這樣設定半透明度
+     UIColor *theColor=[UIColor
+     colorWithRed:1.0
+     green:0.0
+     blue:0.0
+     alpha:1.0]; */
+    
+    currentColor = [UIColor whiteColor];
+    canMove      = false ;
     return self ;
 }
 
 -(void) draw{
-    [controlImage drawAtPoint:CGPointMake(location.x - controlRadius, location.y - controlRadius)] ;
+    // [controlImage drawAtPoint:CGPointMake(location.x - controlRadius, location.y - controlRadius)] ;
+    if ( canMove ) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetLineWidth(context, 1.0);
+        CGContextSetStrokeColorWithColor(context, currentColor.CGColor);
+    
+        CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+        CGContextAddEllipseInRect(context, CGRectMake (firstTouch.x - CONTROL_REDIUS ,
+                                                       firstTouch.y - CONTROL_REDIUS ,
+                                                       CONTROL_DIAMETER,
+                                                       CONTROL_DIAMETER));
+        const CGPoint touchMove = [self getMove];
+        CGContextAddEllipseInRect(context, CGRectMake (firstTouch.x - TOUCH_REDIUS + touchMove.x,
+                                                       firstTouch.y - TOUCH_REDIUS + touchMove.y,
+                                                       TOUCH_DIAMETER,
+                                                       TOUCH_DIAMETER));
+    
+        CGContextDrawPath(context, kCGPathFillStroke);
+    }
 }
 
 -(CGPoint) getMove{
-    static CGPoint move ;
     if ( canMove ) {
-        const CGPoint diff = { lastTouch.x - location.x , lastTouch.y - location.y };
-        if ( ( diff.x <= controlRadius && diff.y <= controlRadius )  ) {
-            move = diff ;
+        const CGPoint diff = { lastTouch.x - firstTouch.x , lastTouch.y - firstTouch.y };
+        const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
+        if ( ( diffLen <= CONTROL_REDIUS )  ) {
             return diff ;
         }
         else {
+            const CGPoint move = {  diff.x / ( diffLen / CONTROL_REDIUS ) ,
+                                    diff.y / ( diffLen / CONTROL_REDIUS ) };
             return move ;
         }
     }
@@ -52,10 +84,12 @@ bool canMove ;
 #ifdef DEBUG
     NSLog(@"touchesBegan X:%f Y:%f", touches->x, touches->y) ;
 #endif
-    lastTouch = CGPointMake(touches->x, touches->y) ;
-    const CGPoint diff = { touches->x - location.x , touches->y - location.y };
+    firstTouch = CGPointMake(touches->x, touches->y) ;
+    lastTouch  = firstTouch ;
     
-    canMove = ( diff.x <= controlRadius && diff.y <= controlRadius ) ? true : false ;
+    const CGPoint diff = { lastTouch.x - firstTouch.x , lastTouch.y - firstTouch.y };
+    
+    canMove = ( diff.x <= CONTROL_REDIUS && diff.y <= CONTROL_REDIUS ) ? true : false ;
 }
 
 - (void)touchesCancelled:(CGPoint *) touches{

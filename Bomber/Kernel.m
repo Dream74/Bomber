@@ -7,20 +7,17 @@
 //
 
 #import "Kernel.h"
-#import "Control.h"
-#import "Player.h"
-#import "MapData.h"
 
 #import "Bomb.h"
 
 #include "Bomber.h"
 
 @implementation Kernel
+@synthesize ctrlUI    ;
+@synthesize onePlayer ;
+@synthesize map       ;
+@synthesize bombCollect       ;
 
-
-Control * ctrlUI ;
-Player *  onePlayer ;
-MapData * map ;
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
     CGRect rect = CGRectMake(x, y, width, height);
@@ -31,11 +28,11 @@ MapData * map ;
 }
 
 - (id) init{
-    self      = [super init] ;
-    ctrlUI    = [[Control alloc] init] ;
-    onePlayer = [[Player  alloc] init] ;
-    map       = [[MapData alloc] init] ;
-    _bombCollect = [[NSMutableArray alloc] init] ;
+    self        = [super init] ;
+    ctrlUI      = [[Control alloc] init] ;
+    onePlayer   = [[Player  alloc] init] ;
+    map         = [[MapData alloc] init] ;
+    bombCollect = [[NSMutableArray alloc] init] ;
     return self ;
 }
 
@@ -49,16 +46,17 @@ MapData * map ;
 }
 
 - (void)draw{
-    static int count = 0 ;
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer doMove:[ctrlUI getMove]] ;
     [ onePlayer draw ];
+    
+    static int count = 0 ;
     if ( (count++ % 50) == 0 )
-        [_bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :RED]] ;
+        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :RED]] ;
     
     // 是否 callback方法移除炸彈
-    for(Bomb *bomb in _bombCollect) {
+    for(Bomb *bomb in bombCollect) {
         [bomb draw] ;
     }
 }

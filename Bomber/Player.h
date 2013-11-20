@@ -14,6 +14,11 @@
 @property (nonatomic, strong) UIImage * originalImg;
 @property (nonatomic, strong) NSMutableArray * playerImages;
 
+@property (nonatomic) int state    ;
+@property (nonatomic) int speed    ;
+@property (nonatomic) int fire     ;
+@property (nonatomic) int bombNum  ;
+
 -(void) draw ;
 -(void) doMove:(CGPoint) move ;
 @end

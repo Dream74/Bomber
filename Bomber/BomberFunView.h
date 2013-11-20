@@ -11,10 +11,7 @@
 
 @interface BomberFunView : UIView
 
-@property (nonatomic) CGPoint lastTouch;
+@property (nonatomic) CGPoint  lastTouch;
 @property (nonatomic) Kernel * bomber_kernel ;
-
-
-@property CGRect redrawRect;
 
 @end

@@ -18,7 +18,7 @@
     if (self = [super initWithCoder:coder]) {
         bomber_kernel = [ [ Kernel alloc ] init ] ;
         
-        [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(setNeedsDisplay) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(setNeedsDisplay) userInfo:nil repeats:YES];
 
     }
     return self;

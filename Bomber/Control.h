@@ -10,16 +10,18 @@
 
 @interface Control : NSObject
 
-@property (nonatomic) CGPoint location ;
-@property (nonatomic) CGPoint lastTouch ;
-
+@property (nonatomic)         CGPoint firstTouch ;
+@property (nonatomic)         CGPoint lastTouch ;
+@property (strong, nonatomic) UIColor * currentColor;
 @property (nonatomic, strong) UIImage * controlImage;
+@property (nonatomic)         bool canMove ;
+
 
 - (void) touchesBegan    :(CGPoint *)touches ;
 - (void) touchesCancelled:(CGPoint *)touches ;
 - (void) touchesMoved    :(CGPoint *)touches ;
 - (void) touchesEnded    :(CGPoint *)touches ;
-- (void) draw ;
 
--(CGPoint) getMove ;
+- (void)    draw ;
+- (CGPoint) getMove ;
 @end

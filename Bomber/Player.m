@@ -10,9 +10,13 @@
 #import "Kernel.h"
 
 @implementation Player
-@synthesize originalImg ;
+@synthesize originalImg  ;
 @synthesize playerImages ;
-@synthesize local ;
+@synthesize local        ;
+@synthesize state        ;
+@synthesize speed        ;
+@synthesize fire         ;
+@synthesize bombNum      ;
 
 #define PLAYER_SIZE        34
 #define SPEED              3
@@ -23,16 +27,21 @@
 #define IMAGE_CHANGE_DELAY 8
 #define ANTION_NUM         4
 
+#define DEFAULT_SPEED   2
+#define DEFAULT_FIR     2
+#define DEFAULT_BOMBNUM 1
+
+
 enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
-int state = TOP ;
-int speed   ;
-int fire    ;
-int bombNum ;
 
 - (id) init{
     self = [super init] ;    
     local.x = 160 ;
     local.y = 200 ;
+    state   = DOWN            ;
+    speed   = DEFAULT_SPEED   ;
+    fire    = DEFAULT_FIR     ;
+    bombNum = DEFAULT_BOMBNUM ;
     
     originalImg = [UIImage imageNamed:@"character_flying.png"] ;
     
@@ -65,8 +74,8 @@ int bombNum ;
     local.x += move.x * SPEED / 100;
     local.y += move.y * SPEED / 100;
     
-    local.x = MIN(MAX(local.x, 0 ), 568 - PLAYER_SIZE) ;
-    local.y = MIN(MAX(local.y, 0 ), 320 - PLAYER_SIZE) ;
+    local.x = MIN(MAX(local.x, 0 ), SCREEN_HIGHT - PLAYER_SIZE) ;
+    local.y = MIN(MAX(local.y, 0 ), SCREEN_WIDTH - PLAYER_SIZE) ;
     
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
