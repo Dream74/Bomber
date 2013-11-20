@@ -9,7 +9,6 @@
 #import "MapData.h"
 #import "Kernel.h"
 #import "Bomber.h"
-
 @implementation MapData
 @synthesize groundImages;
 @synthesize originalImg;
@@ -51,6 +50,7 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             objgroupd[j][i] = arc4random() % 2 ;
         }
     }
+    
     return self ;
 }
 

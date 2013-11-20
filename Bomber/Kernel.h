@@ -10,6 +10,8 @@
 
 @interface Kernel : NSObject
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
+
+@property (nonatomic, strong) NSMutableArray * bombCollect;
 - (void)touchesBegan    :(CGPoint *)location ;
 - (void)touchesCancelled:(CGPoint *)location ;
 - (void)touchesMoved    :(CGPoint *)location ;

@@ -10,16 +10,20 @@
 #import "Kernel.h"
 
 @implementation Bomb
+
 @synthesize originalImg;
 @synthesize bombImages;
+@synthesize local;
 
 #define ANTION_NUM 9
-#define BOMB_SEC   3
+#define BOMB_SEC   2
 
-enum BOMB_COLOR{ RED = 0, ORANGE, YEALLOW, GREEN, AQUAMANINE, BLUE, PURPLE, BLOCK, GRAY,LENGTH} ;
-int state ;
--(id)init{
+
+-(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor{
     self = [super init] ;
+    local = localPoint ;
+    [self color] = bombcolor ;
+    
     originalImg = [UIImage imageNamed:@"blast.png"] ;
     
     bombImages = [[NSMutableArray alloc] init ];
@@ -31,4 +35,38 @@ int state ;
     } // for
     return self ;
 }
+
+
++ (Bomb *) putBomb:(CGPoint)point :(int) bombColor{
+    Bomb * bomb = [[Bomb alloc] initWithLocation:point BOMB_COLOR:bombColor] ;
+    [bomb start] ;
+    return bomb ;
+}
+
++ (Bomb *) putBomb:(int)x :(int)y :(int) bombColor{
+    return [[Bomb class] putBomb:CGPointMake(x, y) :bombColor] ;
+}
+
+-(void) draw{
+    if ( imgIndex < ANTION_NUM )
+        [ [ [ bombImages objectAtIndex:color ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+}
+
+-(void) start{
+    [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+}
+
+-(void) run{
+    for (int i = 0 ; i < ( ANTION_NUM + 1 ); i++) {
+        imgIndex = i ;
+        [NSThread sleepForTimeInterval:((float)BOMB_SEC/ANTION_NUM)];  ;
+    }
+    [self startbomb];
+}
+
+- (void) startbomb{
+    NSLog(@"BOMB!!") ;
+    
+}
+
 @end

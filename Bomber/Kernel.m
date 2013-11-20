@@ -11,6 +11,8 @@
 #import "Player.h"
 #import "MapData.h"
 
+#import "Bomb.h"
+
 #include "Bomber.h"
 
 @implementation Kernel
@@ -33,7 +35,7 @@ MapData * map ;
     ctrlUI    = [[Control alloc] init] ;
     onePlayer = [[Player  alloc] init] ;
     map       = [[MapData alloc] init] ;
-    
+    _bombCollect = [[NSMutableArray alloc] init] ;
     return self ;
 }
 
@@ -47,11 +49,18 @@ MapData * map ;
 }
 
 - (void)draw{
+    static int count = 0 ;
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer doMove:[ctrlUI getMove]] ;
     [ onePlayer draw ];
-     
+    if ( (count++ % 50) == 0 )
+        [_bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :RED]] ;
+    
+    // 是否 callback方法移除炸彈
+    for(Bomb *bomb in _bombCollect) {
+        [bomb draw] ;
+    }
 }
 
 - (void)touchesBegan:(CGPoint *) location{

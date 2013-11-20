@@ -10,7 +10,15 @@
 
 @interface Bomb : Box
 
+enum BOMB_COLOR{ RED = 0, ORANGE, YEALLOW, GREEN, AQUAMANINE, BLUE, PURPLE, BLOCK, GRAY, LENGTH} ;
+
 @property (nonatomic) CGPoint local ;
 @property (nonatomic, strong) UIImage * originalImg;
 @property (nonatomic, strong) NSMutableArray * bombImages;
++ (Bomb *) putBomb:(CGPoint)point :(int) bombColor;
++ (Bomb *) putBomb:(int)x :(int)y :(int) bombColor;
+- (void) draw ;
+
+- (int) color    ;
+- (int) imgIndex ;
 @end
