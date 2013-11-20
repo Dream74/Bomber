@@ -14,19 +14,21 @@
 @synthesize originalImg;
 @synthesize bombImages;
 @synthesize local;
-@synthesize color ;
+@synthesize bomb ;
 @synthesize imgIndex ;
 
 
 
-#define ANTION_NUM 9
+#define BOMB_ANTION_NUM 9
+#define UNBOMB_ACTION 14
 #define BOMB_SEC   1
+#define UNBOMB_SEC 5
 
 
 -(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor{
     self = [super init] ;
     local = localPoint ;
-    color = bombcolor ;
+    bomb = bombcolor ;
     
     originalImg = [UIImage imageNamed:@"blast.png"] ;
     UIImage * originalImg2 = [UIImage imageNamed:@"bomb_32x32_2.png"] ;
@@ -46,7 +48,22 @@
             } // for
         } // else
     } // for
-
+    
+    // add 火焰
+    originalImg2 = [UIImage imageNamed:@"explosion.png"] ;
+    [ bombImages addObject: [[NSMutableArray alloc] init ] ];
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:0 offsetHeight:0 imgWidth:32 imgHeight:32]];
+    // normal
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:32 offsetHeight:0 imgWidth:32 imgHeight:32]];
+    // right
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :0]] ;
+    // top
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :-90]] ;
+    // left
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :180]] ;
+    // down
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :90]] ;
+    
     return self ;
 }
 
@@ -62,10 +79,25 @@
 }
 
 -(void) draw{
-    if ( color == 0 && imgIndex < 14 )
-        [ [ [ bombImages objectAtIndex:color ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
-    else if ( imgIndex < 9 )
-        [ [ [ bombImages objectAtIndex:color ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+    if ( bomb == UNBOMB && imgIndex < 14 )
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+    else if ( bomb != 10 && imgIndex < 9 )
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+    else if ( bomb == 10 ){
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:0] drawAtPoint: local]  ;
+        local.x += 32 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:2] drawAtPoint: local]  ;
+        local.x -= 64 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:4] drawAtPoint: local]  ;
+        local.x += 32 ;
+        local.y += 32 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:5] drawAtPoint: local]  ;
+        local.y -= 64 ;
+        [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:3] drawAtPoint: local]  ;
+        local.y += 32 ;
+        
+    }
+    
 }
 
 -(void) start{
@@ -73,17 +105,21 @@
 }
 
 -(void) run{
-    for (int i = 0 ; i < ( 15 ); i++) {
+    for (int i = 0 ; i < ( UNBOMB_ACTION + 1 ); i++) {
         imgIndex = i ;
-        if ( i != 14 ) [NSThread sleepForTimeInterval:((float)5/14)];
+        if ( i != 14 ) [NSThread sleepForTimeInterval:((float) UNBOMB_SEC/UNBOMB_ACTION)];
     } // for
-    color = random() %9 + 1;
+    bomb = random() %9 + 1;
     
-    for ( int i = 0 ; i < ( ANTION_NUM + 1 ) ; i++ ) {
+    for ( int i = 0 ; i < ( BOMB_ANTION_NUM + 1 ) ; i++ ) {
         imgIndex = i ;
-        [NSThread sleepForTimeInterval:((float)BOMB_SEC /ANTION_NUM)];
+        [NSThread sleepForTimeInterval:((float)BOMB_SEC /BOMB_ANTION_NUM)];
         
     } // for
+    bomb = 10 ;
+    [NSThread sleepForTimeInterval:((float)0.5)];
+    bomb = 1 ;
+    
     [self startbomb];}
 
 - (void) startbomb{

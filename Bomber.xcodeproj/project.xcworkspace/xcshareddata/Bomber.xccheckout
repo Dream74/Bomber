@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F52DCB6D-9A5B-440F-9950-E659C6CC400B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Bomber</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>43B40F37-13C3-4904-AB6F-358F93D0DE2F</key>
+		<string>https://github.com/Dream74/Bomber.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Bomber.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>43B40F37-13C3-4904-AB6F-358F93D0DE2F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Dream74/Bomber.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>43B40F37-13C3-4904-AB6F-358F93D0DE2F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>43B40F37-13C3-4904-AB6F-358F93D0DE2F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Bomber</string>
+		</dict>
+	</array>
+</dict>
+</plist>
