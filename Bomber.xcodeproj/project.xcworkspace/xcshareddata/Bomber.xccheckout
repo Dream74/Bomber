@@ -5,29 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-<<<<<<< HEAD
-	<string>F52DCB6D-9A5B-440F-9950-E659C6CC400B</string>
-=======
-	<string>164BC193-649F-4CA5-879C-382FF8442F74</string>
->>>>>>> Dream
+	<string>0E400AE0-A863-470D-84D7-6AB98F9832E2</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Bomber</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-<<<<<<< HEAD
-		<key>43B40F37-13C3-4904-AB6F-358F93D0DE2F</key>
+		<key>30F843AA-5A5E-462C-A53F-33FE6FD0CE38</key>
 		<string>https://github.com/Dream74/Bomber.git</string>
-=======
-		<key>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</key>
-		<string>ftp://140.135.10.163//git</string>
->>>>>>> Dream
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Bomber.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-<<<<<<< HEAD
-		<key>43B40F37-13C3-4904-AB6F-358F93D0DE2F</key>
+		<key>30F843AA-5A5E-462C-A53F-33FE6FD0CE38</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -35,29 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>43B40F37-13C3-4904-AB6F-358F93D0DE2F</string>
-=======
-		<key>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</key>
-		<string>../..</string>
-	</dict>
-	<key>IDESourceControlProjectURL</key>
-	<string>ftp://140.135.10.163//git</string>
-	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
-	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</string>
->>>>>>> Dream
+	<string>30F843AA-5A5E-462C-A53F-33FE6FD0CE38</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-<<<<<<< HEAD
-			<string>43B40F37-13C3-4904-AB6F-358F93D0DE2F</string>
-=======
-			<string>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</string>
->>>>>>> Dream
+			<string>30F843AA-5A5E-462C-A53F-33FE6FD0CE38</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Bomber</string>
 		</dict>

@@ -26,16 +26,6 @@
 // retain－在設值時retain新的資料，release舊資料。
 // copy－在設值時copy一份新資料，release舊資料。
 // nonatomic－預設為atomic。
-
-+ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree;
-
-// readonly－唯讀，只能讀取而不能設定值（不能用setXXXX的函式）。
-// readwrite－可讀可寫（預設）。
-// assign－在設值時替換新舊資料（預設）。
-// retain－在設值時retain新的資料，release舊資料。
-// copy－在設值時copy一份新資料，release舊資料。
-// nonatomic－預設為atomic。
-
 @property (nonatomic, strong) NSMutableArray * bombCollect;
 
 
