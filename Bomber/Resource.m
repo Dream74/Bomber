@@ -23,8 +23,8 @@
 @synthesize tileset ;
 @synthesize tileset_12_31 ;
 
--(void) InitalResource {
-    
+-(id) init {
+    self = [super init] ;
     bomb_32x32_2 = [UIImage imageNamed:@"bomb_32x32_2.png"] ;
     blast = [UIImage imageNamed:@"blast.png"] ;
     character_crawling = [UIImage imageNamed:@"character_crawling.png"] ;
@@ -38,10 +38,10 @@
     tileset = [UIImage imageNamed:@"tileset.png"] ;
     tileset_12_31 = [UIImage imageNamed:@"tileset_12_31.png"] ;
     
-    // TODO
-    
-    // new istance, inital resource , at kernal
+    return self ;
    
 }
 
+// TODO
+// LET it BE A STATIC 
 @end

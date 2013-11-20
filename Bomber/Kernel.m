@@ -13,10 +13,12 @@
 #include "Bomber.h"
 
 @implementation Kernel
+
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
 @synthesize bombCollect    ;
+
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
     CGRect rect = CGRectMake(x, y, width, height);
