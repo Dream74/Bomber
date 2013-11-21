@@ -28,6 +28,7 @@
 // retain－在設值時retain新的資料，release舊資料。
 // copy－在設值時copy一份新資料，release舊資料。
 // nonatomic－預設為atomic。
+// strong - 
 @property (nonatomic, strong) NSMutableArray * bombCollect;
 
 

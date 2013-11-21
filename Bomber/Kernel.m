@@ -75,6 +75,7 @@
     self        = [super init] ;
     [[ Resource class ] InitalResource ] ;
     [[Player class] InitializeAllImage] ;
+    [[Bomb class] initialImage] ;
     ctrlUI      = [[Control alloc] init] ;
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     map         = [[MapData alloc] init] ;
@@ -110,17 +111,27 @@
     // [ onePlayer doMove:playerMove] ;
     
     // TODO 測試中
-    [ onePlayer doMove:ctrlMove] ;
+    bool canMove = true ;
+    
+    for ( Bomb *bomb in bombCollect )
+        if ( abs(( bomb.local.x - onePlayer.local.x )) < 16 &&  abs(( bomb.local.y - onePlayer.local.y )) < 16   )
+        if ( ![ bomb canPass ] )
+            canMove = false ;
+
+    
+    if ( canMove )
+      [ onePlayer doMove:ctrlMove] ;
+    
     
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer draw ];
     
-    /*
+    
     static int count = 0 ;
     if ( (count++ % 50) == 0 )
-        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :UNBOMB]] ;
-    */
+        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :UNBOMB :false : false ]] ;
+    
     
     
     // 是否 callback方法移除炸彈
@@ -132,8 +143,8 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect redRect = CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
                                 LIMIT_PLAYER_OFFSET_POINT_Y,
-                                SCREEN_HIGHT  - (LIMIT_PLAYER_POINT_X * 2),
-                                SCREEN_WIDTH - (LIMIT_PLAYER_POINT_Y * 2 )) ;
+                                LIMIT_PLAYER_POINT_X  - LIMIT_PLAYER_OFFSET_POINT_X ,
+                                LIMIT_PLAYER_POINT_Y  - LIMIT_PLAYER_OFFSET_POINT_Y ) ;
     
     CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
 	//填充矩形

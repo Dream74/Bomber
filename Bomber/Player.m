@@ -79,6 +79,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     // local.x = MIN(MAX(local.x, 0 ), SCREEN_HIGHT - PLAYER_SIZE) ;
     // local.y = MIN(MAX(local.y, 0 ), SCREEN_WIDTH - PLAYER_SIZE) ;
     
+    
+    
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
     
