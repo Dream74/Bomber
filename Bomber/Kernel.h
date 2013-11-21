@@ -18,8 +18,12 @@
 }
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
+<<<<<<< HEAD
 + (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree;
 + (void) drawText:(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size  ;
+=======
++ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree :(float) scale;
+>>>>>>> origin/Jin-Yuan
 
 // readonly－唯讀，只能讀取而不能設定值（不能用setXXXX的函式）。
 // readwrite－可讀可寫（預設）。

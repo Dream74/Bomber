@@ -11,8 +11,11 @@
 
 @implementation MapData
 @synthesize groundImages;
+<<<<<<< HEAD
 @synthesize originalImg ;
 @synthesize offsetPoint  ;
+=======
+>>>>>>> origin/Jin-Yuan
 
 int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
@@ -24,15 +27,14 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     
     NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;
     
-    originalImg = [UIImage imageNamed:@"tileset_12_31.png"] ;
     groundImages = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 8; i++) {
-        [groundImages addObject:[[Kernel class] subImage:originalImg offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:0 imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
+        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:0 imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
     } // for
     
     for ( int i = 0 ; i < 5 ; i++ ) {
-        [groundImages addObject:[[Kernel class] subImage:originalImg offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:IMG_MAP_OFFSET_HIGHT imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
+        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:IMG_MAP_OFFSET_HIGHT imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
     } // for
 
     for( int i = 0; i < MAP_WIDTH_NUM ; i++){

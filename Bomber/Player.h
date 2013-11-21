@@ -20,16 +20,23 @@
     int bombNum  ;
 }
 
+enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
+
 @property (nonatomic) CGPoint local ;
-@property (nonatomic, strong) UIImage * originalImg;
-@property (nonatomic, strong) NSMutableArray * playerImages;
+@property (nonatomic) NSMutableArray * playerImages;
 
 @property (nonatomic) int state    ;
 @property (nonatomic) int speed    ;
 @property (nonatomic) int fire     ;
 @property (nonatomic) int bombNum  ;
+@property (nonatomic) int ChImage  ;
 
 -(void) draw ;
 -(void) doMove:(CGPoint) move ;
+<<<<<<< HEAD
 -(CGPoint) getLocalPoint;
+=======
+- (id) initial : (int) chartype ;
++(void) InitializeAllImage ;
+>>>>>>> origin/Jin-Yuan
 @end

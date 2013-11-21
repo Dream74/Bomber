@@ -20,8 +20,13 @@
 
 @interface MapData : NSObject
 
+<<<<<<< HEAD
 @property (atomic) CGPoint offsetPoint ;
 @property (nonatomic, strong) UIImage * originalImg;
+=======
+
+@property (atomic) CGPoint local ;
+>>>>>>> origin/Jin-Yuan
 @property (nonatomic, strong) NSMutableArray * groundImages;
 
 - (void) draw ;

@@ -19,11 +19,14 @@
 @synthesize map            ;
 @synthesize bombCollect    ;
 
+<<<<<<< HEAD
 #define LIMIT_PLAYER_OFFSET_POINT_X 100.0
 #define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
 
 #define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
 #define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
+=======
+>>>>>>> origin/Jin-Yuan
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
     CGRect rect = CGRectMake(x, y, width, height);
@@ -33,7 +36,7 @@
     return _outImage ;
 }
 
-+ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree{
++ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree :(float) scale {
     
     CGRect rect = CGRectMake(x, y, width, height);
     CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
@@ -43,9 +46,12 @@
     else if ( degree == 90 )
         _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationRight];
     else if ( degree == -90 )
-        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationLeft];
+      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationLeft];
     else if ( degree == 180 )
-        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationDown];
+      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationDown];
+    
+    _outImage = [UIImage imageWithCGImage:drawImage scale: scale orientation:UIImageOrientationUp];
+        
     
     CGImageRelease(drawImage);
     return _outImage ;
@@ -70,8 +76,10 @@
 
 - (id) init{
     self        = [super init] ;
+    [[ Resource class ] InitalResource ] ;
+    [[Player class] InitializeAllImage] ;
     ctrlUI      = [[Control alloc] init] ;
-    onePlayer   = [[Player  alloc] init] ;
+    onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     map         = [[MapData alloc] init] ;
     bombCollect = [[NSMutableArray alloc] init] ;
     return self ;

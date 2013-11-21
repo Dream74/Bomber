@@ -13,7 +13,6 @@
 enum BOMB_COLOR{ UNBOMB = 0, RED , ORANGE, YEALLOW, GREEN, AQUAMANINE, BLUE, PURPLE, BLOCK, GRAY, LENGTH} ;
 
 @property (nonatomic) CGPoint local ;
-@property (nonatomic, strong) UIImage * originalImg;
 @property (nonatomic, strong) NSMutableArray * bombImages;
 @property (nonatomic) int bomb    ;
 @property (nonatomic) int imgIndex ;

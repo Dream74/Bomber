@@ -10,6 +10,7 @@
 
 @implementation Resource
 
+<<<<<<< HEAD
 @synthesize bomb_32x32_2 ;
 @synthesize blast ;
 @synthesize character_crawling ;
@@ -25,6 +26,25 @@
 
 -(id) init {
     self = [super init] ;
+=======
+static  UIImage *  bomb_32x32_2 ;
+static  UIImage *  bomb_32x32_2 ;
+static  UIImage *  blast ;
+static  UIImage *  character_crawling ;
+static  UIImage *  character_flying ;
+static  UIImage *  character_gold ;
+static  UIImage *  character_jetpack ;
+static  UIImage *  character_silver ;
+static  UIImage *  explosion ;
+static  UIImage *  items ;
+static  UIImage *  perks ;
+static  UIImage *  tileset ;
+static  UIImage *  tileset_12_31 ;
+static  UIImage *  mario_rpg ;
+
++(void) InitalResource {
+
+>>>>>>> origin/Jin-Yuan
     bomb_32x32_2 = [UIImage imageNamed:@"bomb_32x32_2.png"] ;
     blast = [UIImage imageNamed:@"blast.png"] ;
     character_crawling = [UIImage imageNamed:@"character_crawling.png"] ;
@@ -37,9 +57,29 @@
     perks = [UIImage imageNamed:@"perks.png"] ;
     tileset = [UIImage imageNamed:@"tileset.png"] ;
     tileset_12_31 = [UIImage imageNamed:@"tileset_12_31.png"] ;
+<<<<<<< HEAD
     
     return self ;
+=======
+    mario_rpg = [ UIImage imageNamed:@"mario_rpg.png" ] ;
+>>>>>>> origin/Jin-Yuan
    
 }
+
+// return static Variable
++  (UIImage *)  bomb_32x32_2 { return bomb_32x32_2; }
++  (UIImage *)  blast { return blast; }
++  (UIImage *)  character_crawling {return character_crawling ; }
++  (UIImage *)  character_flying {return character_flying; }
++  (UIImage *)  character_gold { return character_gold; }
++  (UIImage *)  character_jetpack { return character_jetpack; }
++  (UIImage *)  character_silver { return character_silver; }
++  (UIImage *)  explosion { return explosion; }
++  (UIImage *)  items { return explosion; }
++  (UIImage *)  perks { return perks; }
++  (UIImage *)  tileset { return tileset; }
++  (UIImage *)  tileset_12_31 { return tileset_12_31; }
++  (UIImage *)  mario_rpg { return mario_rpg ; }
+
 
 @end

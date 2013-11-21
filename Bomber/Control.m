@@ -11,7 +11,11 @@
 @implementation Control
 @synthesize moveUIPoint  ;
 @synthesize lastTouch    ;
+<<<<<<< HEAD
 @synthesize controlImage ;
+=======
+@synthesize currentColor ;
+>>>>>>> origin/Jin-Yuan
 @synthesize canMove      ;
 @synthesize bombUIPoint  ;
 
@@ -27,11 +31,14 @@
 
 - (id) init{
     self = [super init] ;
+<<<<<<< HEAD
     controlImage = [UIImage imageNamed:@"controlbut.png"] ;
     moveUIPoint.x = 80 ;
     moveUIPoint.y = 250 ;
     bombUIPoint.x = 500 ;
     bombUIPoint.y = 250 ;
+=======
+>>>>>>> origin/Jin-Yuan
     
     /* 可以利用這樣設定半透明度
      UIColor *theColor=[UIColor

@@ -11,7 +11,6 @@
 
 @implementation Bomb
 
-@synthesize originalImg;
 @synthesize bombImages;
 @synthesize local;
 @synthesize bomb ;
@@ -30,39 +29,42 @@
     local = localPoint ;
     bomb = bombcolor ;
     
-    originalImg = [UIImage imageNamed:@"blast.png"] ;
-    UIImage * originalImg2 = [UIImage imageNamed:@"bomb_32x32_2.png"] ;
+    
     
     bombImages = [[NSMutableArray alloc] init ];
     for ( int j = 0 ; j < 10 ; j++ ) {
         [ bombImages addObject: [[NSMutableArray alloc] init ] ];
         if ( j == 0 ) {
             for ( int i = 0 ; i < 14 ; i++ ) {
-                [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:0 offsetHeight:i*32 imgWidth:32 imgHeight:32]];
+              if ( i % 2 == 1 )
+                [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImageRotate:[[Resource class] bomb_32x32_2] offsetWidth:0 offsetHeight:i*32 imgWidth:32 imgHeight:32 :0 :1.1]];
+              else
+                [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImageRotate:[[Resource class] bomb_32x32_2] offsetWidth:0 offsetHeight:i*32 imgWidth:32 imgHeight:32 :0 :1.0]];
             } // for
         } // if
         
         else {
             for ( int i = 0 ; i < 9 ; i++ ) {
-                [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:originalImg offsetWidth:i*32 offsetHeight:(j-1)*32 imgWidth:32 imgHeight:32]];
+                [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:[[Resource class] blast] offsetWidth:i*32 offsetHeight:(j-1)*32 imgWidth:32 imgHeight:32]];
             } // for
         } // else
     } // for
     
     // add 火焰
-    originalImg2 = [UIImage imageNamed:@"explosion.png"] ;
+    
+   
     [ bombImages addObject: [[NSMutableArray alloc] init ] ];
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:0 offsetHeight:0 imgWidth:32 imgHeight:32]];
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:0 offsetHeight:0 imgWidth:32 imgHeight:32]];
     // normal
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:originalImg2 offsetWidth:32 offsetHeight:0 imgWidth:32 imgHeight:32]];
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:32 offsetHeight:0 imgWidth:32 imgHeight:32]];
     // right
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :0]] ;
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:[[Resource class] explosion ] offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :0:1.0]] ;
     // top
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :-90]] ;
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:[[Resource class] explosion ] offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :-90:1.0]] ;
     // left
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :180]] ;
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:[[Resource class] explosion ] offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :180:1.0]] ;
     // down
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:originalImg2 offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :90]] ;
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImageRotate:[[Resource class] explosion ] offsetWidth:64 offsetHeight:0 imgWidth:32 imgHeight:32 :90:1.0]] ;
 
     return self ;
 }
