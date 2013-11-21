@@ -52,8 +52,9 @@
 - (id) init{
     self        = [super init] ;
     [[ Resource class ] InitalResource ] ;
+    [[Player class] InitializeAllImage] ;
     ctrlUI      = [[Control alloc] init] ;
-    onePlayer   = [[Player  alloc] init] ;
+    onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     map         = [[MapData alloc] init] ;
     bombCollect = [[NSMutableArray alloc] init] ;
     return self ;

@@ -10,12 +10,15 @@
 #import "Kernel.h"
 
 @implementation Player
-static NSMutableArray * playerImages;
+
+static NSMutableArray * playerAllImages;
+
 @synthesize local        ;
 @synthesize state        ;
 @synthesize speed        ;
 @synthesize fire         ;
 @synthesize bombNum      ;
+@synthesize playerImages ;
 
 #define PLAYER_SIZE        34
 #define SPEED              3
@@ -31,10 +34,10 @@ static NSMutableArray * playerImages;
 #define DEFAULT_BOMBNUM 1
 
 
-enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
+enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 
-- (id) init{
-    self = [super init] ;    
+- (id) initial : (int) chartype {
+    
     local.x = 160 ;
     local.y = 200 ;
     state   = DOWN            ;
@@ -42,15 +45,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
     fire    = DEFAULT_FIR     ;
     bombNum = DEFAULT_BOMBNUM ;
     
-    
-    playerImages = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < 4; i++) {
-        [playerImages addObject: [[NSMutableArray alloc] init ] ];
-        for( int j = 0 ; j < 4 ; j++ ) {
-            [[ playerImages objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_flying ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
-        } // for
-    } // for
+    playerImages = [playerAllImages objectAtIndex:chartype] ;
     
     
     return self ;
@@ -80,6 +75,43 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
     
 }
 
-+( NSMutableArray * ) playerImages {  return playerImages ;}
++(void) InitializeAllImage {
+  playerAllImages = [[NSMutableArray alloc] init];
+    
+  [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
+    for (int i = 0; i < 4; i++) {
+        [[playerAllImages objectAtIndex:FLY] addObject: [[NSMutableArray alloc] init ] ];
+        for( int j = 0 ; j < 4 ; j++ ) {
+            [[ [playerAllImages objectAtIndex:FLY] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_flying ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
+        } // for
+    } // for
+  
+    [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
+    for (int i = 0; i < 4; i++) {
+        [[playerAllImages objectAtIndex:GOLD] addObject: [[NSMutableArray alloc] init ] ];
+        for( int j = 0 ; j < 4 ; j++ ) {
+            [[ [playerAllImages objectAtIndex:GOLD] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_gold ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
+        } // for
+    } // for
+    
+    [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
+    for (int i = 0; i < 4; i++) {
+        [[playerAllImages objectAtIndex:CRAWLING] addObject: [[NSMutableArray alloc] init ] ];
+        for( int j = 0 ; j < 4 ; j++ ) {
+            [[ [playerAllImages objectAtIndex:CRAWLING] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_crawling ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
+        } // for
+    } // for
+    
+    [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
+    for (int i = 0; i < 4; i++) {
+        [[playerAllImages objectAtIndex:MARIO_RPG] addObject: [[NSMutableArray alloc] init ] ];
+        for( int j = 0 ; j < 4 ; j++ ) {
+            [[ [playerAllImages objectAtIndex:MARIO_RPG] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] mario_rpg ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
+        } // for
+    } // for
+    
+    
+    
+}
 
 @end

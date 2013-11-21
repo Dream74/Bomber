@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>164BC193-649F-4CA5-879C-382FF8442F74</string>
+	<string>57BB22AC-803E-4F94-88F1-E61E626393CC</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Bomber</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</key>
-		<string>ftp://140.135.10.163//git</string>
+		<key>8B471DB7-3089-4C9F-8B22-9D9C71DB5171</key>
+		<string>https://github.com/Dream74/Bomber.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Bomber.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</key>
+		<key>8B471DB7-3089-4C9F-8B22-9D9C71DB5171</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ftp://140.135.10.163//git</string>
+	<string>https://github.com/Dream74/Bomber.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</string>
+	<string>8B471DB7-3089-4C9F-8B22-9D9C71DB5171</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>791FF4B0-A201-4A35-84C2-A0E4D4778A6C</string>
+			<string>8B471DB7-3089-4C9F-8B22-9D9C71DB5171</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Bomber</string>
 		</dict>

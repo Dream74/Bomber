@@ -23,6 +23,7 @@ static  UIImage *  items ;
 static  UIImage *  perks ;
 static  UIImage *  tileset ;
 static  UIImage *  tileset_12_31 ;
+static  UIImage *  mario_rpg ;
 
 +(void) InitalResource {
 
@@ -38,6 +39,7 @@ static  UIImage *  tileset_12_31 ;
     perks = [UIImage imageNamed:@"perks.png"] ;
     tileset = [UIImage imageNamed:@"tileset.png"] ;
     tileset_12_31 = [UIImage imageNamed:@"tileset_12_31.png"] ;
+    mario_rpg = [ UIImage imageNamed:@"mario_rpg.png" ] ;
    
 }
 
@@ -54,6 +56,7 @@ static  UIImage *  tileset_12_31 ;
 +  (UIImage *)  perks { return perks; }
 +  (UIImage *)  tileset { return tileset; }
 +  (UIImage *)  tileset_12_31 { return tileset_12_31; }
++  (UIImage *)  mario_rpg { return mario_rpg ; }
 
 
 @end
