@@ -76,25 +76,13 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 
 -(void) putBomb{
     // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
-    [bombCollect addObject:[[Bomb class] putBomb:local.x  :local.y :UNBOMB]];
+    
+    [bombCollect addObject:[[Bomb class] putBomb:local.x  :local.y :UNBOMB :true :false]];
 }
 
 -(void) doMove:(CGPoint) move{
     local.x += move.x * SPEED / 100;
     local.y += move.y * SPEED / 100;
-<<<<<<< HEAD
-=======
-    
-    
-    // 走到螢幕快出去會跳Error
-    
-    
-    // local.x = MIN(MAX(local.x, 0 ), SCREEN_HIGHT - PLAYER_SIZE) ;
-    // local.y = MIN(MAX(local.y, 0 ), SCREEN_WIDTH - PLAYER_SIZE) ;
-    
-    
-    
->>>>>>> origin/Jing-Yuan
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
 }

@@ -28,13 +28,10 @@
 // retain－在設值時retain新的資料，release舊資料。
 // copy－在設值時copy一份新資料，release舊資料。
 // nonatomic－預設為atomic。
-<<<<<<< HEAD
-=======
-// strong - 
+// strong -
+
+// TODO 準備移除這個炸彈
 @property (nonatomic, strong) NSMutableArray * bombCollect;
-
-
->>>>>>> origin/Jing-Yuan
 - (void)touchesBegan    :(CGPoint *)location ;
 - (void)touchesCancelled:(CGPoint *)location ;
 - (void)touchesMoved    :(CGPoint *)location ;

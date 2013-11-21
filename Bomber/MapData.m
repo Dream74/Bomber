@@ -17,6 +17,7 @@
 #define SPEED 3
 
 int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
+
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 
@@ -61,10 +62,9 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 }
 
 - (void) draw {
-<<<<<<< HEAD
     for( int i = 0 ; i < SCREEN_HIGHT_NUM ; i++ ){
         for (int j = 0 ; j < SCREEN_WIDTH_NUM ; j++ ) {
-=======
+
     /* to draw map idea!!! center start
      
      1. 資料結構 給予中心 box  example : ( 5,3)
@@ -75,10 +75,6 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
      
      
      */
-    
-    for( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ){
-        for (int j = 0 ; j < MAP_WIDTH_NUM ; j++ ) {
->>>>>>> origin/Jing-Yuan
             // [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+_local.x,j*IMG_MAP_SIZE+_local.y)]  ;
             NSString * text = [NSString stringWithFormat:@"%d,%d", i, j ] ;
             [[Kernel class] drawText:text offsetWidth:i*IMG_MAP_SIZE+offsetPoint.x offsetHeight:j*IMG_MAP_SIZE+offsetPoint.y textSize:10] ;
