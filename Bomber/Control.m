@@ -11,7 +11,6 @@
 @implementation Control
 @synthesize firstTouch   ;
 @synthesize lastTouch    ;
-@synthesize controlImage ;
 @synthesize currentColor ;
 @synthesize canMove      ;
 
@@ -25,7 +24,6 @@
 
 - (id) init{
     self = [super init] ;
-    controlImage = [UIImage imageNamed:@"controlbut.png"] ;
     
     /* 可以利用這樣設定半透明度
      UIColor *theColor=[UIColor

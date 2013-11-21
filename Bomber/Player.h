@@ -11,8 +11,7 @@
 @interface Player : NSObject
 
 @property (nonatomic) CGPoint local ;
-@property (nonatomic, strong) UIImage * originalImg;
-@property (nonatomic, strong) NSMutableArray * playerImages;
++( NSMutableArray * ) playerImages;
 
 @property (nonatomic) int state    ;
 @property (nonatomic) int speed    ;

@@ -10,8 +10,7 @@
 #import "Kernel.h"
 
 @implementation Player
-@synthesize originalImg  ;
-@synthesize playerImages ;
+static NSMutableArray * playerImages;
 @synthesize local        ;
 @synthesize state        ;
 @synthesize speed        ;
@@ -43,14 +42,13 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
     fire    = DEFAULT_FIR     ;
     bombNum = DEFAULT_BOMBNUM ;
     
-    originalImg = [UIImage imageNamed:@"character_flying.png"] ;
     
     playerImages = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 4; i++) {
         [playerImages addObject: [[NSMutableArray alloc] init ] ];
         for( int j = 0 ; j < 4 ; j++ ) {
-            [[ playerImages objectAtIndex: i ] addObject:[[Kernel class] subImage:originalImg offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
+            [[ playerImages objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_flying ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
     } // for
     
@@ -81,5 +79,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
     
 }
+
++( NSMutableArray * ) playerImages {  return playerImages ;}
 
 @end

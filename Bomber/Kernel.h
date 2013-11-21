@@ -18,7 +18,7 @@
 }
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
-+ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree;
++ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree :(float) scale;
 
 // readonly－唯讀，只能讀取而不能設定值（不能用setXXXX的函式）。
 // readwrite－可讀可寫（預設）。

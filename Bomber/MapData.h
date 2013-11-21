@@ -22,7 +22,6 @@
 
 
 @property (atomic) CGPoint local ;
-@property (nonatomic, strong) UIImage * originalImg;
 @property (nonatomic, strong) NSMutableArray * groundImages;
 - (void) draw ;
 @end

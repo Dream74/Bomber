@@ -13,7 +13,6 @@
 @property (nonatomic)         CGPoint firstTouch ;
 @property (nonatomic)         CGPoint lastTouch ;
 @property (strong, nonatomic) UIColor * currentColor;
-@property (nonatomic, strong) UIImage * controlImage;
 @property (nonatomic)         bool canMove ;
 
 
