@@ -13,7 +13,6 @@
 #include "Bomber.h"
 
 @implementation Kernel
-
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
@@ -41,6 +40,7 @@
       _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationLeft];
     else if ( degree == 180 )
       _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationDown];
+    
     _outImage = [UIImage imageWithCGImage:drawImage scale: scale orientation:UIImageOrientationUp];
         
     
