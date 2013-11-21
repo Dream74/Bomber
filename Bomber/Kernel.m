@@ -47,6 +47,19 @@
     
 }
 
+
++ (void) drawText:(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size {
+    [strText drawAtPoint:CGPointMake(x, y) withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:size]}];
+}
+
++ (void) drawFPS:(int) x offsetHeight:(int)y textSize:(int)size{
+    static double lastTime = 0 ;
+    double currentTime = CACurrentMediaTime() ;
+    NSString * fps =  [NSString stringWithFormat:@"FPS :%f", (1/(currentTime - lastTime)) ] ;
+    lastTime = currentTime ;
+    [[Kernel class] drawText:fps offsetWidth:x offsetHeight:y textSize:size];
+}
+
 - (id) init{
     self        = [super init] ;
     ctrlUI      = [[Control alloc] init] ;
@@ -65,7 +78,7 @@
 
 
 - (void)draw{
-    [ map draw ] ;
+    // [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer doMove:[ctrlUI getMove]] ;
     [ onePlayer draw ];
@@ -78,6 +91,9 @@
     for(Bomb *bomb in bombCollect) {
         [bomb draw] ;
     }
+    
+    [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];
+    
 }
 
 - (void)touchesBegan:(CGPoint *) location{

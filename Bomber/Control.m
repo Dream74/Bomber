@@ -34,7 +34,7 @@
      blue:0.0
      alpha:1.0]; */
     
-    currentColor = [UIColor whiteColor];
+    currentColor = [UIColor blueColor];
     canMove      = false ;
     return self ;
 }
