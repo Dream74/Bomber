@@ -84,6 +84,12 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     
 }
 
+-(void) setTurn:(CGPoint) move{
+    if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
+    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
+    
+}
+
 +(void) InitializeAllImage {
   playerAllImages = [[NSMutableArray alloc] init];
     

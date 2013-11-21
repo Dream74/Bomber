@@ -100,17 +100,30 @@
     // TODO 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
     CGPoint screenMove = {0,0} ;
     CGPoint playerMove = {0,0} ;
+    if ( playerAfterMovePoint.x > LIMIT_PLAYER_POINT_X ||  playerAfterMovePoint.x < LIMIT_PLAYER_OFFSET_POINT_X) {
+        screenMove.x = ctrlMove.x ;
+    } else {
+        playerMove.x = ctrlMove.x ;
+    }
     
-    NSLog(@"Player Local_X:%f Local_Y:%f CTRL_X:%f CTRL_Y:%f PLAYER_X:%f PLAYER_Y:%f SCREEN_X:%f SCREEN_Y:%f",
-          playerPoint.x, playerPoint.y, ctrlMove.x, ctrlMove.y, playerMove.x, playerMove.y, screenMove.x, screenMove.y ) ;
+    
+    if ( playerAfterMovePoint.y > LIMIT_PLAYER_POINT_Y ||  playerAfterMovePoint.y < LIMIT_PLAYER_OFFSET_POINT_Y) {
+        screenMove.y = ctrlMove.y ;
+    } else {
+        playerMove.y = ctrlMove.y ;
+    }
+    
+    // NSLog(@"Player Local_X:%f Local_Y:%f CTRL_X:%f CTRL_Y:%f PLAYER_X:%f PLAYER_Y:%f SCREEN_X:%f SCREEN_Y:%f",
+    //      playerPoint.x, playerPoint.y, ctrlMove.x, ctrlMove.y, playerMove.x, playerMove.y, screenMove.x, screenMove.y ) ;
 
     
-    // TODO 目標
-    // [ map doMove:screenMove] ;
-    // [ onePlayer doMove:playerMove] ;
+    // TODO 因為假如只有移動螢幕，就不會動角色，但是這樣角色就不會轉方向
+    [ onePlayer setTurn:ctrlMove]  ;
+    [ map doMove:screenMove]       ;
+    [ onePlayer doMove:playerMove] ;
     
     // TODO 測試中
-    [ onePlayer doMove:ctrlMove] ;
+    // [ onePlayer doMove:ctrlMove] ;
     
     [ map draw ] ;
     [ ctrlUI draw ];
@@ -130,10 +143,11 @@
     
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
     CGRect redRect = CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
                                 LIMIT_PLAYER_OFFSET_POINT_Y,
-                                SCREEN_HIGHT  - (LIMIT_PLAYER_POINT_X * 2),
-                                SCREEN_WIDTH - (LIMIT_PLAYER_POINT_Y * 2 )) ;
+                                LIMIT_PLAYER_POINT_X  - LIMIT_PLAYER_OFFSET_POINT_X ,
+                                LIMIT_PLAYER_POINT_Y  - LIMIT_PLAYER_OFFSET_POINT_Y ) ;
     
     CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
 	//填充矩形
@@ -145,7 +159,7 @@
 	//画矩形边框
 	CGContextAddRect(ctx,redRect);
 	//执行绘画
-    CGContextStrokePath(ctx);
+    // CGContextStrokePath(ctx);
     
     [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];
     

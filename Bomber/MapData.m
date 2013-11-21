@@ -10,16 +10,22 @@
 #import "Kernel.h"
 
 @implementation MapData
-@synthesize groundImages;
+@synthesize groundImages ;
 @synthesize offsetPoint  ;
+@synthesize local  ;
+
+#define SPEED 3
 
 int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
+
 
 - (id) init{
     self = [super init] ;
     offsetPoint.x = IMG_MAP_SIZE * -1 ;
     offsetPoint.y = IMG_MAP_SIZE * -1 ;
+    local.x = 20 ;
+    local.y = 20 ;
     
     NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;
     
@@ -50,14 +56,13 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 
 -(void) doMove:(CGPoint) move{
-    NSLog(@"MAP Start offsetMove X:%f Y:%f", offsetPoint.x, offsetPoint.y ) ;
-    offsetPoint = CGPointMake( offsetPoint.x - move.x , offsetPoint.y - move.y  );
-    NSLog(@"MAP END offsetMove X:%f Y:%f", offsetPoint.x, offsetPoint.y ) ;
+    offsetPoint.x -= move.x * SPEED / 100;
+    offsetPoint.y -= move.y * SPEED / 100;
 }
 
 - (void) draw {
-    for( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ){
-        for (int j = 0 ; j < MAP_WIDTH_NUM ; j++ ) {
+    for( int i = 0 ; i < SCREEN_HIGHT_NUM ; i++ ){
+        for (int j = 0 ; j < SCREEN_WIDTH_NUM ; j++ ) {
             // [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+_local.x,j*IMG_MAP_SIZE+_local.y)]  ;
             NSString * text = [NSString stringWithFormat:@"%d,%d", i, j ] ;
             [[Kernel class] drawText:text offsetWidth:i*IMG_MAP_SIZE+offsetPoint.x offsetHeight:j*IMG_MAP_SIZE+offsetPoint.y textSize:10] ;
