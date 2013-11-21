@@ -8,13 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Control : NSObject
+@interface Control : NSObject{
+    // TODO 這樣應該可以限制他權限吧...
+@private
+    CGPoint   moveUIPoint  ;
+    CGPoint   lastTouch    ;
+    CGPoint   bombUIPoint  ;
+    UIImage * controlImage ;
+    bool      canMove      ;
+    
+}
 
-@property (nonatomic)         CGPoint firstTouch ;
-@property (nonatomic)         CGPoint lastTouch ;
-@property (strong, nonatomic) UIColor * currentColor;
-@property (nonatomic, strong) UIImage * controlImage;
-@property (nonatomic)         bool canMove ;
+@property (nonatomic)         CGPoint   moveUIPoint  ;
+@property (nonatomic)         CGPoint   lastTouch    ;
+@property (nonatomic)         CGPoint   bombUIPoint  ;
+@property (nonatomic, strong) UIImage * controlImage ;
+@property (nonatomic)         bool      canMove      ;
 
 
 - (void) touchesBegan    :(CGPoint *)touches ;

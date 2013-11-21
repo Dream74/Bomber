@@ -70,6 +70,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
 }
 
+
+
 -(void) doMove:(CGPoint) move{
     local.x += move.x * SPEED / 100;
     local.y += move.y * SPEED / 100;

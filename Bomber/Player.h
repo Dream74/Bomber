@@ -8,7 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Player : NSObject
+@interface Player : NSObject{
+@private
+    CGPoint local ;
+    UIImage * originalImg;
+    NSMutableArray * playerImages;
+    
+    int state    ;
+    int speed    ;
+    int fire     ;
+    int bombNum  ;
+}
 
 @property (nonatomic) CGPoint local ;
 @property (nonatomic, strong) UIImage * originalImg;

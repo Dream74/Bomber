@@ -25,8 +25,6 @@
 }
 
 
-
-
 - (void)start{
     bThreadRunning = true ;
     [ bomber_kernel start ] ;

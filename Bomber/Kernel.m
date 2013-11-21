@@ -53,10 +53,13 @@
 }
 
 + (void) drawFPS:(int) x offsetHeight:(int)y textSize:(int)size{
-    static double lastTime = 0 ;
+    // TODO 改版成這樣 數字比較不會浮動，因為數字會越來越大導致於比較不會變動
+    static unsigned int count = 0 ;
+    static double firstTime = 0 ;
     double currentTime = CACurrentMediaTime() ;
-    NSString * fps =  [NSString stringWithFormat:@"FPS :%f", (1/(currentTime - lastTime)) ] ;
-    lastTime = currentTime ;
+    if (count == 0 )  firstTime = currentTime ;
+    NSString * fps =  [NSString stringWithFormat:@"FPS :%f", (count/(currentTime - firstTime)) ] ;
+    count++ ;
     [[Kernel class] drawText:fps offsetWidth:x offsetHeight:y textSize:size];
 }
 
@@ -78,19 +81,36 @@
 
 
 - (void)draw{
-    // [ map draw ] ;
+    [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer doMove:[ctrlUI getMove]] ;
     [ onePlayer draw ];
     
+    /*
     static int count = 0 ;
     if ( (count++ % 50) == 0 )
         [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :UNBOMB]] ;
-    
+    */
     // 是否 callback方法移除炸彈
     for(Bomb *bomb in bombCollect) {
         [bomb draw] ;
     }
+    
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect redRect = CGRectMake(100.0, 80.0, SCREEN_HIGHT  - 200 , SCREEN_WIDTH - 160 );
+    
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
+	//填充矩形
+	CGContextFillRect(ctx, redRect);
+	//设置画笔颜色：黑色
+	CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
+	//设置画笔线条粗细
+    CGContextSetLineWidth(ctx, 3.0);
+	//画矩形边框
+	CGContextAddRect(ctx,redRect);
+	//执行绘画
+    CGContextStrokePath(ctx);
     
     [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];
     

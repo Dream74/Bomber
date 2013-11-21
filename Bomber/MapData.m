@@ -50,7 +50,9 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 - (void) draw {
     for( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ){
         for (int j = 0 ; j < MAP_WIDTH_NUM ; j++ ) {
-            [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+_local.x,j*IMG_MAP_SIZE+_local.y)]  ;
+            // [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+_local.x,j*IMG_MAP_SIZE+_local.y)]  ;
+            NSString * text = [NSString stringWithFormat:@"%d,%d", i, j ] ;
+            [[Kernel class] drawText:text offsetWidth:i*IMG_MAP_SIZE+_local.x offsetHeight:j*IMG_MAP_SIZE+_local.y textSize:10] ;
         }
     }
 }
