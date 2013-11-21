@@ -20,9 +20,10 @@
 
 @interface MapData : NSObject
 
-
-@property (atomic) CGPoint local ;
+@property (atomic) CGPoint offsetPoint ;
 @property (nonatomic, strong) UIImage * originalImg;
 @property (nonatomic, strong) NSMutableArray * groundImages;
+
 - (void) draw ;
+- (void) doMove:(CGPoint) move ;
 @end

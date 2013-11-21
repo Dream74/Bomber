@@ -31,4 +31,5 @@
 
 -(void) draw ;
 -(void) doMove:(CGPoint) move ;
+-(CGPoint) getLocalPoint;
 @end

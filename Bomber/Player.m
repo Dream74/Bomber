@@ -71,13 +71,20 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
 }
 
 
+-(CGPoint) getLocalPoint{
+    return local ;
+}
 
 -(void) doMove:(CGPoint) move{
     local.x += move.x * SPEED / 100;
     local.y += move.y * SPEED / 100;
     
-    local.x = MIN(MAX(local.x, 0 ), SCREEN_HIGHT - PLAYER_SIZE) ;
-    local.y = MIN(MAX(local.y, 0 ), SCREEN_WIDTH - PLAYER_SIZE) ;
+    
+    // 走到螢幕快出去會跳Error
+    
+    
+    // local.x = MIN(MAX(local.x, 0 ), SCREEN_HIGHT - PLAYER_SIZE) ;
+    // local.y = MIN(MAX(local.y, 0 ), SCREEN_WIDTH - PLAYER_SIZE) ;
     
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;

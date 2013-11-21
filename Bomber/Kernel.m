@@ -19,6 +19,11 @@
 @synthesize map            ;
 @synthesize bombCollect    ;
 
+#define LIMIT_PLAYER_OFFSET_POINT_X 100.0
+#define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
+
+#define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
+#define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
     CGRect rect = CGRectMake(x, y, width, height);
@@ -81,9 +86,29 @@
 
 
 - (void)draw{
+    // 玩家原始位置
+    const CGPoint playerPoint = [onePlayer getLocalPoint] ;
+    // 移動位置
+    const CGPoint ctrlMove    = [ctrlUI getMove] ;
+    // 移動過後位置
+    const CGPoint playerAfterMovePoint = CGPointMake( playerPoint.x + ctrlMove.x, playerPoint.y + ctrlMove.y );
+    // TODO 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
+    CGPoint screenMove = {0,0} ;
+    CGPoint playerMove = {0,0} ;
+    
+    NSLog(@"Player Local_X:%f Local_Y:%f CTRL_X:%f CTRL_Y:%f PLAYER_X:%f PLAYER_Y:%f SCREEN_X:%f SCREEN_Y:%f",
+          playerPoint.x, playerPoint.y, ctrlMove.x, ctrlMove.y, playerMove.x, playerMove.y, screenMove.x, screenMove.y ) ;
+
+    
+    // TODO 目標
+    // [ map doMove:screenMove] ;
+    // [ onePlayer doMove:playerMove] ;
+    
+    // TODO 測試中
+    [ onePlayer doMove:ctrlMove] ;
+    
     [ map draw ] ;
     [ ctrlUI draw ];
-    [ onePlayer doMove:[ctrlUI getMove]] ;
     [ onePlayer draw ];
     
     /*
@@ -91,6 +116,8 @@
     if ( (count++ % 50) == 0 )
         [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :UNBOMB]] ;
     */
+    
+    
     // 是否 callback方法移除炸彈
     for(Bomb *bomb in bombCollect) {
         [bomb draw] ;
@@ -98,7 +125,10 @@
     
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGRect redRect = CGRectMake(100.0, 80.0, SCREEN_HIGHT  - 200 , SCREEN_WIDTH - 160 );
+    CGRect redRect = CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
+                                LIMIT_PLAYER_OFFSET_POINT_Y,
+                                SCREEN_HIGHT  - (LIMIT_PLAYER_POINT_X * 2),
+                                SCREEN_WIDTH - (LIMIT_PLAYER_POINT_Y * 2 )) ;
     
     CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
 	//填充矩形
