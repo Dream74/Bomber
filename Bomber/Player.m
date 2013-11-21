@@ -8,6 +8,7 @@
 
 #import "Player.h"
 #import "Kernel.h"
+#import "Bomb.h"
 
 @implementation Player
 
@@ -19,6 +20,7 @@ static NSMutableArray * playerAllImages;
 @synthesize fire         ;
 @synthesize bombNum      ;
 @synthesize playerImages ;
+@synthesize bombCollect  ;
 
 #define PLAYER_SIZE        34
 #define SPEED              3
@@ -36,7 +38,7 @@ static NSMutableArray * playerAllImages;
 
 enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 
-- (id) initial : (int) chartype {
+-(id)initial :(int) chartype {
     
     local.x = 160 ;
     local.y = 200 ;
@@ -45,9 +47,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     fire    = DEFAULT_FIR     ;
     bombNum = DEFAULT_BOMBNUM ;
     
+    bombCollect = [[NSMutableArray alloc] init];
     playerImages = [playerAllImages objectAtIndex:chartype] ;
-
-    
     return self ;
 }
 
@@ -60,6 +61,10 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     assert( imgIndex < ANTION_NUM ) ;
 #endif
     
+    for( Bomb * bomb in bombCollect ){
+        [bomb draw] ;
+    }
+    
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
 }
 
@@ -68,26 +73,22 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     return local ;
 }
 
+
+-(void) putBomb{
+    // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
+    [bombCollect addObject:[[Bomb class] putBomb:local.x  :local.y :UNBOMB]];
+}
+
 -(void) doMove:(CGPoint) move{
     local.x += move.x * SPEED / 100;
     local.y += move.y * SPEED / 100;
-    
-    
-    // 走到螢幕快出去會跳Error
-    
-    
-    // local.x = MIN(MAX(local.x, 0 ), SCREEN_HIGHT - PLAYER_SIZE) ;
-    // local.y = MIN(MAX(local.y, 0 ), SCREEN_WIDTH - PLAYER_SIZE) ;
-    
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
-    
 }
 
 -(void) setTurn:(CGPoint) move{
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
-    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
-    
+    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP  ;
 }
 
 +(void) InitializeAllImage {

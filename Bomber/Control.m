@@ -7,11 +7,15 @@
 //
 
 #import "Control.h"
+#import "Bomber.h"
+#import "MapData.h"
+#import "Bomb.h"
 
 @implementation Control
 @synthesize lastTouch    ;
 @synthesize currentColor ;
 @synthesize canMove      ;
+@synthesize usrPlayer    ;
 
 #define MOVE_UI_REDIUS   50
 #define MOVE_UI_DIAMETER MOVE_UI_REDIUS * 2
@@ -21,22 +25,25 @@
 
 #define BOMB_UI_REDIUS 30
 #define BOMB_UI_DIAMETER BOMB_UI_REDIUS * 2
+
 #undef DEBUG
 
-- (id) init{
+- (id) initWithUsrPlay:(Player *) usr{
     self = [super init] ;
     
-    moveUIPoint.x = 80 ;
-    moveUIPoint.y = 250 ;
+    moveUIPoint.x = 100 ;
+    moveUIPoint.y = 230 ;
     bombUIPoint.x = 500 ;
     bombUIPoint.y = 250 ;
+    usrPlayer     = usr ;
+    canMove       = false ;
+    
     /* 可以利用這樣設定半透明度
      UIColor *theColor=[UIColor
      colorWithRed:1.0
      green:0.0
      blue:0.0
      alpha:1.0]; */
-    canMove       = false ;
     return self ;
 }
 
@@ -86,13 +93,20 @@
 #ifdef DEBUG
     NSLog(@"touchesBegan X:%f Y:%f", touches->x, touches->y) ;
 #endif
-
-    lastTouch  = *touches ;
     
-    const CGPoint diff = { lastTouch.x - moveUIPoint.x , lastTouch.y - moveUIPoint.y };
-    const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
-
-    canMove = ( diffLen <= MOVE_UI_REDIUS ) ? true : false ;
+    lastTouch  = *touches ;
+    if ( touches->x < IPHONE_SCREEN_WIDTH ) {
+        const CGPoint diff = { lastTouch.x - moveUIPoint.x , lastTouch.y - moveUIPoint.y };
+        const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
+        canMove = ( diffLen <= MOVE_UI_REDIUS ) ? true : false ;
+    } else {
+        const CGPoint diff = { lastTouch.x - bombUIPoint.x , lastTouch.y - bombUIPoint.y };
+        const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
+        
+        // TODO 為了測試一下 所以用 static 硬把炸彈畫上去
+        if ( diffLen <= BOMB_UI_REDIUS ) [usrPlayer putBomb] ;
+        
+    }
 }
 
 
@@ -107,7 +121,10 @@
 #ifdef DEBUG
     NSLog(@"touchesMoved X:%f Y:%f", touches->x, touches->y) ;
 #endif
-    lastTouch = CGPointMake(touches->x, touches->y) ;
+    if ( touches->x < IPHONE_SCREEN_WIDTH ) {
+        lastTouch = CGPointMake(touches->x, touches->y) ;
+    } else {
+    }
 }
 
 
@@ -115,7 +132,11 @@
 #ifdef DEBUG
     NSLog(@"touchesEnded X:%f Y:%f", touches->x, touches->y) ;
 #endif
-    lastTouch = CGPointMake(touches->x, touches->y) ;
-    canMove = false ;
+    if ( touches->x < IPHONE_SCREEN_WIDTH ) {
+        lastTouch = CGPointMake(touches->x, touches->y) ;
+        canMove = false ;
+    } else {
+        
+    }
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Player.h"
 
 @interface Control : NSObject{
     // TODO 這樣應該可以限制他權限吧...
@@ -17,19 +18,20 @@
     UIImage * controlImage ;
     bool      canMove      ;
     
+    
 }
 
-@property (nonatomic)         CGPoint firstTouch ;
-@property (nonatomic)         CGPoint lastTouch ;
-@property (strong, nonatomic) UIColor * currentColor;
-@property (nonatomic)         bool canMove ;
+@property (nonatomic)         CGPoint   firstTouch   ;
+@property (nonatomic)         CGPoint   lastTouch    ;
+@property (strong, nonatomic) UIColor * currentColor ;
+@property (nonatomic)         bool      canMove      ;
+@property (nonatomic)         Player *  usrPlayer    ;
 
-
+- (id)   initWithUsrPlay:(Player *) usr      ;
 - (void) touchesBegan    :(CGPoint *)touches ;
 - (void) touchesCancelled:(CGPoint *)touches ;
 - (void) touchesMoved    :(CGPoint *)touches ;
 - (void) touchesEnded    :(CGPoint *)touches ;
-
 - (void)    draw ;
 - (CGPoint) getMove ;
 @end
