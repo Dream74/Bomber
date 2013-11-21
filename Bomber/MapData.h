@@ -25,8 +25,8 @@
 
 @property (atomic) CGPoint offsetPoint ;
 @property (atomic) CGPoint local ;
-@property (nonatomic, strong) NSMutableArray * groundImages;
 
 - (void) draw ;
 - (void) doMove:(CGPoint) move ;
++ (void) initialImage ;
 @end

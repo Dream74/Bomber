@@ -73,8 +73,10 @@
 - (id) init{
     self        = [super init] ;
     [[ Resource class ] InitalResource ] ;
+    [[MapData class ] initialImage ] ;
     [[Player class] InitializeAllImage] ;
     [[Bomb class] initialImage] ;
+    
 
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
