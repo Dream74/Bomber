@@ -55,7 +55,7 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
      */
             [[groundImages objectAtIndex:backgroud[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+local.x,j*IMG_MAP_SIZE+local.y)]  ;
             NSString * text = [NSString stringWithFormat:@"%d,%d", i, j ] ;
-            [[Kernel class] drawText:text offsetWidth:i*IMG_MAP_SIZE+offsetPoint.x offsetHeight:j*IMG_MAP_SIZE+offsetPoint.y textSize:10] ;
+            [[Kernel class] drawText:text offsetWidth:(i+1)*IMG_MAP_SIZE+offsetPoint.x offsetHeight:(j+1)*IMG_MAP_SIZE+offsetPoint.y textSize:10] ;
         }
     }
 }
