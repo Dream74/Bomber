@@ -10,9 +10,19 @@
 
 @implementation Box
 
-- (id)init{
-    self = [super init] ;
-    return self ;
+@synthesize DataLoca ;
+@synthesize local ;
+@synthesize canBomb ;
+@synthesize canPass ;
+
+
+
+-(void) initalLocation : (CGPoint) local  :(bool) CanBomb : (bool) CanPass ; {
+    
+    canBomb = CanBomb ;
+    canPass = CanPass ;
+ 
 }
+
 
 @end

@@ -74,6 +74,11 @@
     self        = [super init] ;
     [[ Resource class ] InitalResource ] ;
     [[Player class] InitializeAllImage] ;
+<<<<<<< HEAD
+=======
+    [[Bomb class] initialImage] ;
+    ctrlUI      = [[Control alloc] init] ;
+>>>>>>> origin/Jing-Yuan
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
     map         = [[MapData alloc] init] ;
@@ -110,17 +115,49 @@
         playerMove.y = ctrlMove.y ;
     }
     
+<<<<<<< HEAD
     // TODO 因為假如只有移動螢幕，就不會動角色，但是這樣角色就不會轉方向
     // FIXME 莫名其妙有時候他轉的方向是錯的
     [ onePlayer setTurn:ctrlMove]  ;
     [ map doMove:screenMove]       ;
     [ onePlayer doMove:playerMove] ;
+=======
+    // TODO 測試中
+    bool canMove = true ;
+    
+    for ( Bomb *bomb in bombCollect )
+        if ( abs(( bomb.local.x - onePlayer.local.x )) < 16 &&  abs(( bomb.local.y - onePlayer.local.y )) < 16   )
+        if ( ![ bomb canPass ] )
+            canMove = false ;
+
+    
+    if ( canMove )
+      [ onePlayer doMove:ctrlMove] ;
+    
+>>>>>>> origin/Jing-Yuan
     
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer draw ];
+<<<<<<< HEAD
 
 #ifdef DEBUG
+=======
+    
+    
+    static int count = 0 ;
+    if ( (count++ % 50) == 0 )
+        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :UNBOMB :false : false ]] ;
+    
+    
+    
+    // 是否 callback方法移除炸彈
+    for(Bomb *bomb in bombCollect) {
+        [bomb draw] ;
+    }
+    
+    
+>>>>>>> origin/Jing-Yuan
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect redRect = CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
                                 LIMIT_PLAYER_OFFSET_POINT_Y,
