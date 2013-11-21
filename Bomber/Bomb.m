@@ -19,17 +19,15 @@
 
 
 #define BOMB_ANTION_NUM 9
-#define UNBOMB_ACTION 14
-#define BOMB_SEC   1
-#define UNBOMB_SEC 5
+#define UNBOMB_ACTION   14
+#define BOMB_SEC        1
+#define UNBOMB_SEC      5
 
 
 -(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor{
     self = [super init] ;
     local = localPoint ;
     bomb = bombcolor ;
-    
-    
     
     bombImages = [[NSMutableArray alloc] init ];
     for ( int j = 0 ; j < 10 ; j++ ) {
@@ -51,8 +49,6 @@
     } // for
     
     // add 火焰
-    
-   
     [ bombImages addObject: [[NSMutableArray alloc] init ] ];
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:0 offsetHeight:0 imgWidth:32 imgHeight:32]];
     // normal
@@ -91,12 +87,17 @@
     [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
 }
 
+-(Boolean) bombState{
+    return imgIndex == ( BOMB_ANTION_NUM + 1 );
+}
+
 -(void) run{
     for (int i = 0 ; i < ( UNBOMB_ACTION + 1 ); i++) {
         imgIndex = i ;
         if ( i != 14 ) [NSThread sleepForTimeInterval:((float) UNBOMB_SEC/UNBOMB_ACTION)];
     } // for
-    bomb = random() %9 + 1;
+    
+    if ( bomb == 0 ) bomb = random() % 9 + 1;
     
     for ( int i = 0 ; i < ( BOMB_ANTION_NUM + 1 ) ; i++ ) {
         imgIndex = i ;
@@ -104,7 +105,8 @@
         
     } // for
     
-    [self startbomb];}
+    [self startbomb];
+}
 
 - (void) startbomb{
     NSLog(@"BOMB!!") ;

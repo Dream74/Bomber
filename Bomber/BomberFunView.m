@@ -18,7 +18,15 @@
 
 - (id)initWithCoder:(NSCoder*)coder {
     if (self = [super initWithCoder:coder]) {
+        
+        [self setMultipleTouchEnabled:YES] ;
+        
         bomber_kernel = [ [ Kernel alloc ] init ] ;
+        
+        if ( self.multipleTouchEnabled ) {
+            NSLog(@"multipleTouch is Enabled");
+        }
+        
         [self start] ;
     }
     return self;

@@ -16,7 +16,6 @@
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
-@synthesize bombCollect    ;
 
 #define LIMIT_PLAYER_OFFSET_POINT_X 100.0
 #define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
@@ -24,7 +23,7 @@
 #define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
 #define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
 
-
+#undef DEBUG
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
     CGRect rect = CGRectMake(x, y, width, height);
     CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
@@ -75,10 +74,9 @@
     self        = [super init] ;
     [[ Resource class ] InitalResource ] ;
     [[Player class] InitializeAllImage] ;
-    ctrlUI      = [[Control alloc] init] ;
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
+    ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
     map         = [[MapData alloc] init] ;
-    bombCollect = [[NSMutableArray alloc] init] ;
     return self ;
 }
 
@@ -97,43 +95,37 @@
     const CGPoint ctrlMove    = [ctrlUI getMove] ;
     // 移動過後位置
     const CGPoint playerAfterMovePoint = CGPointMake( playerPoint.x + ctrlMove.x, playerPoint.y + ctrlMove.y );
-    // TODO 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
+    // 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
     CGPoint screenMove = {0,0} ;
     CGPoint playerMove = {0,0} ;
+    if ( playerAfterMovePoint.x > LIMIT_PLAYER_POINT_X ||  playerAfterMovePoint.x < LIMIT_PLAYER_OFFSET_POINT_X) {
+        screenMove.x = ctrlMove.x ;
+    } else {
+        playerMove.x = ctrlMove.x ;
+    }
     
-    NSLog(@"Player Local_X:%f Local_Y:%f CTRL_X:%f CTRL_Y:%f PLAYER_X:%f PLAYER_Y:%f SCREEN_X:%f SCREEN_Y:%f",
-          playerPoint.x, playerPoint.y, ctrlMove.x, ctrlMove.y, playerMove.x, playerMove.y, screenMove.x, screenMove.y ) ;
-
+    if ( playerAfterMovePoint.y > LIMIT_PLAYER_POINT_Y ||  playerAfterMovePoint.y < LIMIT_PLAYER_OFFSET_POINT_Y) {
+        screenMove.y = ctrlMove.y ;
+    } else {
+        playerMove.y = ctrlMove.y ;
+    }
     
-    // TODO 目標
-    // [ map doMove:screenMove] ;
-    // [ onePlayer doMove:playerMove] ;
-    
-    // TODO 測試中
-    [ onePlayer doMove:ctrlMove] ;
+    // TODO 因為假如只有移動螢幕，就不會動角色，但是這樣角色就不會轉方向
+    // FIXME 莫名其妙有時候他轉的方向是錯的
+    [ onePlayer setTurn:ctrlMove]  ;
+    [ map doMove:screenMove]       ;
+    [ onePlayer doMove:playerMove] ;
     
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer draw ];
-    
-    /*
-    static int count = 0 ;
-    if ( (count++ % 50) == 0 )
-        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :UNBOMB]] ;
-    */
-    
-    
-    // 是否 callback方法移除炸彈
-    for(Bomb *bomb in bombCollect) {
-        [bomb draw] ;
-    }
-    
-    
+
+#ifdef DEBUG
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect redRect = CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
                                 LIMIT_PLAYER_OFFSET_POINT_Y,
-                                SCREEN_HIGHT  - (LIMIT_PLAYER_POINT_X * 2),
-                                SCREEN_WIDTH - (LIMIT_PLAYER_POINT_Y * 2 )) ;
+                                LIMIT_PLAYER_POINT_X  - LIMIT_PLAYER_OFFSET_POINT_X ,
+                                LIMIT_PLAYER_POINT_Y  - LIMIT_PLAYER_OFFSET_POINT_Y ) ;
     
     CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
 	//填充矩形
@@ -146,6 +138,7 @@
 	CGContextAddRect(ctx,redRect);
 	//执行绘画
     CGContextStrokePath(ctx);
+#endif 
     
     [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];
     
