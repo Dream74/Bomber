@@ -95,7 +95,7 @@
     const CGPoint ctrlMove    = [ctrlUI getMove] ;
     // 移動過後位置
     const CGPoint playerAfterMovePoint = CGPointMake( playerPoint.x + ctrlMove.x, playerPoint.y + ctrlMove.y );
-    // TODO 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
+    // 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
     CGPoint screenMove = {0,0} ;
     CGPoint playerMove = {0,0} ;
     if ( playerAfterMovePoint.x > LIMIT_PLAYER_POINT_X ||  playerAfterMovePoint.x < LIMIT_PLAYER_OFFSET_POINT_X) {
@@ -111,6 +111,7 @@
     }
     
     // TODO 因為假如只有移動螢幕，就不會動角色，但是這樣角色就不會轉方向
+    // FIXME 莫名其妙有時候他轉的方向是錯的
     [ onePlayer setTurn:ctrlMove]  ;
     [ map doMove:screenMove]       ;
     [ onePlayer doMove:playerMove] ;

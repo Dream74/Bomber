@@ -87,6 +87,10 @@
     [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
 }
 
+-(Boolean) bombState{
+    return imgIndex == ( BOMB_ANTION_NUM + 1 );
+}
+
 -(void) run{
     for (int i = 0 ; i < ( UNBOMB_ACTION + 1 ); i++) {
         imgIndex = i ;

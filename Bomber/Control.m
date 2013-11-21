@@ -94,13 +94,16 @@
     NSLog(@"touchesBegan X:%f Y:%f", touches->x, touches->y) ;
 #endif
     
-    lastTouch  = *touches ;
+    // 控制移動
     if ( touches->x < IPHONE_SCREEN_WIDTH ) {
+        lastTouch  = *touches ;
         const CGPoint diff = { lastTouch.x - moveUIPoint.x , lastTouch.y - moveUIPoint.y };
         const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
         canMove = ( diffLen <= MOVE_UI_REDIUS ) ? true : false ;
-    } else {
-        const CGPoint diff = { lastTouch.x - bombUIPoint.x , lastTouch.y - bombUIPoint.y };
+    }
+    // 控制放炸
+    else {
+        const CGPoint diff = { touches->x - bombUIPoint.x , touches->y - bombUIPoint.y };
         const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
         
         // TODO 為了測試一下 所以用 static 硬把炸彈畫上去
@@ -121,9 +124,12 @@
 #ifdef DEBUG
     NSLog(@"touchesMoved X:%f Y:%f", touches->x, touches->y) ;
 #endif
+    // 控制移動
     if ( touches->x < IPHONE_SCREEN_WIDTH ) {
         lastTouch = CGPointMake(touches->x, touches->y) ;
-    } else {
+    }
+    // 控制放炸
+    else {
     }
 }
 
@@ -132,10 +138,13 @@
 #ifdef DEBUG
     NSLog(@"touchesEnded X:%f Y:%f", touches->x, touches->y) ;
 #endif
+    // 控制移動
     if ( touches->x < IPHONE_SCREEN_WIDTH ) {
         lastTouch = CGPointMake(touches->x, touches->y) ;
         canMove = false ;
-    } else {
+    }
+    // 控制放炸
+    else {
         
     }
 }

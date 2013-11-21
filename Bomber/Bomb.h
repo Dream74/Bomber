@@ -8,7 +8,12 @@
 
 #import "Box.h"
 
-@interface Bomb : Box
+@interface Bomb : Box {
+@private
+    int imgIndex ;
+@public
+    boolean bombState ;
+}
 
 enum BOMB_COLOR{ UNBOMB = 0, RED , ORANGE, YEALLOW, GREEN, AQUAMANINE, BLUE, PURPLE, BLOCK, GRAY, LENGTH} ;
 
@@ -20,4 +25,5 @@ enum BOMB_COLOR{ UNBOMB = 0, RED , ORANGE, YEALLOW, GREEN, AQUAMANINE, BLUE, PUR
 + (Bomb *) putBomb:(CGPoint)point :(int) bombColor;
 + (Bomb *) putBomb:(int)x :(int)y :(int) bombColor;
 - (void) draw ;
+-(Boolean) bombState;
 @end
