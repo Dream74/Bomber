@@ -33,10 +33,7 @@ enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
 
 -(void) draw ;
 -(void) doMove:(CGPoint) move ;
-<<<<<<< HEAD
 -(CGPoint) getLocalPoint;
-=======
 - (id) initial : (int) chartype ;
 +(void) InitializeAllImage ;
->>>>>>> origin/Jin-Yuan
 @end

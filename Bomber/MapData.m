@@ -11,11 +11,7 @@
 
 @implementation MapData
 @synthesize groundImages;
-<<<<<<< HEAD
-@synthesize originalImg ;
 @synthesize offsetPoint  ;
-=======
->>>>>>> origin/Jin-Yuan
 
 int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;

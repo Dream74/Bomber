@@ -45,21 +45,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     fire    = DEFAULT_FIR     ;
     bombNum = DEFAULT_BOMBNUM ;
     
-<<<<<<< HEAD
-    originalImg = [UIImage imageNamed:@"mario_rpg.png"] ;
-    
-    playerImages = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < 4; i++) {
-        [playerImages addObject: [[NSMutableArray alloc] init ] ];
-        for( int j = 0 ; j < 4 ; j++ ) {
-            [[ playerImages objectAtIndex: i ] addObject:[[Kernel class] subImage:originalImg offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
-        } // for
-    } // for
-=======
     playerImages = [playerAllImages objectAtIndex:chartype] ;
->>>>>>> origin/Jin-Yuan
-    
+
     
     return self ;
 }

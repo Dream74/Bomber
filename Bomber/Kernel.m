@@ -7,9 +7,8 @@
 //
 
 #import "Kernel.h"
-
+#import "Player.h"
 #import "Bomb.h"
-
 #include "Bomber.h"
 
 @implementation Kernel
@@ -19,14 +18,12 @@
 @synthesize map            ;
 @synthesize bombCollect    ;
 
-<<<<<<< HEAD
 #define LIMIT_PLAYER_OFFSET_POINT_X 100.0
 #define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
 
 #define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
 #define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
-=======
->>>>>>> origin/Jin-Yuan
+
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
     CGRect rect = CGRectMake(x, y, width, height);

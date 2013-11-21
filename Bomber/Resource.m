@@ -10,23 +10,6 @@
 
 @implementation Resource
 
-<<<<<<< HEAD
-@synthesize bomb_32x32_2 ;
-@synthesize blast ;
-@synthesize character_crawling ;
-@synthesize character_flying ;
-@synthesize character_gold ;
-@synthesize character_jetpack ;
-@synthesize character_silver ;
-@synthesize explosion ;
-@synthesize items ;
-@synthesize perks ;
-@synthesize tileset ;
-@synthesize tileset_12_31 ;
-
--(id) init {
-    self = [super init] ;
-=======
 static  UIImage *  bomb_32x32_2 ;
 static  UIImage *  bomb_32x32_2 ;
 static  UIImage *  blast ;
@@ -43,8 +26,7 @@ static  UIImage *  tileset_12_31 ;
 static  UIImage *  mario_rpg ;
 
 +(void) InitalResource {
-
->>>>>>> origin/Jin-Yuan
+        
     bomb_32x32_2 = [UIImage imageNamed:@"bomb_32x32_2.png"] ;
     blast = [UIImage imageNamed:@"blast.png"] ;
     character_crawling = [UIImage imageNamed:@"character_crawling.png"] ;
@@ -57,12 +39,7 @@ static  UIImage *  mario_rpg ;
     perks = [UIImage imageNamed:@"perks.png"] ;
     tileset = [UIImage imageNamed:@"tileset.png"] ;
     tileset_12_31 = [UIImage imageNamed:@"tileset_12_31.png"] ;
-<<<<<<< HEAD
-    
-    return self ;
-=======
     mario_rpg = [ UIImage imageNamed:@"mario_rpg.png" ] ;
->>>>>>> origin/Jin-Yuan
    
 }
 

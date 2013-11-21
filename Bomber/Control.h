@@ -19,18 +19,10 @@
     
 }
 
-<<<<<<< HEAD
-@property (nonatomic)         CGPoint   moveUIPoint  ;
-@property (nonatomic)         CGPoint   lastTouch    ;
-@property (nonatomic)         CGPoint   bombUIPoint  ;
-@property (nonatomic, strong) UIImage * controlImage ;
-@property (nonatomic)         bool      canMove      ;
-=======
 @property (nonatomic)         CGPoint firstTouch ;
 @property (nonatomic)         CGPoint lastTouch ;
 @property (strong, nonatomic) UIColor * currentColor;
 @property (nonatomic)         bool canMove ;
->>>>>>> origin/Jin-Yuan
 
 
 - (void) touchesBegan    :(CGPoint *)touches ;
