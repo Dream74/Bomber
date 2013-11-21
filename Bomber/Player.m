@@ -27,9 +27,9 @@
 #define IMAGE_CHANGE_DELAY 8
 #define ANTION_NUM         4
 
-#define DEFAULT_SPEED   2
-#define DEFAULT_FIR     2
-#define DEFAULT_BOMBNUM 1
+#define DEFAULT_SPEED      2
+#define DEFAULT_FIR        2
+#define DEFAULT_BOMBNUM    1
 
 
 enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
@@ -43,7 +43,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  LENGTH } ;
     fire    = DEFAULT_FIR     ;
     bombNum = DEFAULT_BOMBNUM ;
     
-    originalImg = [UIImage imageNamed:@"character_flying.png"] ;
+    originalImg = [UIImage imageNamed:@"mario_rpg.png"] ;
     
     playerImages = [[NSMutableArray alloc] init];
     
