@@ -19,7 +19,7 @@ static NSMutableArray * groundImages;
 @synthesize usrPlayer    ;
 @synthesize shiftMove    ;
 
-#define SPEED 3
+#define SPEED 30
 
 #define LIMIT_PLAYER_OFFSET_POINT_X 100.0
 #define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
@@ -92,20 +92,25 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     shiftMove.y += move.y ;
     
     if ( shiftMove.x >= IMG_MAP_SIZE ){
-       mapPoint.x += 1 ;
-       shiftMove.x -= IMG_MAP_SIZE ;
+        mapPoint.x += 1 ;
+        shiftMove.x -= IMG_MAP_SIZE ;
+        mapPoint = [[MapData class] dataFormal:mapPoint] ;
     } else if ( shiftMove.x <= (IMG_MAP_SIZE * -1 )){
-       mapPoint.x -= 1 ;
-       shiftMove.x += IMG_MAP_SIZE ;
+        mapPoint.x -= 1 ;
+        shiftMove.x += IMG_MAP_SIZE ;
+        mapPoint = [[MapData class] dataFormal:mapPoint] ;
     }
     
     if ( shiftMove.y >= IMG_MAP_SIZE ){
-       mapPoint.y += 1 ;
-       shiftMove.y -= IMG_MAP_SIZE ;
+        mapPoint.y += 1 ;
+        shiftMove.y -= IMG_MAP_SIZE ;
+        mapPoint = [[MapData class] dataFormal:mapPoint] ;
     } else if ( shiftMove.y <= (IMG_MAP_SIZE * -1 )){
-       mapPoint.y -= 1 ;
-       shiftMove.y += IMG_MAP_SIZE ;
+        mapPoint.y -= 1 ;
+        shiftMove.y += IMG_MAP_SIZE ;
+        mapPoint = [[MapData class] dataFormal:mapPoint] ;
     }
+    
     
     // 玩家原始位置
     const CGPoint playerPoint = rolePoint;
@@ -125,7 +130,7 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
         // rolePoint.y -= move.y ;
     } else {
         playerMove.y += move.y ;
-        rolePoint.y += move.y ;
+        rolePoint.y  += move.y ;
     }
     
     [ usrPlayer doMove:playerMove] ;
@@ -137,6 +142,7 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     
     // NSString * text = [NSString stringWithFormat:@"%f,%f", mapPoint.x, mapPoint.y ] ;
     // [[Kernel class] drawText:text offsetWidth:screenPoint.x offsetHeight:screenPoint.y textSize:10] ;
+    
     NSLog(@"User Location Point X :%d Y:%d", (int)mapPoint.x, (int)mapPoint.y ) ;
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
