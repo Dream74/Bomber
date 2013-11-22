@@ -104,6 +104,8 @@
         
         if ( diffLen <= BOMB_UI_REDIUS ) {
             [usrPlayer putBomb] ;
+            
+
         }
         
     }
