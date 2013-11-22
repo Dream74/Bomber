@@ -6,17 +6,18 @@
 //  Copyright (c) 2013 CYCU. All rights reserved.
 //
 
-#import "Kernel.h"
-#import "Player.h"
-#import "Bomb.h"
-#include "Bomber.h"
+#import  "Kernel.h"
+#import  "Player.h"
+#import  "Bomb.h"
+#import  "Bomber.h"
+#import  "Block.h"
 
 @implementation Kernel
 
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
-@synthesize one_block    ;
+@synthesize one_block      ;
 
 #define LIMIT_PLAYER_OFFSET_POINT_X 100.0
 #define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
@@ -25,36 +26,43 @@
 #define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
 
 #undef DEBUG
-+ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
-    CGRect rect = CGRectMake(x, y, width, height);
-    CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
-    UIImage * _outImage = [UIImage imageWithCGImage:drawImage];
-    CGImageRelease(drawImage);
-    return _outImage ;
-}
 
-+ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree :(float) scale {
-    
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger)degree imgScale:(float) scale {
     CGRect rect = CGRectMake(x, y, width, height);
     CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
     UIImage *  _outImage ;
-    if ( degree == 0 )
-        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationUp];
-    else if ( degree == 90 )
-        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationRight];
-    else if ( degree == -90 )
-      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationLeft];
-    else if ( degree == 180 )
-      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationDown];
-    
-    _outImage = [UIImage imageWithCGImage:drawImage scale: scale orientation:UIImageOrientationUp];
-        
-    
+    _outImage = [UIImage imageWithCGImage:drawImage scale:scale orientation:degree];
     CGImageRelease(drawImage);
     return _outImage ;
-    
 }
 
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
+    return [[Kernel class] subImage:img offsetWidth:x offsetHeight:y imgWidth:width imgHeight:height imgTurn:UIImageOrientationUp imgScale:1.0] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect {
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:UIImageOrientationUp imgScale:1.0] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgTurn:(NSInteger)degree imgScale:(float)scale{
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:degree imgScale:scale] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgScale:(float)scale{
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:UIImageOrientationUp imgScale:scale] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgTurn:(NSInteger)degree{
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:degree imgScale:1.0] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgScale:(float)scale{
+    return [[Kernel class] subImage:img offsetWidth:x offsetHeight:y imgWidth:width imgHeight:height imgTurn:UIImageOrientationUp imgScale:scale] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger)degree{
+    return [[Kernel class] subImage:img offsetWidth:x offsetHeight:y imgWidth:width imgHeight:height imgTurn:degree imgScale:1.0] ;
+}
 
 + (void) drawText:(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size {
     [strText drawAtPoint:CGPointMake(x, y) withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:size]}];
@@ -73,17 +81,23 @@
 
 - (id) init{
     self        = [super init] ;
-    [[ Resource class ] InitalResource ] ;
-    [[MapData class ] initialImage ] ;
-    [[Player class] InitializeAllImage] ;
-    [[Bomb class] initialImage] ;
+    [[Resource class ] initalResource ] ;
+    [[MapData class ]  initialImage ] ;
+    [[MapData class ]  initialDSGroung ] ;
+    [[Player class]    initializeAllImage] ;
+    [[Bomb class]      initialImage] ;
+    [[Block class]     initializeAllImage] ;
     
-    one_block = [[Block alloc] init];
+    // TODO 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
+    CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT/ 2 , SCREEN_WIDTH  / 2 ) ;
     
-    // 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
-    onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
+    onePlayer   = [[Player  alloc] initial :MARIO_RPG startPoint:roleStartPoint] ;
+    
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
-    map         = [[MapData alloc] init] ;
+    // TODO 起始的位置 格子
+    CGPoint roleStartMap   = CGPointMake(20, 25) ;
+    map         = [[MapData alloc] initWithPoint:roleStartMap startScreen:roleStartPoint] ;
+    
     return self ;
 }
 
@@ -132,18 +146,9 @@
     [ map doMove:screenMove]       ;
     [ onePlayer doMove:playerMove] ;
     
-    
-    
-    
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer draw ];
-    
-    
-    
-    int  x[3][3] = { 1 , 2 , 3, 4 , 5 , 6  };
-    [ one_block draw : *x : 3 : 3 ];
-    
     
     
 #ifdef DEBUG
