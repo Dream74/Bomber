@@ -88,8 +88,15 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 -(void) putBomb{
+    // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
+ 
+    const int x = ((int) local.x+16) /32 * 32 ;
+    const int y = ((int) local.y+28) /32 * 32 ;
+#ifdef DEBUG
+    NSLog(@"%d, %d %d, %d", (x/32), (y/32),((int)local.x+16)/32,((int) local.y+28)/32) ;
+#endif
+    [bombCollect addObject:[[Bomb class] putBomb:x  :y :RANDOM_BOMB_COLOR :false :false]];
     NSLog(@"Put Bomb!!") ;
-    [bombCollect addObject:[[Bomb class] putBomb:local.x  :local.y :RANDOM_BOMB_COLOR :true :false]];
 }
 
 -(void) doMove:(CGPoint) move{

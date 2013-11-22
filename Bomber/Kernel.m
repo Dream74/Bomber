@@ -73,9 +73,9 @@
 - (id) init{
     self        = [super init] ;
     [[ Resource class ] InitalResource ] ;
+    [[MapData class ] initialImage ] ;
     [[Player class] InitializeAllImage] ;
     [[Bomb class] initialImage] ;
-    
     
     // 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
