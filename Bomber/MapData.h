@@ -29,4 +29,5 @@
 - (void) draw ;
 - (void) doMove:(CGPoint) move ;
 + (void) initialImage ;
+- (MapData *) initWithPoint:(CGPoint) startMapPoint ;
 @end

@@ -25,7 +25,7 @@ static  UIImage *  tileset ;
 static  UIImage *  tileset_12_31 ;
 static  UIImage *  mario_rpg ;
 
-+(void) InitalResource {
++ (void) initalResource {
         
     bomb_32x32_2       = [UIImage imageNamed:@"bomb_32x32_2.png"]       ;
     blast              = [UIImage imageNamed:@"blast.png"]              ;

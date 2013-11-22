@@ -79,15 +79,20 @@
 
 - (id) init{
     self        = [super init] ;
-    [[ Resource class ] InitalResource ] ;
-    [[MapData class ] initialImage ] ;
-    [[Player class] InitializeAllImage] ;
-    [[Bomb class] initialImage] ;
+    [[Resource class ] initalResource ] ;
+    [[MapData class ]  initialImage ] ;
+    [[Player class]    initializeAllImage] ;
+    [[Bomb class]      initialImage] ;
     
-    // 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
-    onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
+    // TODO 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
+    CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT/ 2 , SCREEN_WIDTH  / 2 ) ;
+    
+    onePlayer   = [[Player  alloc] initial :MARIO_RPG startPoint:roleStartPoint] ;
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
-    map         = [[MapData alloc] init] ;
+    // TODO 起始的位置 格子
+    CGPoint roleStartMap   = CGPointMake(20, 25) ;
+    map         = [[MapData alloc] initWithPoint:roleStartMap] ;
+    
     return self ;
 }
 

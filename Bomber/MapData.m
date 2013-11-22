@@ -21,19 +21,19 @@ int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 
-- (id) init{
+- (MapData *) initWithPoint:(CGPoint) startMapPoint {
     self = [super init] ;
     offsetPoint.x = IMG_MAP_SIZE * -1 ;
     offsetPoint.y = IMG_MAP_SIZE * -1 ;
-    local.x = 0 ;
-    local.y = 0 ;
+    local.x = startMapPoint.x ;
+    local.y = startMapPoint.y ;
     
     NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;  
     return self ;
 }
 
 
--(void) doMove:(CGPoint) move{
+- (void) doMove:(CGPoint) move{
     offsetPoint.x -= move.x * SPEED / 100;
     offsetPoint.y -= move.y * SPEED / 100;
 }
@@ -55,7 +55,7 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     }
 }
 
-+(void) initialImage {
++ (void) initialImage {
     groundImages = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 8; i++) {

@@ -38,10 +38,9 @@ static NSMutableArray * playerAllImages;
 
 enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 
--(id)initial :(int) chartype {
-    
-    local.x = 160 ;
-    local.y = 200 ;
+- (id)initial :(int)chartype startPoint:(CGPoint) localPoint {
+    local.x = localPoint.x ;
+    local.y = localPoint.y ;
     state   = DOWN            ;
     speed   = DEFAULT_SPEED   ;
     fire    = DEFAULT_FIR     ;
@@ -52,15 +51,12 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     return self ;
 }
 
--(void) draw {
+- (void) draw {
     static int count  = 0 ;
     count = count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : count + 1 ;
     int imgIndex = count / IMAGE_CHANGE_DELAY ;
     
-#ifdef DEBUG
     assert( imgIndex < ANTION_NUM ) ;
-#endif
-    
     [self drawBomb];
     
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
@@ -78,7 +74,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     }
 }
 
--(void) putBomb{
+- (void) putBomb{
     // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
     const int x = ((int) local.x+16) /32 * 32 ;
     const int y = ((int) local.y+28) /32 * 32 ;
@@ -89,19 +85,19 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     NSLog(@"Put Bomb!!") ;
 }
 
--(void) doMove:(CGPoint) move{
+- (void) doMove:(CGPoint) move{
     local.x += move.x * SPEED / 100;
     local.y += move.y * SPEED / 100;
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
 }
 
--(void) setTurn:(CGPoint) move{
+- (void) setTurn:(CGPoint) move{
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP  ;
 }
 
-+(void) InitializeAllImage {
++ (void) initializeAllImage {
   playerAllImages = [[NSMutableArray alloc] init];
     
   [playerAllImages addObject: [[NSMutableArray alloc] init ] ];

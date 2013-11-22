@@ -17,14 +17,14 @@
     
 }
 
-+ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect ;
-+ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgTurn:(NSInteger)degree imgScale:(float)scale ;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect ;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect imgScale:(float)scale ;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect imgTurn:(NSInteger)degree ;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect imgTurn:(NSInteger)degree imgScale:(float)scale ;
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
-+ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger) degree imgScale:(float) scale;
-+ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgScale:(float)scale ;
-+ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgTurn:(NSInteger)degree ;
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgScale:(float)scale ;
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger)degree ;
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger) degree imgScale:(float) scale;
 
 + (void)      drawText:(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size  ;
 
