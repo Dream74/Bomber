@@ -115,33 +115,33 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
   playerAllImages = [[NSMutableArray alloc] init];
     
   [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < ANTION_NUM; i++) {
         [[playerAllImages objectAtIndex:FLY] addObject: [[NSMutableArray alloc] init ] ];
-        for( int j = 0 ; j < 4 ; j++ ) {
+        for( int j = 0 ; j < ANTION_NUM ; j++ ) {
             [[ [playerAllImages objectAtIndex:FLY] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_flying ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
     } // for
   
     [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < ANTION_NUM; i++) {
         [[playerAllImages objectAtIndex:GOLD] addObject: [[NSMutableArray alloc] init ] ];
-        for( int j = 0 ; j < 4 ; j++ ) {
+        for( int j = 0 ; j < ANTION_NUM; j++ ) {
             [[ [playerAllImages objectAtIndex:GOLD] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_gold ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
     } // for
     
     [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < ANTION_NUM; i++) {
         [[playerAllImages objectAtIndex:CRAWLING] addObject: [[NSMutableArray alloc] init ] ];
-        for( int j = 0 ; j < 4 ; j++ ) {
+        for( int j = 0 ; j < ANTION_NUM; j++ ) {
             [[ [playerAllImages objectAtIndex:CRAWLING] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_crawling ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
     } // for
     
     [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < ANTION_NUM; i++) {
         [[playerAllImages objectAtIndex:MARIO_RPG] addObject: [[NSMutableArray alloc] init ] ];
-        for( int j = 0 ; j < 4 ; j++ ) {
+        for( int j = 0 ; j < ANTION_NUM ; j++ ) {
             [[ [playerAllImages objectAtIndex:MARIO_RPG] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] mario_rpg ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
     } // for
