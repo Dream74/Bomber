@@ -75,7 +75,9 @@
     [[ Resource class ] InitalResource ] ;
     [[Player class] InitializeAllImage] ;
     [[Bomb class] initialImage] ;
-
+    
+    
+    // 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
     map         = [[MapData alloc] init] ;
@@ -115,21 +117,20 @@
     // TODO 因為假如只有移動螢幕，就不會動角色，但是這樣角色就不會轉方向
     // FIXME 莫名其妙有時候他轉的方向是錯的
     [ onePlayer setTurn:ctrlMove]  ;
+    
+    /* 未來應該是，由這邊判斷，使用者是否可以移動，
+       因為已使用者目前座標與底下的陣列，發現他已經碰到底了，導致他無法移動過去
+       所以這邊需要:
+       1. 使用者目前位置
+       2. 周遭座標的邊
+       3. 周遭是什麼東西
+       4. 如果可以移動，那是使用者移動，還是畫面移動
+    */
     [ map doMove:screenMove]       ;
     [ onePlayer doMove:playerMove] ;
-    // FIXME 我覺得判斷炸彈與不能走過去，是需要 二維做判斷就行了
-    /*
-    bool canMove = true ;
     
-    for ( Bomb *bomb in bombCollect )
-        if ( abs(( bomb.local.x - onePlayer.local.x )) < 16 &&  abs(( bomb.local.y - onePlayer.local.y )) < 16   )
-        if ( ![ bomb canPass ] )
-            canMove = false ;
-
     
-    if ( canMove )
-      [ onePlayer doMove:ctrlMove] ;
-    */
+    
     
     [ map draw ] ;
     [ ctrlUI draw ];

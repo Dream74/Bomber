@@ -26,7 +26,7 @@
 #define BOMB_UI_REDIUS 30
 #define BOMB_UI_DIAMETER BOMB_UI_REDIUS * 2
 
-#undef DEBUG
+// #undef DEBUG
 
 - (id) initWithUsrPlay:(Player *) usr{
     self = [super init] ;
@@ -106,8 +106,9 @@
         const CGPoint diff = { touches->x - bombUIPoint.x , touches->y - bombUIPoint.y };
         const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
         
-        // TODO 為了測試一下 所以用 static 硬把炸彈畫上去
-        if ( diffLen <= BOMB_UI_REDIUS ) [usrPlayer putBomb] ;
+        if ( diffLen <= BOMB_UI_REDIUS ) {
+            [usrPlayer putBomb] ;
+        }
         
     }
 }

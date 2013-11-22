@@ -61,9 +61,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     assert( imgIndex < ANTION_NUM ) ;
 #endif
     
-    for( Bomb * bomb in bombCollect ){
-        [bomb draw] ;
-    }
+    [self drawBomb];
     
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
 }
@@ -74,10 +72,22 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 
+-(void) drawBomb{
+    NSLog(@"Bomb Number :%lu", (unsigned long)[bombCollect count] ) ;
+    for( int i = 0 ; i < [bombCollect count] ; i++ ){
+        Bomb * bomb = [bombCollect objectAtIndex:i] ;
+        if ( [bomb isKill] ){
+            NSLog(@"Bomb index :%d isKill", i ) ;
+        } else {
+            NSLog(@"Bomb index :%d life", i ) ;
+        }
+        [bomb draw] ;
+    }
+}
+
 -(void) putBomb{
-    // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
-    
-    [bombCollect addObject:[[Bomb class] putBomb:local.x  :local.y :UNBOMB :true :false]];
+    NSLog(@"Put Bomb!!") ;
+    [bombCollect addObject:[[Bomb class] putBomb:local.x  :local.y :RANDOM_BOMB_COLOR :true :false]];
 }
 
 -(void) doMove:(CGPoint) move{
