@@ -26,7 +26,7 @@
 #define BOMB_UI_REDIUS 30
 #define BOMB_UI_DIAMETER BOMB_UI_REDIUS * 2
 
-// #undef DEBUG
+#undef DEBUG
 
 - (id) initWithUsrPlay:(Player *) usr{
     self = [super init] ;
