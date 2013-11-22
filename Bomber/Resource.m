@@ -25,21 +25,21 @@ static  UIImage *  tileset ;
 static  UIImage *  tileset_12_31 ;
 static  UIImage *  mario_rpg ;
 
-+(void) InitalResource {
++ (void) initalResource {
         
-    bomb_32x32_2 = [UIImage imageNamed:@"bomb_32x32_2.png"] ;
-    blast = [UIImage imageNamed:@"blast.png"] ;
+    bomb_32x32_2       = [UIImage imageNamed:@"bomb_32x32_2.png"]       ;
+    blast              = [UIImage imageNamed:@"blast.png"]              ;
     character_crawling = [UIImage imageNamed:@"character_crawling.png"] ;
-    character_flying = [UIImage imageNamed:@"character_flying.png"] ;
-    character_gold = [UIImage imageNamed:@"character_gold.png"] ;
-    character_jetpack = [UIImage imageNamed:@"character_jetpack .png"] ;
-    character_silver = [UIImage imageNamed:@"character_silver.png"] ;
-    explosion = [UIImage imageNamed:@"explosion.png"] ;
-    items = [UIImage imageNamed:@"items.png"] ;
-    perks = [UIImage imageNamed:@"perks.png"] ;
-    tileset = [UIImage imageNamed:@"tileset.png"] ;
-    tileset_12_31 = [UIImage imageNamed:@"tileset_12_31.png"] ;
-    mario_rpg = [ UIImage imageNamed:@"mario_rpg.png" ] ;
+    character_flying   = [UIImage imageNamed:@"character_flying.png"]   ;
+    character_gold     = [UIImage imageNamed:@"character_gold.png"]     ;
+    character_jetpack  = [UIImage imageNamed:@"character_jetpack .png"] ;
+    character_silver   = [UIImage imageNamed:@"character_silver.png"]   ;
+    explosion          = [UIImage imageNamed:@"explosion.png"]          ;
+    items              = [UIImage imageNamed:@"items.png"]              ;
+    perks              = [UIImage imageNamed:@"perks.png"]              ;
+    tileset            = [UIImage imageNamed:@"tileset.png"]            ;
+    tileset_12_31      = [UIImage imageNamed:@"tileset_12_31.png"]      ;
+    mario_rpg          = [ UIImage imageNamed:@"mario_rpg.png" ]        ;
    
 }
 

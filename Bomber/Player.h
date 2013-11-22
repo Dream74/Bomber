@@ -32,12 +32,12 @@ enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
 @property (nonatomic) int bombNum  ;
 @property (nonatomic) int ChImage  ;
 
-+(void)    InitializeAllImage ;
 
--(CGPoint) getLocalPoint;
--(id)      initial : (int) chartype ;
--(void)    draw ;
--(void)    doMove:(CGPoint)  move ;
--(void)    setTurn:(CGPoint) move ;
--(void)    putBomb ;
+- (CGPoint) getLocalPoint;
+- (id)      initial : (int) chartype startPoint:(CGPoint) localPoint ;
++ (void)    initializeAllImage ;
+- (void)    draw ;
+- (void)    doMove:(CGPoint)  move ;
+- (void)    setTurn:(CGPoint) move ;
+- (void)    putBomb ;
 @end

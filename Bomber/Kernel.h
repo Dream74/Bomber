@@ -12,14 +12,23 @@
 #import "MapData.h"
 #import "Resource.h"
 
+#import "Block.h"
+
 @interface Kernel : NSObject {
 @public
     
 }
 
-+ (UIImage *) subImage      :(UIImage *)  img     offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
-+ (void)      drawText      :(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size  ;
-+ (UIImage *) subImageRotate:(UIImage *)  img     offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree :(float) scale;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect ;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect imgScale:(float)scale ;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect imgTurn:(NSInteger)degree ;
++ (UIImage *) subImage:(UIImage *) img getImgRect :(CGRect)rect imgTurn:(NSInteger)degree imgScale:(float)scale ;
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height ;
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgScale:(float)scale ;
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger)degree ;
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger) degree imgScale:(float) scale;
+
++ (void)      drawText:(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size  ;
 
 
 // readonly－唯讀，只能讀取而不能設定值（不能用setXXXX的函式）。
@@ -43,4 +52,7 @@
 @property (nonatomic) Control *  ctrlUI  ;
 @property (nonatomic) Player  *  onePlayer ;
 @property (nonatomic) MapData *  map ;
+
+@property (nonatomic) Block * one_block ;   
+
 @end

@@ -25,5 +25,5 @@
 +  (UIImage *)  tileset_12_31 ;
 +  (UIImage *)  mario_rpg ;
 
-+(void) InitalResource ;
++ (void) initalResource ;
 @end
