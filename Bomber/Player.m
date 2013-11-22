@@ -66,30 +66,20 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
 }
 
-
 -(CGPoint) getLocalPoint{
     return local ;
 }
 
-
 -(void) drawBomb{
-    NSLog(@"Bomb Number :%lu", (unsigned long)[bombCollect count] ) ;
-
     for( int i = 0 ; i < [bombCollect count] ; i++ ){
         Bomb * bomb = [bombCollect objectAtIndex:i] ;
-        if ( [bomb isKill] ){
-            // 想辦法移除掉這顆炸彈
-            NSLog(@"Bomb index :%d isKill", i ) ;
-        } else {
-            NSLog(@"Bomb index :%d life", i ) ;
-        }
-        [bomb draw] ;
+        if ( [bomb isKill] ) [bombCollect removeObject:bomb] ;
+        else                 [bomb draw] ;
     }
 }
 
 -(void) putBomb{
     // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
- 
     const int x = ((int) local.x+16) /32 * 32 ;
     const int y = ((int) local.y+28) /32 * 32 ;
 #ifdef DEBUG

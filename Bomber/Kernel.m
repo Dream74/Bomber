@@ -24,36 +24,43 @@
 #define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
 
 #undef DEBUG
-+ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
-    CGRect rect = CGRectMake(x, y, width, height);
-    CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
-    UIImage * _outImage = [UIImage imageWithCGImage:drawImage];
-    CGImageRelease(drawImage);
-    return _outImage ;
-}
 
-+ (UIImage *) subImageRotate:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height :(int) degree :(float) scale {
-    
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger)degree imgScale:(float) scale {
     CGRect rect = CGRectMake(x, y, width, height);
     CGImageRef drawImage = CGImageCreateWithImageInRect(img.CGImage, rect);
     UIImage *  _outImage ;
-    if ( degree == 0 )
-        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationUp];
-    else if ( degree == 90 )
-        _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationRight];
-    else if ( degree == -90 )
-      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationLeft];
-    else if ( degree == 180 )
-      _outImage = [UIImage imageWithCGImage:drawImage scale: 1.0 orientation:UIImageOrientationDown];
-    
-    _outImage = [UIImage imageWithCGImage:drawImage scale: scale orientation:UIImageOrientationUp];
-        
-    
+    _outImage = [UIImage imageWithCGImage:drawImage scale:scale orientation:degree];
     CGImageRelease(drawImage);
     return _outImage ;
-    
 }
 
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height {
+    return [[Kernel class] subImage:img offsetWidth:x offsetHeight:y imgWidth:width imgHeight:height imgTurn:UIImageOrientationUp imgScale:1.0] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect {
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:UIImageOrientationUp imgScale:1.0] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgTurn:(NSInteger)degree imgScale:(float)scale{
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:degree imgScale:scale] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgScale:(float)scale{
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:UIImageOrientationUp imgScale:scale] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img getImgRect:(CGRect)rect imgTurn:(NSInteger)degree{
+    return [[Kernel class] subImage:img offsetWidth:rect.origin.x offsetHeight:rect.origin.y imgWidth:rect.size.width imgHeight:rect.size.height imgTurn:degree imgScale:1.0] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgScale:(float)scale{
+    return [[Kernel class] subImage:img offsetWidth:x offsetHeight:y imgWidth:width imgHeight:height imgTurn:UIImageOrientationUp imgScale:scale] ;
+}
+
++ (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger)degree{
+    return [[Kernel class] subImage:img offsetWidth:x offsetHeight:y imgWidth:width imgHeight:height imgTurn:degree imgScale:1.0] ;
+}
 
 + (void) drawText:(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size {
     [strText drawAtPoint:CGPointMake(x, y) withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:size]}];
