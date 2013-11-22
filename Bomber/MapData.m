@@ -199,39 +199,6 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+offsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+offsetPoint.y textSize:10] ;
         }
     }
-
-     
-            
-
-}
-
-<<<<<<< HEAD
-=======
-+ (void) initialImage {
-    groundImages = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 8 ; i++) {
-        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:0 imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
-    } // for
-    
-    for ( int i = 0 ; i < 5 ; i++ ) {
-        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:IMG_MAP_OFFSET_HIGHT imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
-    } // for
-    
-    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
-        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
-            backGround[j][i] = arc4random() % 13 ;
-        }
-    }
-    
-    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
-        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
-            objGround[j][i] = arc4random() % 2 ;
-        }
-    }
-
-    
-
-
 }
 
 + (void) initialDSGroung ; {
@@ -244,5 +211,4 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 }
 
->>>>>>> master
 @end

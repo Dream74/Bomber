@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Bomber.h"
-<<<<<<< HEAD
 #import "Player.h"
-=======
 #import "Square.h"
-
->>>>>>> master
 
 #define IMG_MAP_SIZE 32
 
@@ -40,12 +36,9 @@
 - (void) draw ;
 - (void) doMove:(CGPoint) move ;
 + (void) initialImage ;
-<<<<<<< HEAD
 - (MapData *) initWithUsr:(Player *)usr mapPoint:(CGPoint)startMapPoint startScreen:(CGPoint)startScreenPoint ;
-=======
 - (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint ;
 + (void) initialDSGroung ;
 + (Square *) getDSGround : (int) x : (int) y ;
->>>>>>> master
 
 @end
