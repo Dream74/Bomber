@@ -91,7 +91,7 @@
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
     // TODO 起始的位置 格子
     CGPoint roleStartMap   = CGPointMake(20, 25) ;
-    map         = [[MapData alloc] initWithPoint:roleStartMap] ;
+    map         = [[MapData alloc] initWithPoint:roleStartMap startScreen:roleStartPoint] ;
     
     return self ;
 }

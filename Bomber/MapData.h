@@ -24,10 +24,12 @@
 @interface MapData : NSObject
 
 @property (atomic) CGPoint offsetPoint ;
-@property (atomic) CGPoint local ;
+@property (atomic) CGPoint mapPoint ;
+@property (atomic) CGPoint screenPoint ;
 
 - (void) draw ;
 - (void) doMove:(CGPoint) move ;
 + (void) initialImage ;
-- (MapData *) initWithPoint:(CGPoint) startMapPoint ;
+- (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint ;
+
 @end
