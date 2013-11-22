@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		40654BC5183F6FAB00D1DF8D /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 40654BC4183F6FAB00D1DF8D /* Block.m */; };
-		E12AA2B8183E706300DCE19C /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = E12AA2B7183E706300DCE19C /* Brick.m */; };
 		E1A74519183E027300040D89 /* hamster_48x48_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A74510183E027300040D89 /* hamster_48x48_3.png */; };
 		E1A7451A183E027300040D89 /* hamster_48x48_4.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A74511183E027300040D89 /* hamster_48x48_4.png */; };
 		E1A7451B183E027300040D89 /* items_.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A74512183E027300040D89 /* items_.png */; };
@@ -17,6 +16,7 @@
 		E1A74520183E027300040D89 /* vtulka_64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A74517183E027300040D89 /* vtulka_64x64.png */; };
 		E1A74521183E027300040D89 /* zombie1.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A74518183E027300040D89 /* zombie1.png */; };
 		E1AD3D0D183D37EE00B8B6A8 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AD3D0C183D37EE00B8B6A8 /* Resource.m */; };
+		E1EBCD35183F921600931E92 /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBCD34183F921600931E92 /* Square.m */; };
 		E1FA8FE0183CC9CE005C7D36 /* bomb_32x32_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA8FDF183CC9CE005C7D36 /* bomb_32x32_2.png */; };
 		F107AA8E183BA6610000B911 /* Kernel.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA8D183BA6610000B911 /* Kernel.m */; };
 		F107AA91183BADD20000B911 /* Control.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA90183BADD20000B911 /* Control.m */; };
@@ -67,8 +67,6 @@
 /* Begin PBXFileReference section */
 		40654BC3183F6FAB00D1DF8D /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		40654BC4183F6FAB00D1DF8D /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
-		E12AA2B6183E706300DCE19C /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
-		E12AA2B7183E706300DCE19C /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
 		E1A74510183E027300040D89 /* hamster_48x48_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamster_48x48_3.png; sourceTree = "<group>"; };
 		E1A74511183E027300040D89 /* hamster_48x48_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamster_48x48_4.png; sourceTree = "<group>"; };
 		E1A74512183E027300040D89 /* items_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = items_.png; sourceTree = "<group>"; };
@@ -78,6 +76,8 @@
 		E1A74518183E027300040D89 /* zombie1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombie1.png; sourceTree = "<group>"; };
 		E1AD3D0B183D37EE00B8B6A8 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		E1AD3D0C183D37EE00B8B6A8 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
+		E1EBCD33183F921600931E92 /* Square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Square.h; sourceTree = "<group>"; };
+		E1EBCD34183F921600931E92 /* Square.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Square.m; sourceTree = "<group>"; };
 		E1FA8FDF183CC9CE005C7D36 /* bomb_32x32_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb_32x32_2.png; sourceTree = "<group>"; };
 		F107AA87183BA0810000B911 /* Bomber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bomber.h; sourceTree = "<group>"; };
 		F107AA8C183BA6610000B911 /* Kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kernel.h; sourceTree = "<group>"; };
@@ -224,8 +224,6 @@
 				F1FFC5BB182C195F008ACBB0 /* BomberFunView.h */,
 				F1FFC5BC182C195F008ACBB0 /* BomberFunView.m */,
 				F107AA87183BA0810000B911 /* Bomber.h */,
-				E12AA2B6183E706300DCE19C /* Brick.h */,
-				E12AA2B7183E706300DCE19C /* Brick.m */,
 				40654BC3183F6FAB00D1DF8D /* Block.h */,
 				40654BC4183F6FAB00D1DF8D /* Block.m */,
 				F107AA8C183BA6610000B911 /* Kernel.h */,
@@ -242,6 +240,8 @@
 				F107AA99183BBED30000B911 /* Box.m */,
 				E1AD3D0B183D37EE00B8B6A8 /* Resource.h */,
 				E1AD3D0C183D37EE00B8B6A8 /* Resource.m */,
+				E1EBCD33183F921600931E92 /* Square.h */,
+				E1EBCD34183F921600931E92 /* Square.m */,
 			);
 			path = Bomber;
 			sourceTree = "<group>";
@@ -395,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1FFC590182C1929008ACBB0 /* main.m in Sources */,
+				E1EBCD35183F921600931E92 /* Square.m in Sources */,
 				E1AD3D0D183D37EE00B8B6A8 /* Resource.m in Sources */,
 				F107AA9A183BBED30000B911 /* Box.m in Sources */,
 				F107AA91183BADD20000B911 /* Control.m in Sources */,
@@ -404,7 +405,6 @@
 				F111FE4F183CC70E003A1AC7 /* MapData.m in Sources */,
 				40654BC5183F6FAB00D1DF8D /* Block.m in Sources */,
 				F1FFC594182C1929008ACBB0 /* BomberAppDelegate.m in Sources */,
-				E12AA2B8183E706300DCE19C /* Brick.m in Sources */,
 				F107AA97183BB12A0000B911 /* Player.m in Sources */,
 				F1FFC59D182C1929008ACBB0 /* BomberViewController.m in Sources */,
 			);
