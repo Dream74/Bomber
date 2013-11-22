@@ -74,9 +74,11 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 
 -(void) drawBomb{
     NSLog(@"Bomb Number :%lu", (unsigned long)[bombCollect count] ) ;
+
     for( int i = 0 ; i < [bombCollect count] ; i++ ){
         Bomb * bomb = [bombCollect objectAtIndex:i] ;
         if ( [bomb isKill] ){
+            // 想辦法移除掉這顆炸彈
             NSLog(@"Bomb index :%d isKill", i ) ;
         } else {
             NSLog(@"Bomb index :%d life", i ) ;
