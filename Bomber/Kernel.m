@@ -19,11 +19,6 @@
 @synthesize map            ;
 @synthesize one_block      ;
 
-#define LIMIT_PLAYER_OFFSET_POINT_X 100.0
-#define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
-
-#define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
-#define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
 
 #undef DEBUG
 
@@ -92,10 +87,11 @@
     
     onePlayer   = [[Player  alloc] initial :MARIO_RPG startPoint:roleStartPoint] ;
     
-    ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
+    ctrlUI      = [[Control alloc] initWithUsr:onePlayer] ;
     // TODO 起始的位置 格子
+    
     CGPoint roleStartMap   = CGPointMake(5, 25) ;
-    map         = [[MapData alloc] initWithPoint:roleStartMap startScreen:roleStartPoint] ;
+    map = [[MapData alloc] initWithUsr:onePlayer mapPoint:roleStartMap startScreen:roleStartPoint] ;
     
     return self ;
 }
@@ -109,10 +105,13 @@
 
 
 - (void)draw{
+    const CGPoint ctrlMove    = [ctrlUI getMove] ;
+    /*
     // 玩家原始位置
     const CGPoint playerPoint = [onePlayer getLocalPoint] ;
     // 移動位置
     const CGPoint ctrlMove    = [ctrlUI getMove] ;
+    
     // 移動過後位置
     const CGPoint playerAfterMovePoint = CGPointMake( playerPoint.x + ctrlMove.x, playerPoint.y + ctrlMove.y );
     // 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
@@ -131,24 +130,16 @@
         playerMove.y = ctrlMove.y ;
     }
     
-    // TODO 因為假如只有移動螢幕，就不會動角色，但是這樣角色就不會轉方向
-    // FIXME 莫名其妙有時候他轉的方向是錯的
     [ onePlayer setTurn:ctrlMove]  ;
     
-    /* 未來應該是，由這邊判斷，使用者是否可以移動，
-       因為已使用者目前座標與底下的陣列，發現他已經碰到底了，導致他無法移動過去
-       所以這邊需要:
-       1. 使用者目前位置
-       2. 周遭座標的邊
-       3. 周遭是什麼東西
-       4. 如果可以移動，那是使用者移動，還是畫面移動
-    */
     [ map doMove:screenMove]       ;
     [ onePlayer doMove:playerMove] ;
+    */
     
-    [ map draw ] ;
-    [ ctrlUI draw ];
-    [ onePlayer draw ];
+    [ map doMove:ctrlMove] ;
+    [ map draw ]           ;
+    [ ctrlUI draw ]        ;
+    [ onePlayer draw ]     ;
     
     
 #ifdef DEBUG

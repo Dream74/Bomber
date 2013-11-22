@@ -12,35 +12,26 @@
 @implementation MapData
 
 static NSMutableArray * groundImages;
+
 @synthesize offsetPoint  ;
 @synthesize rolePoint    ;
 @synthesize mapPoint     ;
+@synthesize usrPlayer    ;
+@synthesize shiftMove    ;
 
 #define SPEED 3
+
+#define LIMIT_PLAYER_OFFSET_POINT_X 100.0
+#define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
+
+#define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
+#define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
 
 int backGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 
-- (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint{
-    self = [super init] ;
-    mapPoint = startMapPoint ;
-    rolePoint = startScreenPoint ;
-    NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;  
-    return self ;
-}
-
-
-- (void) doMove:(CGPoint) move{
-    move.x += SPEED / 100 ;
-    move.y += SPEED / 100 ;
-    
-    rolePoint.x -= move.x ;
-    rolePoint.y -= move.y ;
-}
-
 + (CGPoint) dataFormal:(CGPoint) data {
-
     if ( data.x > MAP_HIGHT_NUM ) data.x -= ( MAP_HIGHT_NUM + 1 ) ;
     if ( data.x < 0 )             data.x += ( MAP_HIGHT_NUM + 1 ) ;
     
@@ -51,10 +42,102 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     return data ;
 }
 
+
++ (void) initialImage {
+    groundImages = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 8 ; i++) {
+        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:0 imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
+    } // for
+    
+    for ( int i = 0 ; i < 5 ; i++ ) {
+        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:IMG_MAP_OFFSET_HIGHT imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
+    } // for
+    
+    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
+        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
+            backGround[j][i] = arc4random() % 13 ;
+        }
+    }
+    
+    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
+        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
+            objGround[j][i] = arc4random() % 2 ;
+        }
+    }
+}
+
+
+- (MapData *) initWithUsr:(Player *)usr mapPoint:(CGPoint)startMapPoint startScreen:(CGPoint)startScreenPoint{
+    self = [super init] ;
+    mapPoint  = startMapPoint ;
+    rolePoint = startScreenPoint ;
+    usrPlayer = usr ;
+    shiftMove = CGPointMake(0, 0);
+    
+    NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;  
+    return self ;
+}
+
+
+- (void) doMove:(CGPoint) move{
+    //    NSLog(@"Location X: %d Y :%d", (int)mapPoint.x, (int)mapPoint.y ) ;
+    move.x = move.x * SPEED / 100 ;
+    move.y = move.y * SPEED / 100 ;
+    
+    
+    [usrPlayer setTurn:move]  ;
+    
+    
+    shiftMove.x += move.x ;
+    shiftMove.y += move.y ;
+    
+    if ( shiftMove.x >= IMG_MAP_SIZE ){
+       mapPoint.x += 1 ;
+       shiftMove.x -= IMG_MAP_SIZE ;
+    } else if ( shiftMove.x <= (IMG_MAP_SIZE * -1 )){
+       mapPoint.x -= 1 ;
+       shiftMove.x += IMG_MAP_SIZE ;
+    }
+    
+    if ( shiftMove.y >= IMG_MAP_SIZE ){
+       mapPoint.y += 1 ;
+       shiftMove.y -= IMG_MAP_SIZE ;
+    } else if ( shiftMove.y <= (IMG_MAP_SIZE * -1 )){
+       mapPoint.y -= 1 ;
+       shiftMove.y += IMG_MAP_SIZE ;
+    }
+    
+    // 玩家原始位置
+    const CGPoint playerPoint = rolePoint;
+    // 移動過後位置
+    const CGPoint playerAfterMovePoint = CGPointMake( playerPoint.x + move.x, playerPoint.y + move.y );
+    // 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
+    CGPoint playerMove = {0,0} ;
+     
+    if ( playerAfterMovePoint.x > LIMIT_PLAYER_POINT_X ||  playerAfterMovePoint.x < LIMIT_PLAYER_OFFSET_POINT_X) {
+        // rolePoint.x -= move.x ;
+    } else {
+        playerMove.x += move.x ;
+        rolePoint.x += move.x ;
+    }
+     
+    if ( playerAfterMovePoint.y > LIMIT_PLAYER_POINT_Y ||  playerAfterMovePoint.y < LIMIT_PLAYER_OFFSET_POINT_Y) {
+        // rolePoint.y -= move.y ;
+    } else {
+        playerMove.y += move.y ;
+        rolePoint.y += move.y ;
+    }
+    
+    [ usrPlayer doMove:playerMove] ;
+    
+}
+
+
 - (void) draw {
+    
     // NSString * text = [NSString stringWithFormat:@"%f,%f", mapPoint.x, mapPoint.y ] ;
     // [[Kernel class] drawText:text offsetWidth:screenPoint.x offsetHeight:screenPoint.y textSize:10] ;
-    // NSLog(@"User Location Point X :%d Y:%d", (int)mapPoint.x, (int)mapPoint.y ) ;
+    NSLog(@"User Location Point X :%d Y:%d", (int)mapPoint.x, (int)mapPoint.y ) ;
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     offsetPoint.x = ((int)rolePoint.x % IMG_MAP_SIZE ) - IMG_MAP_SIZE;
@@ -70,7 +153,7 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
              2. 取得該格 之 背景地圖 繪製於  視窗內的中心 pixal 點, 可由 解析度除以２ 取得
              3. 之後在 取得 ( 4,3) 將中心pixal 減 32 不斷畫到超越 邊框 為止 , 上下左右依此類推
              完成地圖
-             */
+            */
 #ifdef DEBUG
             CGPoint data = CGPointMake(x+i, y+j);
             data = [[MapData class] dataFormal:data] ;
@@ -94,7 +177,6 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             CGContextStrokePath(ctx);
 #endif
             // [[Block class] draw:(i%BLOCK_METERIAL_LENGTH) offsetX:i*BLOCK_METERIAL_SIZE offsetY:j*BLOCK_METERIAL_SIZE  ] ;
-            
             // [[groundImages objectAtIndex:backGround[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+offsetPoint.x,j*IMG_MAP_SIZE+offsetPoint.y)]  ;
             
             NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
@@ -102,29 +184,6 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
         }
     }
     
-}
-
-+ (void) initialImage {
-    groundImages = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 8 ; i++) {
-        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:0 imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
-    } // for
-    
-    for ( int i = 0 ; i < 5 ; i++ ) {
-        [groundImages addObject:[[Kernel class] subImage:[[Resource class] tileset_12_31 ] offsetWidth:i*IMG_MAP_OFFSET_WIDTH offsetHeight:IMG_MAP_OFFSET_HIGHT imgWidth:IMG_MAP_SIZE imgHeight:IMG_MAP_SIZE]];
-    } // for
-    
-    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
-        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
-            backGround[j][i] = arc4random() % 13 ;
-        }
-    }
-    
-    for( int i = 0; i < MAP_WIDTH_NUM ; i++){
-        for (int j = 0; j < MAP_HIGHT_NUM; j++) {
-            objGround[j][i] = arc4random() % 2 ;
-        }
-    }
 }
 
 @end

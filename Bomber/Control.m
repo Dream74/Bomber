@@ -16,7 +16,6 @@
 @synthesize currentColor ;
 @synthesize canMove      ;
 @synthesize usrPlayer    ;
-@synthesize map          ;
 
 #define MOVE_UI_REDIUS   50
 #define MOVE_UI_DIAMETER MOVE_UI_REDIUS * 2
@@ -29,14 +28,12 @@
 
 #undef DEBUG
 
-- (id) initWithEnv:(Player *) usr MapData:(MapData *) m{
+- (id) initWithUsr:(Player *) usr {
     self = [super init] ;
-    
     moveUIPoint = CGPointMake(100, 230) ;
     bombUIPoint = CGPointMake(500, 250) ;
     usrPlayer     = usr   ;
     canMove       = false ;
-    map           = m     ;
     /* 可以利用這樣設定半透明度
      UIColor *theColor=[UIColor
      colorWithRed:1.0

@@ -23,7 +23,6 @@ static NSMutableArray * playerAllImages;
 @synthesize bombCollect  ;
 
 #define PLAYER_SIZE        34
-#define SPEED              3
 #define SPEED_MAX          30
 #define FIRE_MAX           9
 #define BOMB_NUM           10
@@ -86,8 +85,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 - (void) doMove:(CGPoint) move{
-    local.x += move.x * SPEED / 100;
-    local.y += move.y * SPEED / 100;
+    local.x += move.x ;
+    local.y += move.y ;
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
 }

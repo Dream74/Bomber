@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Bomber.h"
-
+#import "Player.h"
 
 #define IMG_MAP_SIZE 32
 
@@ -27,12 +27,14 @@
 }
 
 @property (nonatomic) CGPoint offsetPoint ;
-@property (nonatomic) CGPoint mapPoint ;
-@property (nonatomic) CGPoint rolePoint ;
+@property (nonatomic) CGPoint mapPoint    ;
+@property (nonatomic) CGPoint rolePoint   ;
+@property (nonatomic) CGPoint shiftMove   ;
+@property (nonatomic) Player * usrPlayer  ;
 
 - (void) draw ;
 - (void) doMove:(CGPoint) move ;
 + (void) initialImage ;
-- (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint ;
+- (MapData *) initWithUsr:(Player *)usr mapPoint:(CGPoint)startMapPoint startScreen:(CGPoint)startScreenPoint ;
 
 @end
