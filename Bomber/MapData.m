@@ -13,7 +13,7 @@
 
 static NSMutableArray * groundImages;
 @synthesize offsetPoint  ;
-@synthesize screenPoint  ;
+@synthesize rolePoint    ;
 @synthesize mapPoint     ;
 
 #define SPEED 3
@@ -24,32 +24,44 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 - (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint{
     self = [super init] ;
-    /*
-    offsetPoint.x = IMG_MAP_SIZE * -1 ;
-    offsetPoint.y = IMG_MAP_SIZE * -1 ;
-    */
-    offsetPoint.x = 0 ;
-    offsetPoint.y = 0 ;
-    mapPoint.x = startMapPoint.x ;
-    mapPoint.y = startMapPoint.y ;
-    screenPoint.x = startScreenPoint.x ;
-    screenPoint.y = startScreenPoint.y ;
-    
+    mapPoint = startMapPoint ;
+    rolePoint = startScreenPoint ;
     NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;  
     return self ;
 }
 
 
 - (void) doMove:(CGPoint) move{
-    offsetPoint.x -= move.x * SPEED / 100;
-    offsetPoint.y -= move.y * SPEED / 100;
+    move.x += SPEED / 100 ;
+    move.y += SPEED / 100 ;
+    
+    rolePoint.x -= move.x ;
+    rolePoint.y -= move.y ;
+}
+
++ (CGPoint) dataFormal:(CGPoint) data {
+
+    if ( data.x > MAP_HIGHT_NUM ) data.x -= ( MAP_HIGHT_NUM + 1 ) ;
+    if ( data.x < 0 )             data.x += ( MAP_HIGHT_NUM + 1 ) ;
+    
+    if ( data.y > MAP_WIDTH_NUM ) data.y -= ( MAP_WIDTH_NUM + 1 ) ;
+    if ( data.y < 0 )             data.y += ( MAP_WIDTH_NUM + 1 ) ;
+    assert( data.x <= MAP_HIGHT_NUM && data.x >= 0 ) ;
+    assert( data.y <= MAP_WIDTH_NUM && data.y >= 0 ) ;
+    return data ;
 }
 
 - (void) draw {
     // NSString * text = [NSString stringWithFormat:@"%f,%f", mapPoint.x, mapPoint.y ] ;
     // [[Kernel class] drawText:text offsetWidth:screenPoint.x offsetHeight:screenPoint.y textSize:10] ;
+    // NSLog(@"User Location Point X :%d Y:%d", (int)mapPoint.x, (int)mapPoint.y ) ;
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    offsetPoint.x = ((int)rolePoint.x % IMG_MAP_SIZE ) - IMG_MAP_SIZE;
+    offsetPoint.y = ((int)rolePoint.y % IMG_MAP_SIZE ) - IMG_MAP_SIZE;
+    
+    int x = mapPoint.x - (( (int)rolePoint.x / IMG_MAP_SIZE ) + 1 ) ;
+    int y = mapPoint.y - (( (int)rolePoint.y / IMG_MAP_SIZE ) + 1 ) ;
     
     for( int i = 0 ; i < SCREEN_HIGHT_NUM ; i++ ){
         for (int j = 0 ; j < SCREEN_WIDTH_NUM ; j++ ) {
@@ -60,6 +72,9 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
              完成地圖
              */
 #ifdef DEBUG
+            CGPoint data = CGPointMake(x+i, y+j);
+            data = [[MapData class] dataFormal:data] ;
+            
             CGRect redRect = CGRectMake((i)*IMG_MAP_SIZE+offsetPoint.x,
                                         (j)*IMG_MAP_SIZE+offsetPoint.y,
                                         IMG_MAP_SIZE ,
@@ -82,7 +97,7 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             
             // [[groundImages objectAtIndex:backGround[j][i]] drawAtPoint: CGPointMake(i*IMG_MAP_SIZE+offsetPoint.x,j*IMG_MAP_SIZE+offsetPoint.y)]  ;
             
-            NSString * text = [NSString stringWithFormat:@"%d,%d", i, j ] ;
+            NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
             [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+offsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+offsetPoint.y textSize:10] ;
         }
     }

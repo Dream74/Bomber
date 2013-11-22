@@ -94,7 +94,7 @@
     
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
     // TODO 起始的位置 格子
-    CGPoint roleStartMap   = CGPointMake(20, 25) ;
+    CGPoint roleStartMap   = CGPointMake(5, 25) ;
     map         = [[MapData alloc] initWithPoint:roleStartMap startScreen:roleStartPoint] ;
     
     return self ;
@@ -118,6 +118,7 @@
     // 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
     CGPoint screenMove = {0,0} ;
     CGPoint playerMove = {0,0} ;
+    
     if ( playerAfterMovePoint.x > LIMIT_PLAYER_POINT_X ||  playerAfterMovePoint.x < LIMIT_PLAYER_OFFSET_POINT_X) {
         screenMove.x = ctrlMove.x ;
     } else {
