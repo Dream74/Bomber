@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Bomber.h"
+#import "Square.h"
 
 
 #define IMG_MAP_SIZE 32
@@ -31,5 +32,7 @@
 - (void) doMove:(CGPoint) move ;
 + (void) initialImage ;
 - (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint ;
++ (void) initialDSGroung ;
++ (Square *) getDSGround : (int) x : (int) y ;
 
 @end

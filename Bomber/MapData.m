@@ -21,6 +21,14 @@ static NSMutableArray * groundImages;
 int backgroud[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
+static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
+
++ (Square *) getDSGround : (int) x : (int) y {
+    return DSGround [x][y] ;
+    
+}
+
+
 
 - (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint{
     self = [super init] ;
@@ -31,7 +39,9 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     screenPoint.x = startScreenPoint.x ;
     screenPoint.y = startScreenPoint.y ;
     
-    NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;  
+    NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;
+    
+
     return self ;
 }
 
@@ -47,7 +57,7 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     /*
     for( int i = 0 ; i < SCREEN_HIGHT_NUM ; i++ ){
         for (int j = 0 ; j < SCREEN_WIDTH_NUM ; j++ ) {
-            /* to draw map idea!!! center start
+             to draw map idea!!! center start
              1. 資料結構 抓到中間那格的地層陣列的位置 //  example : (5,3)
              2. 取得該格 之 背景地圖 繪製於  視窗內的中心 pixal 點, 可由 解析度除以２ 取得
              3. 之後在 取得 ( 4,3) 將中心pixal 減 32 不斷畫到超越 邊框 為止 , 上下左右依此類推
@@ -81,6 +91,18 @@ int objgroupd[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     for( int i = 0; i < MAP_WIDTH_NUM ; i++){
         for (int j = 0; j < MAP_HIGHT_NUM; j++) {
             objgroupd[j][i] = arc4random() % 2 ;
+        }
+    }
+    
+
+
+}
+
++ (void) initialDSGroung ; {
+    for ( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ) {
+        for ( int j = 0 ; j < MAP_WIDTH_NUM ; j ++ ) {
+            DSGround [i][j] = [[ Square alloc] init ] ;
+            [DSGround [i][j] initalLacation:i :j ] ;
         }
     }
 

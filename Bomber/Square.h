@@ -27,10 +27,10 @@ enum OBJ_TYPE { NOTHING = 0 ,  ITEM, PLAYER , BOMB , BRICK, LENGTH } ;
 
 @property (nonatomic ) bool canIn ;
 
-+(CGPoint) isExistInThisSquare : (int) X : (int) Y ;
++(CGPoint) existWhichSquare :(int) X : (int) Y ;
 -(void) initalLacation : (int) X : (int) Y ;
 
--(void) putThingInSquare : Type : (int) type PutObject : (id) obj ;
+-(void) putThingInSquare : (int) type PutObject : (id) obj ;
 -(void) removeThingFromSquare ;
 
 

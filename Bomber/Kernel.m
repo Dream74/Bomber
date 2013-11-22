@@ -82,6 +82,7 @@
     self        = [super init] ;
     [[Resource class ] initalResource ] ;
     [[MapData class ]  initialImage ] ;
+    [[MapData class ]  initialDSGroung ] ;
     [[Player class]    initializeAllImage] ;
     [[Bomb class]      initialImage] ;
     

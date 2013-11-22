@@ -40,14 +40,14 @@
     
 }
 
-+(CGPoint) isExistInThisSquare:(int)X :(int)Y {
-    int x = X / 33 ;
-    int y = Y / 33 ;
++(CGPoint) existWhichSquare : (int) X : (int) Y {
+    int x = X / 32 ;
+    int y = Y / 32 ;
     return CGPointMake(x, y) ;
 }
 
 
--(void) putThingInSquare : Type : (int) type PutObject : (id) obj {
+-(void) putThingInSquare :(int) type PutObject : (id) obj {
     exsitObj = type ;
     [ objList addObject:obj ] ;
     if ( type <= PLAYER ) canIn = true ;
@@ -60,8 +60,6 @@
     objList = [[NSMutableArray alloc] init ] ;
     canIn = true ;
 }
-
-
 
 
 
