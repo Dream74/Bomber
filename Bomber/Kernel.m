@@ -77,12 +77,7 @@
     [[Player class] InitializeAllImage] ;
     [[Bomb class] initialImage] ;
     
-<<<<<<< HEAD
-
-=======
-    
     // 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
->>>>>>> Dream
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
     map         = [[MapData alloc] init] ;
