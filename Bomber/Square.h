@@ -10,6 +10,8 @@
 
 @interface Square : NSObject
 
+#define IMG_MAP_SIZE 32
+
 enum OBJ_TYPE { NOTHING = 0 ,  ITEM, PLAYER , BOMB , BRICK, LENGTH } ;
 
 @property (nonatomic ) int x ;

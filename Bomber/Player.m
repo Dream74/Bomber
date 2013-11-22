@@ -84,14 +84,14 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 
 - (void) putBomb{
     // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
-    const int x = ((int) local.x+16) /32 ;
-    const int y = ((int) local.y+28) /32 ;
+    const int x = ((int) local.x+16) /IMG_MAP_SIZE  ;
+    const int y = ((int) local.y+28) /IMG_MAP_SIZE   ;
     if ( [[MapData class] getDSGround:x :y].exsitObj == NOTHING ) {
 #ifdef DEBUG
-      NSLog(@"%d, %d",((int)local.x+16)/32,((int) local.y+28)/32) ;
+      NSLog(@"%d, %d",((int)local.x+16)/IMG_MAP_SIZE,((int) local.y+20)/IMG_MAP_SIZE  ) ;
 #endif
     
-      [bombCollect addObject:[[Bomb class] putBomb:x*32  :y*32 :RANDOM_BOMB_COLOR :false :false]];
+      [bombCollect addObject:[[Bomb class] putBomb:x*IMG_MAP_SIZE   :y*IMG_MAP_SIZE    :RANDOM_BOMB_COLOR :false :false]];
       [[[MapData class] getDSGround:x :y ] putThingInSquare:BOMB PutObject: [bombCollect lastObject] ];
    
     

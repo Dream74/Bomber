@@ -26,11 +26,11 @@
     x = X ;
     y = Y ;
     
-    pixal_x = x * 32 ;
-    pixal_y = y * 32 ;
+    pixal_x = x * IMG_MAP_SIZE  ;
+    pixal_y = y * IMG_MAP_SIZE  ;
     
-    pixal_x_max = pixal_x + 32 ;
-    pixal_y_max = pixal_y + 32 ;
+    pixal_x_max = pixal_x + IMG_MAP_SIZE ;
+    pixal_y_max = pixal_y + IMG_MAP_SIZE  ;
     
     exsitObj = NOTHING ;
     
@@ -41,8 +41,8 @@
 }
 
 +(CGPoint) existWhichSquare : (int) X : (int) Y {
-    int x = X / 32 ;
-    int y = Y / 32 ;
+    int x = X / IMG_MAP_SIZE ;
+    int y = Y / IMG_MAP_SIZE  ;
     return CGPointMake(x, y) ;
 }
 
