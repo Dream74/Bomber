@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40654BC5183F6FAB00D1DF8D /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 40654BC4183F6FAB00D1DF8D /* Block.m */; };
 		E12AA2B8183E706300DCE19C /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = E12AA2B7183E706300DCE19C /* Brick.m */; };
 		E1A74519183E027300040D89 /* hamster_48x48_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A74510183E027300040D89 /* hamster_48x48_3.png */; };
 		E1A7451A183E027300040D89 /* hamster_48x48_4.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A74511183E027300040D89 /* hamster_48x48_4.png */; };
@@ -64,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40654BC3183F6FAB00D1DF8D /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		40654BC4183F6FAB00D1DF8D /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
 		E12AA2B6183E706300DCE19C /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		E12AA2B7183E706300DCE19C /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
 		E1A74510183E027300040D89 /* hamster_48x48_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamster_48x48_3.png; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				F107AA87183BA0810000B911 /* Bomber.h */,
 				E12AA2B6183E706300DCE19C /* Brick.h */,
 				E12AA2B7183E706300DCE19C /* Brick.m */,
+				40654BC3183F6FAB00D1DF8D /* Block.h */,
+				40654BC4183F6FAB00D1DF8D /* Block.m */,
 				F107AA8C183BA6610000B911 /* Kernel.h */,
 				F107AA8D183BA6610000B911 /* Kernel.m */,
 				F111FE4A183CC70E003A1AC7 /* Bomb.h */,
@@ -397,6 +402,7 @@
 				F1FFC5BD182C195F008ACBB0 /* BomberFunView.m in Sources */,
 				F111FE4E183CC70E003A1AC7 /* Bomb.m in Sources */,
 				F111FE4F183CC70E003A1AC7 /* MapData.m in Sources */,
+				40654BC5183F6FAB00D1DF8D /* Block.m in Sources */,
 				F1FFC594182C1929008ACBB0 /* BomberAppDelegate.m in Sources */,
 				E12AA2B8183E706300DCE19C /* Brick.m in Sources */,
 				F107AA97183BB12A0000B911 /* Player.m in Sources */,

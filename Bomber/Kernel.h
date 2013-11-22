@@ -12,6 +12,8 @@
 #import "MapData.h"
 #import "Resource.h"
 
+#import "Block.h"
+
 @interface Kernel : NSObject {
 @public
     
@@ -43,4 +45,7 @@
 @property (nonatomic) Control *  ctrlUI  ;
 @property (nonatomic) Player  *  onePlayer ;
 @property (nonatomic) MapData *  map ;
+
+@property (nonatomic) Block * one_block ;   
+
 @end
