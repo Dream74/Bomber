@@ -91,7 +91,8 @@
     // TODO 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
     CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT/ 2 , SCREEN_WIDTH  / 2 ) ;
     
-    onePlayer   = [[Player  alloc] initial :MARIO_RPG startPoint:roleStartPoint] ;
+    //  FIXME 換圖片人物角色會跑掉 .
+    onePlayer   = [[Player  alloc] initial :GOLD startPoint:roleStartPoint] ;
     
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
     // TODO 起始的位置 格子
