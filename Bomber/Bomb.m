@@ -54,6 +54,28 @@ static  NSMutableArray * bombImages;
 }
 
 -(void) draw{
+    
+#ifdef DEBUG
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect redRect = CGRectMake(local.x,
+                                local.y,
+                                BOMB_IMG_SIZE ,
+                                BOMB_IMG_SIZE) ;
+    
+    
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
+    //设置画笔颜色：黑色
+    CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
+    //设置画笔线条粗细
+    CGContextSetLineWidth(ctx, 2.0);
+    //填充矩形
+    CGContextFillRect(ctx, redRect);
+    //画矩形边框
+    CGContextAddRect(ctx,redRect);
+    //执行绘画
+    CGContextStrokePath(ctx);
+#endif
+    
     if ( !isKilling) {
         assert( imgIndex < UNBOMB_ACTION ) ;
         [ [ [ bombImages objectAtIndex:0 ] objectAtIndex:imgIndex] drawAtPoint:local]  ;
@@ -95,17 +117,14 @@ static  NSMutableArray * bombImages;
 }
 
 +(void) initialImage {
-    
-    
     bombImages = [[NSMutableArray alloc] init ];
-    
     // 炸彈
     [ bombImages addObject: [[NSMutableArray alloc] init ] ];
     for ( int i = 0 ; i < UNBOMB_ACTION ; i++ ) {
         if ( i % 2 == 1 )
-            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:0 offsetHeight:i*BOMB_IMG_SIZE imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgScale:BOMB_SHOW_BIG_SIZE]];
+            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:4 offsetHeight:i*BOMB_IMG_SIZE +5 imgWidth:BOMB_IMG_SIZE - 4 imgHeight:BOMB_IMG_SIZE -5 imgScale:BOMB_SHOW_BIG_SIZE]];
         else
-            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:0 offsetHeight:i*BOMB_IMG_SIZE imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgScale:BOMB_SHOW_SMAIL_SIZE]];
+            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:4 offsetHeight:i*BOMB_IMG_SIZE +5 imgWidth:BOMB_IMG_SIZE - 4 imgHeight:BOMB_IMG_SIZE -5 imgScale:BOMB_SHOW_SMAIL_SIZE]];
     } // for
 
     
