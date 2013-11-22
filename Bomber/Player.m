@@ -61,9 +61,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     assert( imgIndex < ANTION_NUM ) ;
 #endif
     
-    for( Bomb * bomb in bombCollect ){
-        [bomb draw] ;
-    }
+    [self drawBomb];
     
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
 }
@@ -74,14 +72,31 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 
+-(void) drawBomb{
+    NSLog(@"Bomb Number :%lu", (unsigned long)[bombCollect count] ) ;
+
+    for( int i = 0 ; i < [bombCollect count] ; i++ ){
+        Bomb * bomb = [bombCollect objectAtIndex:i] ;
+        if ( [bomb isKill] ){
+            // 想辦法移除掉這顆炸彈
+            NSLog(@"Bomb index :%d isKill", i ) ;
+        } else {
+            NSLog(@"Bomb index :%d life", i ) ;
+        }
+        [bomb draw] ;
+    }
+}
+
 -(void) putBomb{
     // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
  
-    int x = ((int)local.x+16)/32*32;
-    int y = ((int) local.y+28)/32*32 ;
+    const int x = ((int) local.x+16) /32 * 32 ;
+    const int y = ((int) local.y+28) /32 * 32 ;
+#ifdef DEBUG
     NSLog(@"%d, %d %d, %d", (x/32), (y/32),((int)local.x+16)/32,((int) local.y+28)/32) ;
-    
-    [bombCollect addObject:[[Bomb class] putBomb:x  :y :UNBOMB :false :false]];
+#endif
+    [bombCollect addObject:[[Bomb class] putBomb:x  :y :RANDOM_BOMB_COLOR :false :false]];
+    NSLog(@"Put Bomb!!") ;
 }
 
 -(void) doMove:(CGPoint) move{
