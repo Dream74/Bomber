@@ -6,17 +6,18 @@
 //  Copyright (c) 2013 CYCU. All rights reserved.
 //
 
-#import "Kernel.h"
-#import "Player.h"
-#import "Bomb.h"
-#include "Bomber.h"
+#import  "Kernel.h"
+#import  "Player.h"
+#import  "Bomb.h"
+#import  "Bomber.h"
+#import  "Block.h"
 
 @implementation Kernel
 
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
-@synthesize one_block    ;
+@synthesize one_block      ;
 
 #define LIMIT_PLAYER_OFFSET_POINT_X 100.0
 #define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
@@ -85,6 +86,7 @@
     [[MapData class ]  initialDSGroung ] ;
     [[Player class]    initializeAllImage] ;
     [[Bomb class]      initialImage] ;
+    [[Block class]     initializeAllImage] ;
     
     // TODO 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
     CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT/ 2 , SCREEN_WIDTH  / 2 ) ;
@@ -144,18 +146,9 @@
     [ map doMove:screenMove]       ;
     [ onePlayer doMove:playerMove] ;
     
-    
-    
-    
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer draw ];
-    
-    
-    
-    int  x[3][3] = { 1 , 2 , 3, 4 , 5 , 6  };
-    [ one_block draw : *x : 3 : 3 ];
-    
     
     
 #ifdef DEBUG
