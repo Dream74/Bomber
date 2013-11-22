@@ -145,18 +145,9 @@
     [ map doMove:screenMove]       ;
     [ onePlayer doMove:playerMove] ;
     
-    
-    
-    
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer draw ];
-    
-    
-    /*
-    int  x[3][3] = { 1 , 2 , 3, 4 , 5 , 6  };
-    [ one_block draw : *x : 3 : 3 ];
-    */
     
     
 #ifdef DEBUG
