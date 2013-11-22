@@ -16,6 +16,7 @@
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
+@synthesize one_block    ;
 
 #define LIMIT_PLAYER_OFFSET_POINT_X 100.0
 #define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
@@ -77,6 +78,8 @@
     [[Player class] InitializeAllImage] ;
     [[Bomb class] initialImage] ;
     
+    one_block = [[Block alloc] init];
+    
     // 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
     onePlayer   = [[Player  alloc] initial :MARIO_RPG] ;
     ctrlUI      = [[Control alloc] initWithUsrPlay:onePlayer] ;
@@ -135,6 +138,13 @@
     [ map draw ] ;
     [ ctrlUI draw ];
     [ onePlayer draw ];
+    
+    
+    
+    int  x[3][3] = { 1 , 2 , 3, 4 , 5 , 6  };
+    [ one_block draw : *x : 3 : 3 ];
+    
+    
     
 #ifdef DEBUG
     
