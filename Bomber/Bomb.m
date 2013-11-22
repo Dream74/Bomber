@@ -17,7 +17,8 @@ static  NSMutableArray * bombImages;
 @synthesize canBomb   ;
 @synthesize canPass   ;
 @synthesize bombColor ;
-@synthesize isKill ;
+@synthesize isKilling ;
+@synthesize isKill    ;
 
 #define BOMB_ANTION_NUM      9
 #define UNBOMB_ACTION        14
@@ -27,7 +28,7 @@ static  NSMutableArray * bombImages;
 #define BOMB_SHOW_BIG_SIZE   0.9
 #define BOMB_SHOW_SMAIL_SIZE 0.8
 
--(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor : (bool) CanBomb : (bool) CanPass {
+-(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor :(bool)CanBomb :(bool)CanPass {
     self = [super init] ;
     local = localPoint ;
     
@@ -36,6 +37,7 @@ static  NSMutableArray * bombImages;
     
     canBomb   = CanBomb ;
     canPass   = CanPass ;
+    isKilling = false   ;
     isKill    = false   ;
     return self ;
 }
@@ -52,15 +54,13 @@ static  NSMutableArray * bombImages;
 }
 
 -(void) draw{
-    if ( !isKill) {
+    if ( !isKilling) {
         assert( imgIndex < UNBOMB_ACTION ) ;
         [ [ [ bombImages objectAtIndex:0 ] objectAtIndex:imgIndex] drawAtPoint:local]  ;
-    } else if ( isKill && imgIndex < BOMB_ANTION_NUM ) {
+    } else if ( isKilling && imgIndex < BOMB_ANTION_NUM ) {
         assert( imgIndex < BOMB_ANTION_NUM ) ;
         assert( bombColor < BOMB_COLOR_LENGTH  ) ;
-        [ [ [ bombImages objectAtIndex:bombColor ] objectAtIndex:imgIndex] drawAtPoint:local]  ;
-        // ( bomb != 10 && imgIndex < 9 )
-        // [ [ [ bombImages objectAtIndex:bomb ] objectAtIndex:imgIndex] drawAtPoint: local]  ;
+        [ [ [ bombImages objectAtIndex:bombColor] objectAtIndex:imgIndex] drawAtPoint:local]  ;
     }
 }
 
@@ -82,7 +82,7 @@ static  NSMutableArray * bombImages;
 }
 
 - (void) startbomb{
-    isKill = true ;
+    isKilling = true ;
     for ( int i = 0 ; i < BOMB_ANTION_NUM  ; i++ ) {
         imgIndex = i ;
         [NSThread sleepForTimeInterval:((float)BOMB_SEC /BOMB_ANTION_NUM)];
@@ -91,9 +91,7 @@ static  NSMutableArray * bombImages;
     // 把圖片往前面推一個讓他消失
     // TODO 正常應該這邊要接 火焰的事情
     imgIndex++ ;
-    
-    
-    NSLog(@"BOMB!!") ;
+    isKill   = true ;
 }
 
 +(void) initialImage {
@@ -111,7 +109,7 @@ static  NSMutableArray * bombImages;
     } // for
 
     
-    // 炸彈消失圖片
+    // 炸彈爆炸消失圖片
     for ( int j = 1 ; j < BOMB_COLOR_LENGTH ; j++ ) {
         [ bombImages addObject: [[NSMutableArray alloc] init ] ];
         for ( int i = 0 ; i < BOMB_ANTION_NUM ; i++ ) {

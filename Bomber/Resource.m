@@ -39,7 +39,7 @@ static  UIImage *  mario_rpg ;
     perks              = [UIImage imageNamed:@"perks.png"]              ;
     tileset            = [UIImage imageNamed:@"tileset.png"]            ;
     tileset_12_31      = [UIImage imageNamed:@"tileset_12_31.png"]      ;
-    mario_rpg          = [ UIImage imageNamed:@"mario_rpg.png" ]        ;
+    mario_rpg          = [UIImage imageNamed:@"mario_rpg.png" ]         ;
    
 }
 

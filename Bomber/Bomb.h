@@ -25,6 +25,7 @@ enum BOMB_COLOR{ RANDOM_BOMB_COLOR = 0,
 // @property (nonatomic) int bomb    ;
 @property (nonatomic) int  imgIndex  ;
 @property (nonatomic) int  bombColor ;
+@property (nonatomic) bool isKilling ;
 @property (nonatomic) bool isKill    ;
 
 + (Bomb *) putBomb:(CGPoint)point :(int) bombColor : (bool) CanBomb : (bool) CanPass ;
