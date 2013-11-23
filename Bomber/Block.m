@@ -19,11 +19,6 @@
 static NSMutableArray * blockImages;
 
 
--(id) init{
-    self = [super init] ;
-    return self;
-}
-
 + (void) initializeAllImage {
     blockImages = [[NSMutableArray alloc] init];
     
@@ -60,6 +55,11 @@ static NSMutableArray * blockImages;
     } //
 }
 
+
+-(id) init{
+    self = [super init] ;
+    return self;
+}
 @end
 
 

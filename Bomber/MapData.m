@@ -18,15 +18,12 @@ static NSMutableArray * groundImages;
 
 @synthesize roleScreenPoint    ;
 @synthesize roleXYPoint        ;
+
 @synthesize usrPlayer    ;
 
+@synthesize bombCollect    ;
+
 #define SPEED 10
-
-#define LIMIT_PLAYER_OFFSET_POINT_X 100.0
-#define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
-
-#define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
-#define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
 
 int backGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
@@ -38,8 +35,6 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     
 }
 
-
-
 + (CGPoint) dataFormal:(CGPoint) data {
     if ( data.x > MAP_HIGHT_NUM ) data.x -= ( MAP_HIGHT_NUM + 1 ) ;
     if ( data.x < 0 )             data.x += ( MAP_HIGHT_NUM + 1 ) ;
@@ -50,7 +45,6 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     assert( data.y <= MAP_WIDTH_NUM && data.y >= 0 ) ;
     return data ;
 }
-
 
 + (void) initialImage {
     groundImages = [[NSMutableArray alloc] init];
@@ -76,6 +70,16 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 }
 
 
++ (void) initialDSGroung ; {
+    for ( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ) {
+        for ( int j = 0 ; j < MAP_WIDTH_NUM ; j ++ ) {
+            DSGround [i][j] = [[ Square alloc] init ] ;
+            [DSGround [i][j] initalLacation:i :j ] ;
+        }
+    }
+    
+}
+
 - (MapData *) initWithUsr:(Player *)usr mapPoint:(CGPoint)startMapPoint startScreen:(CGPoint)startScreenPoint{
     self = [super init] ;
     roleScreenPoint = startScreenPoint ;
@@ -88,12 +92,12 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     screenoffsetPoint  = CGPointMake( ((int)roleScreenPoint.x % IMG_MAP_SIZE ) - IMG_MAP_SIZE,
                                       ((int)roleScreenPoint.y % IMG_MAP_SIZE ) - IMG_MAP_SIZE) ;
     
+    bombCollect = [[NSMutableArray alloc] init];
     NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;
     
 
     return self ;
 }
-
 
 - (void) doMove:(CGPoint) move{
     static CGPoint shiftMove = {0,0} ;
@@ -172,13 +176,11 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     
 }
 
-
 - (void) draw {
     // TODO 人物目前，在哪個座標，這個狀況好像要微調一下，不然位置怪怪的
     NSLog(@"User Location Point X :%d Y:%d", (int)roleXYPoint.x, (int)roleXYPoint.y ) ;
     
     
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     // 要從 -1 開始畫，不然假如畫面是剛剛好 0,0 位置就是剛剛好切其螢幕最左邊，接下來往左偏移會無法預先先畫
     for( int i = -1 ; i < SCREEN_HIGHT_NUM ; i++ ){
@@ -189,46 +191,38 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
              3. 之後在 取得 ( 4,3) 將中心pixal 減 32 不斷畫到超越 邊框 為止 , 上下左右依此類推
              完成地圖
             */
-#ifdef DEBUG
+            
+            
             CGPoint data = CGPointMake(screenStartXYPoint.x+i, screenStartXYPoint.y+j);
             data = [[MapData class] dataFormal:data] ;
+#ifdef DEBUG
             
-            CGRect redRect = CGRectMake((i)*IMG_MAP_SIZE+screenoffsetPoint.x,
-                                        (j)*IMG_MAP_SIZE+screenoffsetPoint.y,
-                                        IMG_MAP_SIZE ,
-                                        IMG_MAP_SIZE) ;
-            
-            
-            CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
-            //设置画笔颜色：黑色
-            CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
-            //设置画笔线条粗细
-            CGContextSetLineWidth(ctx, 1.0);
-            //填充矩形
-            CGContextFillRect(ctx, redRect);
-            //画矩形边框
-            CGContextAddRect(ctx,redRect);
-            //执行绘画
-            CGContextStrokePath(ctx);
+            [[Kernel class] drawGrid:CGRectMake((i)*IMG_MAP_SIZE+screenoffsetPoint.x,
+                                                (j)*IMG_MAP_SIZE+screenoffsetPoint.y,
+                                                IMG_MAP_SIZE ,
+                                                IMG_MAP_SIZE)  lineWidth:1.0] ;
 #endif
             // [[Block class] draw:(i%BLOCK_METERIAL_LENGTH) offsetX:i*BLOCK_METERIAL_SIZE offsetY:j*BLOCK_METERIAL_SIZE  ] ;
             [[groundImages objectAtIndex:backGround[(int)data.x][(int)data.y]]
                                          drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
             
+            //
             NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
             [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+screenoffsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+screenoffsetPoint.y textSize:10] ;
         }
     }
 }
 
-+ (void) initialDSGroung ; {
-    for ( int i = 0 ; i < MAP_HIGHT_NUM ; i++ ) {
-        for ( int j = 0 ; j < MAP_WIDTH_NUM ; j ++ ) {
-            DSGround [i][j] = [[ Square alloc] init ] ;
-            [DSGround [i][j] initalLacation:i :j ] ;
-        }
-    }
-
+- (void) putBomb {
+    // TODO 把炸彈放到 底下資料
+    /* example idea : 
+       roelXYPoint -> 玩家腳底下 位置 ex : (3,4)
+       1. DSGround[ (int)roleXYPoint.x ][ (int)roleXYPoint.y ]  是可以放炸彈
+       2. usrPlayer 可以放炸彈 { isHaveBomb }
+       3. if usrPlayer.isHaveBomb :
+             if usrPlayer.putBomb :
+               // It's OK putBomb 
+               // DSGround[ (int) roleXYPoint.x)][ (int) roleXYPoint.y] = SET_BOMB ; ??
+     */
 }
-
 @end

@@ -14,6 +14,13 @@
 
 #import "Block.h"
 
+
+#define LIMIT_PLAYER_OFFSET_POINT_X 100.0
+#define LIMIT_PLAYER_OFFSET_POINT_Y 80.0
+
+#define LIMIT_PLAYER_POINT_X ( SCREEN_HIGHT - LIMIT_PLAYER_OFFSET_POINT_X )
+#define LIMIT_PLAYER_POINT_Y ( SCREEN_WIDTH  - LIMIT_PLAYER_OFFSET_POINT_Y )
+
 @interface Kernel : NSObject {
 @public
     
@@ -29,7 +36,7 @@
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger) degree imgScale:(float) scale;
 
 + (void)      drawText:(NSString *) strText offsetWidth:(int)x offsetHeight:(int)y textSize:(int)size  ;
-
++ (void) drawGrid:(CGRect)rect lineWidth:(float)line ;
 
 // readonly－唯讀，只能讀取而不能設定值（不能用setXXXX的函式）。
 // readwrite－可讀可寫（預設）。
@@ -40,7 +47,15 @@
 // strong -
 
 // TODO 準備移除這個炸彈
-@property (nonatomic, strong) NSMutableArray * bombCollect;
+#ifdef DEBUG
+@property (nonatomic) NSMutableArray * bombCollect;
+#endif
+
+@property (nonatomic) Control *  ctrlUI  ;
+@property (nonatomic) Player  *  onePlayer ;
+@property (nonatomic) MapData *  map ;
+@property (nonatomic) Block   * one_block ;
+
 - (void)touchesBegan    :(CGPoint *)location ;
 - (void)touchesCancelled:(CGPoint *)location ;
 - (void)touchesMoved    :(CGPoint *)location ;
@@ -48,11 +63,5 @@
 - (void)start ;
 - (void)stop  ;
 - (void)draw  ;
-
-@property (nonatomic) Control *  ctrlUI  ;
-@property (nonatomic) Player  *  onePlayer ;
-@property (nonatomic) MapData *  map ;
-
-@property (nonatomic) Block * one_block ;   
 
 @end
