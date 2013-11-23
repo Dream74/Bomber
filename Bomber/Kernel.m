@@ -14,13 +14,17 @@
 
 @implementation Kernel
 
+#undef DEBUG
+
+#ifdef DEBUG
+@synthesize bombCollect      ;
+#endif
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
 @synthesize one_block      ;
 
 
-#undef DEBUG
 
 + (UIImage *) subImage:(UIImage *) img offsetWidth:(int)x offsetHeight:(int)y imgWidth:(int)width imgHeight:(int)height imgTurn:(NSInteger)degree imgScale:(float) scale {
     CGRect rect = CGRectMake(x, y, width, height);
@@ -74,6 +78,22 @@
     [[Kernel class] drawText:fps offsetWidth:x offsetHeight:y textSize:size];
 }
 
++ (void) drawGrid:(CGRect)rect lineWidth:(float)line {
+    // 畫格子
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
+    //设置画笔颜色：黑色
+    CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
+    //设置画笔线条粗细
+    CGContextSetLineWidth(ctx, line);
+    //填充矩形
+    CGContextFillRect(ctx, rect);
+    //画矩形边框
+    CGContextAddRect(ctx,rect);
+    //执行绘画
+    CGContextStrokePath(ctx);
+}
+
 - (id) init{
     self        = [super init] ;
     [[Resource class ] initalResource ] ;
@@ -89,14 +109,16 @@
     //  FIXME 換圖片人物角色會跑掉 .
     onePlayer   = [[Player  alloc] initial:MARIO_RPG startPoint:roleStartPoint] ;
     // onePlayer   = [[Player  alloc] initial :GOLD startPoint:roleStartPoint] ;
-
     
-    ctrlUI      = [[Control alloc] initWithUsr:onePlayer] ;
     // TODO 起始的位置 格子
-    
     CGPoint roleStartMap   = CGPointMake(5, 25) ;
-    map = [[MapData alloc] initWithUsr:onePlayer mapPoint:roleStartMap startScreen:roleStartPoint] ;
     
+    map         = [[MapData alloc] initWithUsr:onePlayer mapPoint:roleStartMap startScreen:roleStartPoint] ;
+    ctrlUI      = [[Control alloc] initWithMap:map] ;
+    
+#ifdef DEBUG
+    bombCollect = [[NSMutableArray alloc] init];
+#endif
     return self ;
 }
 
@@ -110,35 +132,6 @@
 
 - (void)draw{
     const CGPoint ctrlMove    = [ctrlUI getMove] ;
-    /*
-    // 玩家原始位置
-    const CGPoint playerPoint = [onePlayer getLocalPoint] ;
-    // 移動位置
-    const CGPoint ctrlMove    = [ctrlUI getMove] ;
-    
-    // 移動過後位置
-    const CGPoint playerAfterMovePoint = CGPointMake( playerPoint.x + ctrlMove.x, playerPoint.y + ctrlMove.y );
-    // 利用上面已知的三個值，算出 地圖要移動多少，與玩家要移動多少
-    CGPoint screenMove = {0,0} ;
-    CGPoint playerMove = {0,0} ;
-    
-    if ( playerAfterMovePoint.x > LIMIT_PLAYER_POINT_X ||  playerAfterMovePoint.x < LIMIT_PLAYER_OFFSET_POINT_X) {
-        screenMove.x = ctrlMove.x ;
-    } else {
-        playerMove.x = ctrlMove.x ;
-    }
-    
-    if ( playerAfterMovePoint.y > LIMIT_PLAYER_POINT_Y ||  playerAfterMovePoint.y < LIMIT_PLAYER_OFFSET_POINT_Y) {
-        screenMove.y = ctrlMove.y ;
-    } else {
-        playerMove.y = ctrlMove.y ;
-    }
-    
-    [ onePlayer setTurn:ctrlMove]  ;
-    
-    [ map doMove:screenMove]       ;
-    [ onePlayer doMove:playerMove] ;
-    */
     
     [ map doMove:ctrlMove] ;
     [ map draw ]           ;
@@ -149,33 +142,21 @@
 #ifdef DEBUG
     
     static int count = 0 ;
-    if ( (count++ % 50) == 0 )
-        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :UNBOMB :false : false ]] ;
+    if ( (count++ % 20) == 0 )
+        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :RANDOM_BOMB_COLOR :false : false ]] ;
     
     
-    // 是否 callback方法移除炸彈
-    for(Bomb *bomb in bombCollect) {
-        [bomb draw] ;
+    for( int i = 0 ; i < [bombCollect count] ; i++ ){
+        Bomb * bomb = [bombCollect objectAtIndex:i] ;
+        if ( [bomb isKill] ) [bombCollect removeObject:bomb] ;
+        else                 [bomb draw] ;
     }
     
+    [[Kernel class] drawGrid:CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
+                                        LIMIT_PLAYER_OFFSET_POINT_Y,
+                                        LIMIT_PLAYER_POINT_X  - LIMIT_PLAYER_OFFSET_POINT_X ,
+                                        LIMIT_PLAYER_POINT_Y  - LIMIT_PLAYER_OFFSET_POINT_Y )  lineWidth:3.0] ;
     
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGRect redRect = CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
-                                LIMIT_PLAYER_OFFSET_POINT_Y,
-                                LIMIT_PLAYER_POINT_X  - LIMIT_PLAYER_OFFSET_POINT_X ,
-                                LIMIT_PLAYER_POINT_Y  - LIMIT_PLAYER_OFFSET_POINT_Y ) ;
-    
-    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
-	//填充矩形
-	CGContextFillRect(ctx, redRect);
-	//设置画笔颜色：黑色
-	CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
-	//设置画笔线条粗细
-    CGContextSetLineWidth(ctx, 3.0);
-	//画矩形边框
-	CGContextAddRect(ctx,redRect);
-	//执行绘画
-    CGContextStrokePath(ctx);
 #endif 
     
     [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];

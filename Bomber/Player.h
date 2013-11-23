@@ -23,8 +23,7 @@
 enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
 
 @property (nonatomic) CGPoint local ;
-@property (nonatomic) NSMutableArray * playerImages;
-@property (nonatomic) NSMutableArray * bombCollect; ;
+@property (nonatomic) NSMutableArray * playerImages ;
 
 @property (nonatomic) int state    ;
 @property (nonatomic) int speed    ;
@@ -34,12 +33,14 @@ enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
 
 @property (nonatomic) int imgIndex_count  ;
 
++ (void)    initializeAllImage ;
 
 - (CGPoint) getLocalPoint;
 - (id)      initial : (int) chartype startPoint:(CGPoint) localPoint ;
-+ (void)    initializeAllImage ;
-- (void)    draw ;
 - (void)    doMove:(CGPoint)  move ;
 - (void)    setTurn:(CGPoint) move ;
-- (void)    putBomb ;
+- (void)    draw       ;
+- (void)    removeBomb ;
+- (bool)    putBomb    ;
+- (bool)    isHaveBomb ;
 @end

@@ -26,9 +26,9 @@
 @property (nonatomic)         CGPoint   lastTouch    ;
 @property (nonatomic)         UIColor * currentColor ;
 @property (nonatomic)         bool      canMove      ;
-@property (nonatomic)         Player *  usrPlayer    ;
+@property (nonatomic)         MapData * mapData      ;
 
-- (id)   initWithUsr:(Player *) usr          ;
+- (id)   initWithMap     :(MapData *) usr    ;
 - (void) touchesBegan    :(CGPoint *)touches ;
 - (void) touchesCancelled:(CGPoint *)touches ;
 - (void) touchesMoved    :(CGPoint *)touches ;

@@ -28,6 +28,50 @@ static  NSMutableArray * bombImages;
 #define BOMB_SHOW_BIG_SIZE   0.9
 #define BOMB_SHOW_SMAIL_SIZE 0.8
 
++(void) initialImage {
+    bombImages = [[NSMutableArray alloc] init ];
+    // 炸彈
+    [ bombImages addObject: [[NSMutableArray alloc] init ] ];
+    for ( int i = 0 ; i < UNBOMB_ACTION ; i++ ) {
+        if ( i % 2 == 1 )
+            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:4 offsetHeight:i*BOMB_IMG_SIZE +5 imgWidth:BOMB_IMG_SIZE - 4 imgHeight:BOMB_IMG_SIZE -5 imgScale:BOMB_SHOW_BIG_SIZE]];
+        else
+            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:4 offsetHeight:i*BOMB_IMG_SIZE +5 imgWidth:BOMB_IMG_SIZE - 4 imgHeight:BOMB_IMG_SIZE -5 imgScale:BOMB_SHOW_SMAIL_SIZE]];
+    } // for
+    
+    
+    // 炸彈爆炸消失圖片
+    for ( int j = 1 ; j < BOMB_COLOR_LENGTH ; j++ ) {
+        [ bombImages addObject: [[NSMutableArray alloc] init ] ];
+        for ( int i = 0 ; i < BOMB_ANTION_NUM ; i++ ) {
+            [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:[[Resource class] blast] offsetWidth:i*BOMB_IMG_SIZE offsetHeight:(j-1)*BOMB_IMG_SIZE imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE]];
+        } // for
+    } // for
+    
+    // add 火焰
+    [ bombImages addObject: [[NSMutableArray alloc] init ] ];
+    // normal
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:0 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE]];
+    
+    // right
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE]];
+    
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationUp   ]] ;
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationLeft ]] ;
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationDown ]] ;
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationRight]] ;
+}
+
++ (Bomb *) putBomb:(CGPoint)point :(int) bombColor : (bool) CanBomb : (bool) CanPass{
+    Bomb * bomb = [[Bomb alloc] initWithLocation:point BOMB_COLOR:bombColor :CanBomb :CanPass ] ;
+    [bomb start] ;
+    return bomb ;
+}
+
++ (Bomb *) putBomb:(int)x :(int)y :(int) bombColor : (bool) CanBomb : (bool) CanPass {
+    return [[Bomb class] putBomb:CGPointMake(x, y) :bombColor :CanBomb :CanPass ] ;
+}
+
 -(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor :(bool)CanBomb :(bool)CanPass {
     self = [super init] ;
     local = localPoint ;
@@ -43,37 +87,13 @@ static  NSMutableArray * bombImages;
 }
 
 
-+ (Bomb *) putBomb:(CGPoint)point :(int) bombColor : (bool) CanBomb : (bool) CanPass{
-    Bomb * bomb = [[Bomb alloc] initWithLocation:point BOMB_COLOR:bombColor :CanBomb :CanPass ] ;
-    [bomb start] ;
-    return bomb ;
-}
-
-+ (Bomb *) putBomb:(int)x :(int)y :(int) bombColor : (bool) CanBomb : (bool) CanPass {
-    return [[Bomb class] putBomb:CGPointMake(x, y) :bombColor :CanBomb :CanPass ] ;
-}
-
 -(void) draw{
     
 #ifdef DEBUG
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGRect redRect = CGRectMake(local.x,
-                                local.y,
-                                BOMB_IMG_SIZE ,
-                                BOMB_IMG_SIZE) ;
-    
-    
-    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
-    //设置画笔颜色：黑色
-    CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
-    //设置画笔线条粗细
-    CGContextSetLineWidth(ctx, 2.0);
-    //填充矩形
-    CGContextFillRect(ctx, redRect);
-    //画矩形边框
-    CGContextAddRect(ctx,redRect);
-    //执行绘画
-    CGContextStrokePath(ctx);
+    [[Kernel class] drawGrid:CGRectMake(local.x,
+                                        local.y,
+                                        BOMB_IMG_SIZE ,
+                                        BOMB_IMG_SIZE)   lineWidth:2.0] ;
 #endif
     
     if ( !isKilling) {
@@ -116,38 +136,5 @@ static  NSMutableArray * bombImages;
     isKill   = true ;
 }
 
-+(void) initialImage {
-    bombImages = [[NSMutableArray alloc] init ];
-    // 炸彈
-    [ bombImages addObject: [[NSMutableArray alloc] init ] ];
-    for ( int i = 0 ; i < UNBOMB_ACTION ; i++ ) {
-        if ( i % 2 == 1 )
-            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:4 offsetHeight:i*BOMB_IMG_SIZE +5 imgWidth:BOMB_IMG_SIZE - 4 imgHeight:BOMB_IMG_SIZE -5 imgScale:BOMB_SHOW_BIG_SIZE]];
-        else
-            [ [ bombImages objectAtIndex: 0 ] addObject:[[Kernel class] subImage:[[Resource class] bomb_32x32_2] offsetWidth:4 offsetHeight:i*BOMB_IMG_SIZE +5 imgWidth:BOMB_IMG_SIZE - 4 imgHeight:BOMB_IMG_SIZE -5 imgScale:BOMB_SHOW_SMAIL_SIZE]];
-    } // for
-
-    
-    // 炸彈爆炸消失圖片
-    for ( int j = 1 ; j < BOMB_COLOR_LENGTH ; j++ ) {
-        [ bombImages addObject: [[NSMutableArray alloc] init ] ];
-        for ( int i = 0 ; i < BOMB_ANTION_NUM ; i++ ) {
-            [ [ bombImages objectAtIndex: j ] addObject:[[Kernel class] subImage:[[Resource class] blast] offsetWidth:i*BOMB_IMG_SIZE offsetHeight:(j-1)*BOMB_IMG_SIZE imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE]];
-        } // for
-    } // for
-    
-    // add 火焰
-    [ bombImages addObject: [[NSMutableArray alloc] init ] ];
-    // normal
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:0 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE]];
-    
-    // right
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE]];
-    
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationUp   ]] ;
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationLeft ]] ;
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationDown ]] ;
-    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationRight]] ;
-}
 
 @end
