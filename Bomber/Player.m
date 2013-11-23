@@ -22,6 +22,7 @@ static NSMutableArray * playerAllImages;
 @synthesize bombNum      ;
 @synthesize playerImages ;
 @synthesize bombCollect  ;
+@synthesize imgIndex_count      ;
 
 #define PLAYER_SIZE        34
 #define SPEED_MAX          30
@@ -52,9 +53,11 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 - (void) draw {
-    static int count  = 0 ;
-    count = count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : count + 1 ;
-    int imgIndex = count / IMAGE_CHANGE_DELAY ;
+    // static int count  = 0 ;
+    // 改成用   ----imgIndex_count---- 替代
+    
+    int imgIndex = imgIndex_count / IMAGE_CHANGE_DELAY ;
+
     
     assert( imgIndex < ANTION_NUM ) ;
     [self drawBomb];
@@ -99,8 +102,20 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 - (void) doMove:(CGPoint) move{
+<<<<<<< HEAD
     local.x += move.x ;
     local.y += move.y ;
+=======
+    local.x += move.x * SPEED / 100;
+    local.y += move.y * SPEED / 100;
+    
+    if( move.x != 0 || move.y != 0 ){
+        imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
+    } // 玩家沒有動，那圖就定在第一張站著的圖
+    else
+        imgIndex_count = 0;
+    
+>>>>>>> master
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
 }

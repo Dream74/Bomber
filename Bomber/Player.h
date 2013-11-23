@@ -32,6 +32,8 @@ enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
 @property (nonatomic) int bombNum  ;
 @property (nonatomic) int ChImage  ;
 
+@property (nonatomic) int imgIndex_count  ;
+
 
 - (CGPoint) getLocalPoint;
 - (id)      initial : (int) chartype startPoint:(CGPoint) localPoint ;
