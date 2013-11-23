@@ -197,18 +197,27 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             data = [[MapData class] dataFormal:data] ;
 #ifdef DEBUG
             
+            // 畫最外層框框
             [[Kernel class] drawGrid:CGRectMake((i)*IMG_MAP_SIZE+screenoffsetPoint.x,
                                                 (j)*IMG_MAP_SIZE+screenoffsetPoint.y,
                                                 IMG_MAP_SIZE ,
                                                 IMG_MAP_SIZE)  lineWidth:1.0] ;
+            
+            // 這格名稱
+            NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
+            [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+screenoffsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+screenoffsetPoint.y textSize:10] ;
 #endif
-            // [[Block class] draw:(i%BLOCK_METERIAL_LENGTH) offsetX:i*BLOCK_METERIAL_SIZE offsetY:j*BLOCK_METERIAL_SIZE  ] ;
+            // 每隔的背景
             [[groundImages objectAtIndex:backGround[(int)data.x][(int)data.y]]
                                          drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
             
-            //
-            NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
-            [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+screenoffsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+screenoffsetPoint.y textSize:10] ;
+            /* TODO 把每隔資訊畫上去
+               例如這格式炸彈，或者是磚塊
+               example idea :
+               DSGround[(int)data.x][(int)data.y].draw() ;
+             */
+            
+            
         }
     }
 }
