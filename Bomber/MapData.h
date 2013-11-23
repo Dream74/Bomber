@@ -27,17 +27,18 @@
     CGPoint offsetPoint ;
 }
 
-@property (nonatomic) CGPoint offsetPoint ;
-@property (nonatomic) CGPoint mapPoint    ;
-@property (nonatomic) CGPoint rolePoint   ;
-@property (nonatomic) CGPoint shiftMove   ;
+@property (nonatomic) CGPoint screenoffsetPoint   ;
+@property (nonatomic) CGPoint screenStartXYPoint  ;
+
+@property (nonatomic) CGPoint roleScreenPoint  ;
+@property (nonatomic) CGPoint roleXYPoint      ;
+
 @property (nonatomic) Player * usrPlayer  ;
 
 - (void) draw ;
 - (void) doMove:(CGPoint) move ;
 + (void) initialImage ;
 - (MapData *) initWithUsr:(Player *)usr mapPoint:(CGPoint)startMapPoint startScreen:(CGPoint)startScreenPoint ;
-- (MapData *) initWithPoint:(CGPoint) startMapPoint startScreen:(CGPoint)startScreenPoint ;
 + (void) initialDSGroung ;
 + (Square *) getDSGround : (int) x : (int) y ;
 

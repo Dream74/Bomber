@@ -61,7 +61,26 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     
     assert( imgIndex < ANTION_NUM ) ;
     [self drawBomb];
+#ifdef DEBUG
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect redRect = CGRectMake(local.x,
+                                local.y,
+                                PLAYER_SIZE ,
+                                PLAYER_SIZE) ;
     
+    
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
+    //设置画笔颜色：黑色
+    CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
+    //设置画笔线条粗细
+    CGContextSetLineWidth(ctx, 1.0);
+    //填充矩形
+    CGContextFillRect(ctx, redRect);
+    //画矩形边框
+    CGContextAddRect(ctx,redRect);
+    //执行绘画
+    CGContextStrokePath(ctx);
+#endif
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
 }
 
