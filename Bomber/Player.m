@@ -25,7 +25,6 @@ static NSMutableArray * playerAllImages;
 @synthesize imgIndex_count      ;
 
 #define PLAYER_SIZE        34
-#define SPEED              3
 #define SPEED_MAX          30
 #define FIRE_MAX           9
 #define BOMB_NUM           10
@@ -62,7 +61,26 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     
     assert( imgIndex < ANTION_NUM ) ;
     [self drawBomb];
+#ifdef DEBUG
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect redRect = CGRectMake(local.x,
+                                local.y,
+                                PLAYER_SIZE ,
+                                PLAYER_SIZE) ;
     
+    
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
+    //设置画笔颜色：黑色
+    CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
+    //设置画笔线条粗细
+    CGContextSetLineWidth(ctx, 1.0);
+    //填充矩形
+    CGContextFillRect(ctx, redRect);
+    //画矩形边框
+    CGContextAddRect(ctx,redRect);
+    //执行绘画
+    CGContextStrokePath(ctx);
+#endif
     [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
 }
 
@@ -103,8 +121,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 - (void) doMove:(CGPoint) move{
-    local.x += move.x * SPEED / 100;
-    local.y += move.y * SPEED / 100;
+    local.x += move.x ;
+    local.y += move.y ;
     
     if( move.x != 0 || move.y != 0 ){
         imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
@@ -154,10 +172,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
         for( int j = 0 ; j < ANTION_NUM ; j++ ) {
             [[ [playerAllImages objectAtIndex:MARIO_RPG] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] mario_rpg ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
-    } // for
-    
-    
-    
+    } // for   
 }
 
 @end

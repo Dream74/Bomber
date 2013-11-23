@@ -28,16 +28,12 @@
 
 #undef DEBUG
 
-- (id) initWithUsrPlay:(Player *) usr{
+- (id) initWithUsr:(Player *) usr {
     self = [super init] ;
-    
-    moveUIPoint.x = 100 ;
-    moveUIPoint.y = 230 ;
-    bombUIPoint.x = 500 ;
-    bombUIPoint.y = 250 ;
-    usrPlayer     = usr ;
+    moveUIPoint = CGPointMake(100, 230) ;
+    bombUIPoint = CGPointMake(500, 250) ;
+    usrPlayer     = usr   ;
     canMove       = false ;
-    
     /* 可以利用這樣設定半透明度
      UIColor *theColor=[UIColor
      colorWithRed:1.0

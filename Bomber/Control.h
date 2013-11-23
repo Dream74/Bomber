@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Player.h"
+#import "MapData.h"
 
 @interface Control : NSObject{
     // TODO 這樣應該可以限制他權限吧...
@@ -23,11 +24,11 @@
 
 @property (nonatomic)         CGPoint   firstTouch   ;
 @property (nonatomic)         CGPoint   lastTouch    ;
-@property (strong, nonatomic) UIColor * currentColor ;
+@property (nonatomic)         UIColor * currentColor ;
 @property (nonatomic)         bool      canMove      ;
 @property (nonatomic)         Player *  usrPlayer    ;
 
-- (id)   initWithUsrPlay:(Player *) usr      ;
+- (id)   initWithUsr:(Player *) usr          ;
 - (void) touchesBegan    :(CGPoint *)touches ;
 - (void) touchesCancelled:(CGPoint *)touches ;
 - (void) touchesMoved    :(CGPoint *)touches ;
