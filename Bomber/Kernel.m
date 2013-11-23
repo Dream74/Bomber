@@ -89,6 +89,7 @@
     //  FIXME 換圖片人物角色會跑掉 .
     onePlayer   = [[Player  alloc] initial:MARIO_RPG startPoint:roleStartPoint] ;
     // onePlayer   = [[Player  alloc] initial :GOLD startPoint:roleStartPoint] ;
+
     
     ctrlUI      = [[Control alloc] initWithUsr:onePlayer] ;
     // TODO 起始的位置 格子
