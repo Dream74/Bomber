@@ -102,12 +102,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 - (void) doMove:(CGPoint) move{
-<<<<<<< HEAD
     local.x += move.x ;
     local.y += move.y ;
-=======
-    local.x += move.x * SPEED / 100;
-    local.y += move.y * SPEED / 100;
     
     if( move.x != 0 || move.y != 0 ){
         imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
@@ -115,7 +111,6 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     else
         imgIndex_count = 0;
     
->>>>>>> master
     if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
 }
