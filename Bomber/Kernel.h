@@ -46,11 +46,6 @@
 // nonatomic－預設為atomic。
 // strong -
 
-// TODO 準備移除這個炸彈
-#ifdef DEBUG
-@property (nonatomic) NSMutableArray * bombCollect;
-#endif
-
 @property (nonatomic) Control *  ctrlUI  ;
 @property (nonatomic) Player  *  onePlayer ;
 @property (nonatomic) MapData *  map ;

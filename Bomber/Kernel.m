@@ -14,11 +14,8 @@
 
 @implementation Kernel
 
-#undef DEBUG
+// #undef DEBUG
 
-#ifdef DEBUG
-@synthesize bombCollect      ;
-#endif
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
@@ -115,10 +112,7 @@
     
     map         = [[MapData alloc] initWithUsr:onePlayer mapPoint:roleStartMap startScreen:roleStartPoint] ;
     ctrlUI      = [[Control alloc] initWithMap:map] ;
-    
-#ifdef DEBUG
-    bombCollect = [[NSMutableArray alloc] init];
-#endif
+
     return self ;
 }
 
@@ -138,26 +132,6 @@
     [ ctrlUI draw ]        ;
     [ onePlayer draw ]     ;
     
-    
-#ifdef DEBUG
-    
-    static int count = 0 ;
-    if ( (count++ % 20) == 0 )
-        [bombCollect addObject:[[Bomb class] putBomb:arc4random() % 300  :arc4random() % 300 :RANDOM_BOMB_COLOR :false : false ]] ;
-    
-    
-    for( int i = 0 ; i < [bombCollect count] ; i++ ){
-        Bomb * bomb = [bombCollect objectAtIndex:i] ;
-        if ( [bomb isKill] ) [bombCollect removeObject:bomb] ;
-        else                 [bomb draw] ;
-    }
-    
-    [[Kernel class] drawGrid:CGRectMake(LIMIT_PLAYER_OFFSET_POINT_X,
-                                        LIMIT_PLAYER_OFFSET_POINT_Y,
-                                        LIMIT_PLAYER_POINT_X  - LIMIT_PLAYER_OFFSET_POINT_X ,
-                                        LIMIT_PLAYER_POINT_Y  - LIMIT_PLAYER_OFFSET_POINT_Y )  lineWidth:3.0] ;
-    
-#endif 
     
     [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];
     

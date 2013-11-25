@@ -36,13 +36,13 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 }
 
 + (CGPoint) dataFormal:(CGPoint) data {
-    if ( data.x > MAP_HIGHT_NUM ) data.x -= ( MAP_HIGHT_NUM + 1 ) ;
-    if ( data.x < 0 )             data.x += ( MAP_HIGHT_NUM + 1 ) ;
+    if ( data.x >= MAP_HIGHT_NUM ) data.x -= ( MAP_HIGHT_NUM ) ;
+    if ( data.x < 0 )              data.x += ( MAP_HIGHT_NUM ) ;
     
-    if ( data.y > MAP_WIDTH_NUM ) data.y -= ( MAP_WIDTH_NUM + 1 ) ;
-    if ( data.y < 0 )             data.y += ( MAP_WIDTH_NUM + 1 ) ;
-    assert( data.x <= MAP_HIGHT_NUM && data.x >= 0 ) ;
-    assert( data.y <= MAP_WIDTH_NUM && data.y >= 0 ) ;
+    if ( data.y >= MAP_WIDTH_NUM ) data.y -= ( MAP_WIDTH_NUM ) ;
+    if ( data.y < 0 )              data.y += ( MAP_WIDTH_NUM ) ;
+    assert( data.x < MAP_HIGHT_NUM && data.x >= 0 ) ;
+    assert( data.y < MAP_WIDTH_NUM && data.y >= 0 ) ;
     return data ;
 }
 
@@ -89,8 +89,9 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     screenStartXYPoint = CGPointMake(startMapPoint.x - (( (int)roleScreenPoint.x / IMG_MAP_SIZE ) + 1 ) ,
                                      startMapPoint.y - (( (int)roleScreenPoint.y / IMG_MAP_SIZE ) + 1 ) ) ;
     
-    screenoffsetPoint  = CGPointMake( ((int)roleScreenPoint.x % IMG_MAP_SIZE ) - IMG_MAP_SIZE,
-                                      ((int)roleScreenPoint.y % IMG_MAP_SIZE ) - IMG_MAP_SIZE) ;
+    //  FIMEX +3  +9 是為了計算角色稍微篇移多少比較像在格子中 未來一定還要修改
+    screenoffsetPoint  = CGPointMake( ((int)roleScreenPoint.x % IMG_MAP_SIZE ) - IMG_MAP_SIZE + 3,
+                                      ((int)roleScreenPoint.y % IMG_MAP_SIZE ) - IMG_MAP_SIZE + 9) ;
     
     NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;
     
@@ -194,6 +195,11 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             
             CGPoint data = CGPointMake(screenStartXYPoint.x+i, screenStartXYPoint.y+j);
             data = [[MapData class] dataFormal:data] ;
+            
+            // 每隔的背景
+            [[groundImages objectAtIndex:backGround[(int)data.x][(int)data.y]]
+             drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+            
 #ifdef DEBUG
             
             // 畫最外層框框
@@ -206,22 +212,25 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
             [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+screenoffsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+screenoffsetPoint.y textSize:10] ;
 #endif
-            // 每隔的背景
-            [[groundImages objectAtIndex:backGround[(int)data.x][(int)data.y]]
-                                         drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+             
             
             /* TODO 把每隔資訊畫上去
                例如這格式炸彈，或者是磚塊
                example idea :
                DSGround[(int)data.x][(int)data.y].draw() ;
              */
+        
             
-            if ( [DSGround[(int)data.x][(int)data.y] exsitObj] == BOMB ) {
+            
+            if ( DSGround[(int)data.x][(int)data.y].exsitObj == BOMB ) {
+                
                 [[[ DSGround[(int)data.x][(int)data.y] objList ] objectAtIndex:0 ] draw:i*IMG_MAP_SIZE+screenoffsetPoint.x : j*IMG_MAP_SIZE+screenoffsetPoint.y ];
+                
                 if ( [[[ DSGround[(int)data.x][(int)data.y] objList ] objectAtIndex:0 ] isKill ] ) {
                   [usrPlayer removeBomb] ;
                   [ DSGround[(int)data.x][(int)data.y] removeThingFromSquare ];
                 } // if
+                 
             }
             
             
