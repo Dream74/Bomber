@@ -28,10 +28,13 @@ enum BOMB_COLOR{ RANDOM_BOMB_COLOR = 0,
 @property (nonatomic) bool isKilling ;
 @property (nonatomic) bool isKill    ;
 
-+ (Bomb *) putBomb:(CGPoint)point :(int) bombColor : (bool) CanBomb : (bool) CanPass ;
-+ (Bomb *) putBomb:(int)x :(int)y :(int) bombColor : (bool) CanBomb : (bool) CanPass ;
-+ (void) initialImage ;
+// TODO 新增炸彈時需要所在格子位置資訊 pixal loca由mapdata 計算可得
 
-- (void) draw ;
+
++ (Bomb *) putBomb:(CGPoint)point :(int) bombColor : (bool) CanBomb : (bool) CanPass ;
+
+
++ (void) initialImage ;
+- (void) draw: (int)x : (int) y ;
 - (bool) isKill;
 @end
