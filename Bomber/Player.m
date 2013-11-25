@@ -20,11 +20,9 @@ static NSMutableArray * playerAllImages;
 @synthesize speed        ;
 @synthesize fire         ;
 @synthesize bombNum      ;
-@synthesize playerImages ;
-@synthesize bombCollect  ;
+@synthesize playerImages ;@synthesize imgIndex_count      ;
 
 #define PLAYER_SIZE        34
-#define SPEED              3
 #define SPEED_MAX          30
 #define FIRE_MAX           9
 #define BOMB_NUM           10
@@ -39,89 +37,18 @@ static NSMutableArray * playerAllImages;
 
 enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 
-- (id)initial :(int)chartype startPoint:(CGPoint) localPoint {
-    local.x = localPoint.x ;
-    local.y = localPoint.y ;
-    state   = DOWN            ;
-    speed   = DEFAULT_SPEED   ;
-    fire    = DEFAULT_FIR     ;
-    bombNum = DEFAULT_BOMBNUM ;
-    
-    bombCollect = [[NSMutableArray alloc] init];
-    playerImages = [playerAllImages objectAtIndex:chartype] ;
-    return self ;
-}
-
-- (void) draw {
-    static int count  = 0 ;
-    count = count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : count + 1 ;
-    int imgIndex = count / IMAGE_CHANGE_DELAY ;
-    
-    assert( imgIndex < ANTION_NUM ) ;
-    [self drawBomb];
-    
-    [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
-}
-
--(CGPoint) getLocalPoint{
-    return local ;
-}
-
--(void) drawBomb{
-    for( int i = 0 ; i < [bombCollect count] ; i++ ){
-        Bomb * bomb = [bombCollect objectAtIndex:i] ;
-        if ( [bomb isKill] ) {
-            // TODO release obj
-             CGPoint templocal = [[Square class] existWhichSquare:bomb.local.x :bomb.local.y ]  ;
-            [[[MapData class]getDSGround:templocal.x : templocal.y ] removeThingFromSquare ] ;
-            [bombCollect removeObject:bomb] ;
-
-        }
-        else
-            [bomb draw] ;
-    }
-}
-
-- (void) putBomb{
-    // FIXME 記得炸彈爆炸後要移出這邊把它銷燬
-    const int x = ((int) local.x+16) /IMG_MAP_SIZE  ;
-    const int y = ((int) local.y+28) /IMG_MAP_SIZE   ;
-    if ( [[MapData class] getDSGround:x :y].exsitObj == NOTHING ) {
-#ifdef DEBUG
-      NSLog(@"%d, %d",((int)local.x+16)/IMG_MAP_SIZE,((int) local.y+20)/IMG_MAP_SIZE  ) ;
-#endif
-    
-      [bombCollect addObject:[[Bomb class] putBomb:x*IMG_MAP_SIZE   :y*IMG_MAP_SIZE    :RANDOM_BOMB_COLOR :false :false]];
-      [[[MapData class] getDSGround:x :y ] putThingInSquare:BOMB PutObject: [bombCollect lastObject] ];
-   
-    
-      NSLog(@"Put Bomb!!") ;
-    } // if
-}
-
-- (void) doMove:(CGPoint) move{
-    local.x += move.x * SPEED / 100;
-    local.y += move.y * SPEED / 100;
-    if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
-    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
-}
-
-- (void) setTurn:(CGPoint) move{
-    if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
-    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP  ;
-}
 
 + (void) initializeAllImage {
-  playerAllImages = [[NSMutableArray alloc] init];
+    playerAllImages = [[NSMutableArray alloc] init];
     
-  [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
+    [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
     for (int i = 0; i < ANTION_NUM; i++) {
         [[playerAllImages objectAtIndex:FLY] addObject: [[NSMutableArray alloc] init ] ];
         for( int j = 0 ; j < ANTION_NUM ; j++ ) {
             [[ [playerAllImages objectAtIndex:FLY] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] character_flying ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
     } // for
-  
+    
     [playerAllImages addObject: [[NSMutableArray alloc] init ] ];
     for (int i = 0; i < ANTION_NUM; i++) {
         [[playerAllImages objectAtIndex:GOLD] addObject: [[NSMutableArray alloc] init ] ];
@@ -145,9 +72,95 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
             [[ [playerAllImages objectAtIndex:MARIO_RPG] objectAtIndex: i ] addObject:[[Kernel class] subImage:[[Resource class] mario_rpg ] offsetWidth:i*PLAYER_SIZE offsetHeight:j*PLAYER_SIZE imgWidth:PLAYER_SIZE imgHeight:PLAYER_SIZE]];
         } // for
     } // for
-    
-    
-    
 }
+
+- (id)initial :(int)chartype startPoint:(CGPoint) localPoint {
+    local.x = localPoint.x ;
+    local.y = localPoint.y ;
+    state   = DOWN            ;
+    speed   = DEFAULT_SPEED   ;
+    fire    = DEFAULT_FIR     ;
+    bombNum = DEFAULT_BOMBNUM ;
+    
+    playerImages = [playerAllImages objectAtIndex:chartype] ;
+    return self ;
+}
+
+- (void) draw {
+    // static int count  = 0 ;
+    // 改成用   ----imgIndex_count---- 替代
+    
+    int imgIndex = imgIndex_count / IMAGE_CHANGE_DELAY ;
+
+    
+    assert( imgIndex < ANTION_NUM ) ;
+#ifdef DEBUG
+    [[Kernel class] drawGrid:CGRectMake(local.x,
+                                        local.y,
+                                        PLAYER_SIZE ,
+                                        PLAYER_SIZE)   lineWidth:1.0] ;
+#endif
+    [ [ [ playerImages objectAtIndex:imgIndex ] objectAtIndex:state] drawAtPoint: local] ;
+}
+
+-(CGPoint) getLocalPoint{
+    return local ;
+}
+
+-(void) drawBomb{
+    // TODO 不再由角色自己畫 炸彈位置 由 mapData 處理
+    /*
+    for( int i = 0 ; i < [bombCollect count] ; i++ ){
+        Bomb * bomb = [bombCollect objectAtIndex:i] ;
+        if ( [bomb isKill] ) {
+            // TODO release obj
+             CGPoint templocal = [[Square class] existWhichSquare:bomb.local.x :bomb.local.y ]  ;
+            [[[MapData class]getDSGround:templocal.x : templocal.y ] removeThingFromSquare ] ;
+            [bombCollect removeObject:bomb] ;
+
+        }
+        else
+            [bomb draw] ;
+    }*/
+}
+
+- (bool) isHaveBomb{
+    return bombNum > 0 ;
+}
+
+- (bool) putBomb{
+    if ( bombNum > 0 ){
+        bombNum-- ;
+        assert( bombNum < 0 ) ;
+        return true ;
+    } else {
+        return false ;
+    }
+}
+
+- (void) removeBomb{
+    bombNum++ ;
+    assert( bombNum > BOMB_NUM ) ;
+}
+
+- (void) doMove:(CGPoint) move{
+    local.x += move.x ;
+    local.y += move.y ;
+    
+    if( move.x != 0 || move.y != 0 ){
+        imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
+    } // 玩家沒有動，那圖就定在第一張站著的圖
+    else
+        imgIndex_count = 0;
+    
+    if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
+    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
+}
+
+- (void) setTurn:(CGPoint) move{
+    if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
+    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP  ;
+}
+
 
 @end

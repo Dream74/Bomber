@@ -15,7 +15,7 @@
 @synthesize lastTouch    ;
 @synthesize currentColor ;
 @synthesize canMove      ;
-@synthesize usrPlayer    ;
+@synthesize mapData      ;
 
 #define MOVE_UI_REDIUS   50
 #define MOVE_UI_DIAMETER MOVE_UI_REDIUS * 2
@@ -28,16 +28,12 @@
 
 #undef DEBUG
 
-- (id) initWithUsrPlay:(Player *) usr{
+- (id) initWithMap:(MapData *) map {
     self = [super init] ;
-    
-    moveUIPoint.x = 100 ;
-    moveUIPoint.y = 230 ;
-    bombUIPoint.x = 500 ;
-    bombUIPoint.y = 250 ;
-    usrPlayer     = usr ;
+    moveUIPoint = CGPointMake(100, 230) ;
+    bombUIPoint = CGPointMake(500, 250) ;
+    mapData       = map   ;
     canMove       = false ;
-    
     /* 可以利用這樣設定半透明度
      UIColor *theColor=[UIColor
      colorWithRed:1.0
@@ -107,11 +103,8 @@
         const float diffLen = sqrtf(diff.x * diff.x + diff.y * diff.y) ;
         
         if ( diffLen <= BOMB_UI_REDIUS ) {
-            [usrPlayer putBomb] ;
-            
-
+            [mapData putBomb] ;
         }
-        
     }
 }
 
