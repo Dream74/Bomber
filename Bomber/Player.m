@@ -123,7 +123,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 - (void) removeBomb{
-    bombNum = 1 ;
+    bombNum ++ ;
     assert(   bombNum < BOMB_NUM ) ;
 }
 
