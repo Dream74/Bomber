@@ -68,9 +68,6 @@ static  NSMutableArray * bombImages;
     return bomb ;
 }
 
-+ (Bomb *) putBomb:(int)x :(int)y :(int) bombColor : (bool) CanBomb : (bool) CanPass {
-    return [[Bomb class] putBomb:CGPointMake(x, y) :bombColor :CanBomb :CanPass ] ;
-}
 
 -(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor :(bool)CanBomb :(bool)CanPass {
     self = [super init] ;
@@ -87,22 +84,22 @@ static  NSMutableArray * bombImages;
 }
 
 
--(void) draw{
+-(void) draw: (int)x : (int) y {
     
 #ifdef DEBUG
-    [[Kernel class] drawGrid:CGRectMake(local.x,
-                                        local.y,
+    [[Kernel class] drawGrid:CGRectMake(x,
+                                        y,
                                         BOMB_IMG_SIZE ,
                                         BOMB_IMG_SIZE)   lineWidth:2.0] ;
 #endif
     
     if ( !isKilling) {
         assert( imgIndex < UNBOMB_ACTION ) ;
-        [ [ [ bombImages objectAtIndex:0 ] objectAtIndex:imgIndex] drawAtPoint:local]  ;
+        [ [ [ bombImages objectAtIndex:0 ] objectAtIndex:imgIndex] drawAtPoint:CGPointMake(x, y)]  ;
     } else if ( isKilling && imgIndex < BOMB_ANTION_NUM ) {
         assert( imgIndex < BOMB_ANTION_NUM ) ;
         assert( bombColor < BOMB_COLOR_LENGTH  ) ;
-        [ [ [ bombImages objectAtIndex:bombColor] objectAtIndex:imgIndex] drawAtPoint:local]  ;
+        [ [ [ bombImages objectAtIndex:bombColor] objectAtIndex:imgIndex] drawAtPoint:CGPointMake(x, y)]  ;
     }
 }
 

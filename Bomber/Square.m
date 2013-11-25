@@ -56,10 +56,14 @@
 }
 
 -(void) removeThingFromSquare {
+    // TODO Obj need to release from here ;
+    // Include ( bomb , item, brick )
+    
     exsitObj = NOTHING ;
     objList = [[NSMutableArray alloc] init ] ;
     canIn = true ;
 }
+
 
 
 
