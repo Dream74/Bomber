@@ -21,7 +21,7 @@ static NSMutableArray * groundImages;
 
 @synthesize usrPlayer    ;
 
-@synthesize bombCollect    ;
+
 
 #define SPEED 10
 
@@ -92,7 +92,6 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
     screenoffsetPoint  = CGPointMake( ((int)roleScreenPoint.x % IMG_MAP_SIZE ) - IMG_MAP_SIZE,
                                       ((int)roleScreenPoint.y % IMG_MAP_SIZE ) - IMG_MAP_SIZE) ;
     
-    bombCollect = [[NSMutableArray alloc] init];
     NSLog(@"MAP_HIGHT_NUM :%d   MAP_WIDTH_NUM:%d", MAP_HIGHT_NUM , MAP_WIDTH_NUM ) ;
     
 
@@ -217,6 +216,15 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
                DSGround[(int)data.x][(int)data.y].draw() ;
              */
             
+            if ( [DSGround[(int)data.x][(int)data.y] exsitObj] == BOMB ) {
+                [[[ DSGround[(int)data.x][(int)data.y] objList ] objectAtIndex:0 ] draw:i*IMG_MAP_SIZE+screenoffsetPoint.x : j*IMG_MAP_SIZE+screenoffsetPoint.y ];
+                if ( [[[ DSGround[(int)data.x][(int)data.y] objList ] objectAtIndex:0 ] isKill ] ) {
+                  [usrPlayer removeBomb] ;
+                  [ DSGround[(int)data.x][(int)data.y] removeThingFromSquare ];
+                } // if
+            }
+            
+            
             
         }
     }
@@ -233,5 +241,12 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
                // It's OK putBomb 
                // DSGround[ (int) roleXYPoint.x)][ (int) roleXYPoint.y] = SET_BOMB ; ??
      */
+    if ( DSGround[ (int)roleXYPoint.x ][ (int)roleXYPoint.y ].exsitObj == NOTHING  ) {
+      if ( [ usrPlayer isHaveBomb ] ) {
+        [ usrPlayer putBomb ] ; // count player bomb num
+          [DSGround[ (int)roleXYPoint.x ][ (int)roleXYPoint.y ] putThingInSquare:BOMB PutObject: [[Bomb class] putBomb:roleXYPoint :BOMB :false :false] ];
+      }
+    }
+    
 }
 @end

@@ -12,7 +12,7 @@
 
 #define IMG_MAP_SIZE 32
 
-enum OBJ_TYPE { NOTHING = 0 ,  ITEM, PLAYER , BOMB , BRICK, LENGTH } ;
+enum OBJ_TYPE { NOTHING = 0 ,  PLAYER ,ITEM, BOMB , BRICK, LENGTH } ;
 
 @property (nonatomic ) int x ;
 @property (nonatomic ) int y ;

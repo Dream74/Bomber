@@ -107,22 +107,6 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     return local ;
 }
 
--(void) drawBomb{
-    // TODO 不再由角色自己畫 炸彈位置 由 mapData 處理
-    /*
-    for( int i = 0 ; i < [bombCollect count] ; i++ ){
-        Bomb * bomb = [bombCollect objectAtIndex:i] ;
-        if ( [bomb isKill] ) {
-            // TODO release obj
-             CGPoint templocal = [[Square class] existWhichSquare:bomb.local.x :bomb.local.y ]  ;
-            [[[MapData class]getDSGround:templocal.x : templocal.y ] removeThingFromSquare ] ;
-            [bombCollect removeObject:bomb] ;
-
-        }
-        else
-            [bomb draw] ;
-    }*/
-}
 
 - (bool) isHaveBomb{
     return bombNum > 0 ;
@@ -131,7 +115,7 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 - (bool) putBomb{
     if ( bombNum > 0 ){
         bombNum-- ;
-        assert( bombNum < 0 ) ;
+        assert( bombNum >= 0 ) ;
         return true ;
     } else {
         return false ;
@@ -139,8 +123,8 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
 }
 
 - (void) removeBomb{
-    bombNum++ ;
-    assert( bombNum > BOMB_NUM ) ;
+    bombNum = 1 ;
+    assert(   bombNum < BOMB_NUM ) ;
 }
 
 - (void) doMove:(CGPoint) move{
