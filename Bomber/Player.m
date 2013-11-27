@@ -32,7 +32,7 @@ static NSMutableArray * playerAllImages;
 
 #define DEFAULT_SPEED      2
 #define DEFAULT_FIR        2
-#define DEFAULT_BOMBNUM    1
+#define DEFAULT_BOMBNUM    3
 
 
 enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
@@ -131,19 +131,20 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     local.x += move.x ;
     local.y += move.y ;
     
+    /*
     if( move.x != 0 || move.y != 0 ){
         imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
     } // 玩家沒有動，那圖就定在第一張站著的圖
     else
         imgIndex_count = 0;
+    */
+     imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
     
-    if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
-    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP ;
 }
 
 - (void) setTurn:(CGPoint) move{
-    if      ( ABS(move.x) > ABS(move.y))   state = move.x >= 0 ? RIGHT : LEFT ;
-    else if ( move.x != 0 && move.y != 0 ) state = move.y >= 0 ? DOWN  : TOP  ;
+    if      ( fabsf(move.x) > fabsf(move.y) ) state = move.x >= 0 ? RIGHT : LEFT ;
+    else if ( move.x != 0 && move.y != 0    ) state = move.y >= 0 ? DOWN  : TOP  ;
 }
 
 

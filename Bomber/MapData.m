@@ -23,7 +23,7 @@ static NSMutableArray * groundImages;
 
 
 
-#define SPEED 10
+#define SPEED 20
 
 int backGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
@@ -114,16 +114,19 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
         shiftMove.x -= IMG_MAP_SIZE ;
         roleXYPoint = [[MapData class] dataFormal:roleXYPoint] ;
     } else if ( shiftMove.x <= (IMG_MAP_SIZE * -1 )){
+        
         roleXYPoint.x -= 1 ;
         shiftMove.x += IMG_MAP_SIZE ;
         roleXYPoint = [[MapData class] dataFormal:roleXYPoint] ;
     }
     
     if ( shiftMove.y >= IMG_MAP_SIZE ){
+        
         roleXYPoint.y += 1 ;
         shiftMove.y -= IMG_MAP_SIZE ;
         roleXYPoint = [[MapData class] dataFormal:roleXYPoint] ;
     } else if ( shiftMove.y <= (IMG_MAP_SIZE * -1 )){
+        
         roleXYPoint.y -= 1 ;
         shiftMove.y += IMG_MAP_SIZE ;
         roleXYPoint = [[MapData class] dataFormal:roleXYPoint] ;

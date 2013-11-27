@@ -50,8 +50,9 @@
 -(void) putThingInSquare :(int) type PutObject : (id) obj {
     exsitObj = type ;
     [ objList addObject:obj ] ;
-    if ( type <= PLAYER ) canIn = true ;
-    else canIn = false ;
+    
+    if ( type <= ITEM ) canIn = true ;
+    else                canIn = false ;
     
 }
 
@@ -61,6 +62,7 @@
     
     exsitObj = NOTHING ;
     objList = [[NSMutableArray alloc] init ] ;
+    
     canIn = true ;
 }
 
