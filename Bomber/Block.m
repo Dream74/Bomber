@@ -18,6 +18,9 @@
 
 static NSMutableArray * blockImages;
 
++ (NSMutableArray *) blockImages{
+    return blockImages ;
+}
 
 + (void) initializeAllImage {
     blockImages = [[NSMutableArray alloc] init];

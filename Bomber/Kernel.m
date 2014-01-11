@@ -16,10 +16,12 @@
 
 // #undef DEBUG
 
+
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
 @synthesize one_block      ;
+@synthesize twoPlayer      ;
 
 
 
@@ -71,6 +73,7 @@
     double currentTime = CACurrentMediaTime() ;
     if (count == 0 )  firstTime = currentTime ;
     NSString * fps =  [NSString stringWithFormat:@"FPS :%f", (count/(currentTime - firstTime)) ] ;
+    // NSLog(@"%d", count) ;
     count++ ;
     [[Kernel class] drawText:fps offsetWidth:x offsetHeight:y textSize:size];
 }
@@ -93,6 +96,14 @@
 
 - (id) init{
     self        = [super init] ;
+    
+    /*
+     for( int i = 0 ; i < 5 ; i++) {
+     [[self.firebase childByAutoId] setValue:@{@"text" :  [NSString stringWithFormat:@"%d",i], @"name": @"Tester"} ] ;
+     }
+     */
+    // Server End
+    
     [[Resource class ] initalResource ] ;
     [[MapData class ]  initialImage ] ;
     [[MapData class ]  initialDSGroung ] ;
@@ -102,9 +113,10 @@
     
     // TODO 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
     CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT/ 2 , SCREEN_WIDTH  / 2 ) ;
-    
+    CGPoint roleStartPoint2   = CGPointMake( SCREEN_HIGHT/ 2-32 , SCREEN_WIDTH  / 2 ) ;
     //  FIXME 換圖片人物角色會跑掉 .
     onePlayer   = [[Player  alloc] initial:MARIO_RPG startPoint:roleStartPoint] ;
+    twoPlayer   = [[Player  alloc] initial:FLY startPoint:roleStartPoint2] ;
     // onePlayer   = [[Player  alloc] initial :GOLD startPoint:roleStartPoint] ;
     
     // TODO 起始的位置 格子
@@ -125,14 +137,14 @@
 
 
 - (void)draw{
+    
     const CGPoint ctrlMove    = [ctrlUI getMove] ;
     
     [ map doMove:ctrlMove] ;
     [ map draw ]           ;
     [ ctrlUI draw ]        ;
     [ onePlayer draw ]     ;
-    
-    
+    [ twoPlayer draw ]      ;
     [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];
     
 }

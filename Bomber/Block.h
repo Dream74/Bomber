@@ -39,6 +39,7 @@ enum BLOCK_METERIAL { ACCLERATE_LEFT = 0, ACCELERATE_UP, ACCLERATE_RIGHT, ACCELE
 // +(void) draw:(int *)block_array :(int)total_length :(int)total_width ;
 
 
++  (NSMutableArray *)  blockImages ;
 
 
 @end

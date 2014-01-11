@@ -23,7 +23,7 @@ static NSMutableArray * groundImages;
 
 
 
-#define SPEED 20
+#define SPEED 5
 
 int backGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
@@ -181,7 +181,7 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 - (void) draw {
     // TODO 人物目前，在哪個座標，這個狀況好像要微調一下，不然位置怪怪的
-    NSLog(@"User Location Point X :%d Y:%d", (int)roleXYPoint.x, (int)roleXYPoint.y ) ;
+    // NSLog(@"User Location Point X :%d Y:%d", (int)roleXYPoint.x, (int)roleXYPoint.y ) ;
     
     
     
@@ -200,12 +200,22 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             data = [[MapData class] dataFormal:data] ;
             
             // 每隔的背景
+            /*
             [[groundImages objectAtIndex:backGround[(int)data.x][(int)data.y]]
              drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+            */
+            [[groundImages objectAtIndex:0]
+              drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+            
+            if ( backGround[(int)data.x][(int)data.y] > 5 )
+                [[ [Block blockImages] objectAtIndex:BLANK2]
+                 drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
             
 #ifdef DEBUG
             
+            
             // 畫最外層框框
+            /*
             [[Kernel class] drawGrid:CGRectMake((i)*IMG_MAP_SIZE+screenoffsetPoint.x,
                                                 (j)*IMG_MAP_SIZE+screenoffsetPoint.y,
                                                 IMG_MAP_SIZE ,
@@ -214,6 +224,7 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             // 這格名稱
             NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
             [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+screenoffsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+screenoffsetPoint.y textSize:10] ;
+            */
 #endif
              
             
@@ -222,7 +233,6 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
                example idea :
                DSGround[(int)data.x][(int)data.y].draw() ;
              */
-        
             
             
             if ( DSGround[(int)data.x][(int)data.y].exsitObj == BOMB ) {
@@ -235,6 +245,7 @@ static Square * DSGround [MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
                 } // if
                  
             }
+             
             
             
             

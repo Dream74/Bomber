@@ -24,6 +24,12 @@
 		F107AA9A183BBED30000B911 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = F107AA99183BBED30000B911 /* Box.m */; };
 		F111FE4E183CC70E003A1AC7 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = F111FE4B183CC70E003A1AC7 /* Bomb.m */; };
 		F111FE4F183CC70E003A1AC7 /* MapData.m in Sources */ = {isa = PBXBuildFile; fileRef = F111FE4D183CC70E003A1AC7 /* MapData.m */; };
+		F19A1D6C185A06A20055CF68 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19A1D6B185A06A20055CF68 /* Firebase.framework */; };
+		F19A1D7A185A07D70055CF68 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19A1D79185A07D70055CF68 /* SystemConfiguration.framework */; };
+		F19A1D7C185A07E10055CF68 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F19A1D7B185A07E10055CF68 /* libicucore.dylib */; };
+		F19A1D7E185A07E90055CF68 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19A1D7D185A07E90055CF68 /* Security.framework */; };
+		F19A1D81185A080E0055CF68 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19A1D80185A080E0055CF68 /* CFNetwork.framework */; };
+		F19A1D85185A0FDE0055CF68 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = F19A1D84185A0FDE0055CF68 /* Server.m */; };
 		F1FA94291836980A00324401 /* atlas5.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94181836980900324401 /* atlas5.png */; };
 		F1FA942A1836980A00324401 /* blast.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA94191836980900324401 /* blast.png */; };
 		F1FA942C1836980A00324401 /* character_crawling.png in Resources */ = {isa = PBXBuildFile; fileRef = F1FA941B1836980A00324401 /* character_crawling.png */; };
@@ -92,6 +98,13 @@
 		F111FE4B183CC70E003A1AC7 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
 		F111FE4C183CC70E003A1AC7 /* MapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapData.h; sourceTree = "<group>"; };
 		F111FE4D183CC70E003A1AC7 /* MapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapData.m; sourceTree = "<group>"; };
+		F19A1D6B185A06A20055CF68 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		F19A1D79185A07D70055CF68 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F19A1D7B185A07E10055CF68 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		F19A1D7D185A07E90055CF68 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F19A1D80185A080E0055CF68 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F19A1D83185A0FDE0055CF68 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		F19A1D84185A0FDE0055CF68 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		F1FA94181836980900324401 /* atlas5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas5.png; sourceTree = "<group>"; };
 		F1FA94191836980900324401 /* blast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blast.png; sourceTree = "<group>"; };
 		F1FA941B1836980A00324401 /* character_crawling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_crawling.png; sourceTree = "<group>"; };
@@ -133,9 +146,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F19A1D81185A080E0055CF68 /* CFNetwork.framework in Frameworks */,
+				F1FFC584182C1929008ACBB0 /* Foundation.framework in Frameworks */,
+				F19A1D7E185A07E90055CF68 /* Security.framework in Frameworks */,
+				F19A1D7C185A07E10055CF68 /* libicucore.dylib in Frameworks */,
+				F19A1D7A185A07D70055CF68 /* SystemConfiguration.framework in Frameworks */,
 				F1FFC586182C1929008ACBB0 /* CoreGraphics.framework in Frameworks */,
 				F1FFC588182C1929008ACBB0 /* UIKit.framework in Frameworks */,
-				F1FFC584182C1929008ACBB0 /* Foundation.framework in Frameworks */,
+				F19A1D6C185A06A20055CF68 /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +219,11 @@
 		F1FFC582182C1929008ACBB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F19A1D80185A080E0055CF68 /* CFNetwork.framework */,
+				F19A1D7D185A07E90055CF68 /* Security.framework */,
+				F19A1D7B185A07E10055CF68 /* libicucore.dylib */,
+				F19A1D79185A07D70055CF68 /* SystemConfiguration.framework */,
+				F19A1D6B185A06A20055CF68 /* Firebase.framework */,
 				F1FFC583182C1929008ACBB0 /* Foundation.framework */,
 				F1FFC585182C1929008ACBB0 /* CoreGraphics.framework */,
 				F1FFC587182C1929008ACBB0 /* UIKit.framework */,
@@ -228,6 +251,8 @@
 				40654BC4183F6FAB00D1DF8D /* Block.m */,
 				F107AA8C183BA6610000B911 /* Kernel.h */,
 				F107AA8D183BA6610000B911 /* Kernel.m */,
+				F19A1D83185A0FDE0055CF68 /* Server.h */,
+				F19A1D84185A0FDE0055CF68 /* Server.m */,
 				F111FE4A183CC70E003A1AC7 /* Bomb.h */,
 				F111FE4B183CC70E003A1AC7 /* Bomb.m */,
 				F111FE4C183CC70E003A1AC7 /* MapData.h */,
@@ -400,6 +425,7 @@
 				F107AA9A183BBED30000B911 /* Box.m in Sources */,
 				F107AA91183BADD20000B911 /* Control.m in Sources */,
 				F107AA8E183BA6610000B911 /* Kernel.m in Sources */,
+				F19A1D85185A0FDE0055CF68 /* Server.m in Sources */,
 				F1FFC5BD182C195F008ACBB0 /* BomberFunView.m in Sources */,
 				F111FE4E183CC70E003A1AC7 /* Bomb.m in Sources */,
 				F111FE4F183CC70E003A1AC7 /* MapData.m in Sources */,
@@ -541,13 +567,19 @@
 		F1FFC5B6182C1929008ACBB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dream/Documents/Git/Bomber,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
 				INFOPLIST_FILE = "Bomber/Bomber-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -556,13 +588,19 @@
 		F1FFC5B7182C1929008ACBB0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dream/Documents/Git/Bomber,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bomber/Bomber-Prefix.pch";
 				INFOPLIST_FILE = "Bomber/Bomber-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
