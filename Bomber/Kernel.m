@@ -93,22 +93,23 @@
 
 - (id) init{
     self        = [super init] ;
+  
     [[Resource class ] initalResource ] ;
     [[MapData class ]  initialImage ] ;
-    [[MapData class ]  initialDSGroung ] ;
     [[Player class]    initializeAllImage] ;
     [[Bomb class]      initialImage] ;
     [[Block class]     initializeAllImage] ;
     
     // TODO 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
-    CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT/ 2 , SCREEN_WIDTH  / 2 ) ;
+    CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT  / 2 , SCREEN_WIDTH  / 2 ) ;
     
     //  FIXME 換圖片人物角色會跑掉 .
     onePlayer   = [[Player  alloc] initial:MARIO_RPG startPoint:roleStartPoint] ;
     // onePlayer   = [[Player  alloc] initial :GOLD startPoint:roleStartPoint] ;
     
     // TODO 起始的位置 格子
-    CGPoint roleStartMap   = CGPointMake(5, 25) ;
+    CGPoint roleStartMap   = CGPointMake(30,40 ) ;
+    onePlayer.dataLoc = roleStartMap ;
     
     map         = [[MapData alloc] initWithUsr:onePlayer mapPoint:roleStartMap startScreen:roleStartPoint] ;
     ctrlUI      = [[Control alloc] initWithMap:map] ;
@@ -137,6 +138,11 @@
     
 }
 
+
+-(void)drawctrlUI {
+    
+}
+
 - (void)touchesBegan:(CGPoint *) location{
     [ctrlUI touchesBegan:location];
 }
@@ -150,5 +156,10 @@
 - (void)touchesEnded:(CGPoint *) location{
     [ctrlUI touchesEnded:location];
 }
+
+
+
+
+
 
 @end

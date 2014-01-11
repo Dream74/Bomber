@@ -20,11 +20,14 @@ static NSMutableArray * playerAllImages;
 @synthesize speed        ;
 @synthesize fire         ;
 @synthesize bombNum      ;
-@synthesize playerImages ;@synthesize imgIndex_count      ;
+
+@synthesize playerImages ;
+@synthesize imgIndex_count      ;
+@synthesize dataLoc ;
 
 #define PLAYER_SIZE        34
 #define SPEED_MAX          30
-#define FIRE_MAX           9
+#define FIRE_MAX           2
 #define BOMB_NUM           10
 
 #define IMAGE_CHANGE_DELAY 8
@@ -122,6 +125,11 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     }
 }
 
+-(void) addBombNum{
+    bombNum++;
+    
+}
+
 - (void) removeBomb{
     bombNum ++ ;
     assert(   bombNum < BOMB_NUM ) ;
@@ -146,6 +154,14 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     if      ( fabsf(move.x) > fabsf(move.y) ) state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0    ) state = move.y >= 0 ? DOWN  : TOP  ;
 }
+
+-(void) resetLocation : (CGPoint) localPoint {
+    dataLoc = localPoint ;
+    state   = DOWN ;
+    
+    
+}
+
 
 
 @end

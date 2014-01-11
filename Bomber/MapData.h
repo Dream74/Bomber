@@ -10,7 +10,7 @@
 #import "Bomber.h"
 #import "Player.h"
 #import "Square.h"
-#import "Bomb.h"
+
 
 #define IMG_MAP_SIZE 32
 
@@ -23,7 +23,7 @@
 #define IMG_MAP_OFFSET_WIDTH 32
 #define IMG_MAP_OFFSET_HIGHT 40
 
-@interface MapData : NSObject{
+@interface MapData : NSObject <BombEvent, Square_call_MapData > {
 @private
     CGPoint offsetPoint ;
 }
@@ -40,15 +40,21 @@
 @property (nonatomic) Player * usrPlayer           ;  // 使用者自己
 
 
+@property (nonatomic) NSMutableArray *  mapDataStruct ;
 
-+ (void) initialDSGroung ;
+
+
 + (void) initialImage    ;
-+ (Square *) getDSGround : (int) x : (int) y ;
 
-- (MapData *) initWithUsr:(Player *)usr mapPoint:(CGPoint)startMapPoint startScreen:(CGPoint)startScreenPoint ;
+- (void) initialmapData ;
+- (MapData *) initWithUsr:(Player *)usr  mapPoint:  (CGPoint)startMapPoint startScreen:(CGPoint)startScreenPoint ;
+
 
 - (void) draw ;
 - (void) doMove:(CGPoint) move ;
 - (void) putBomb ;
+- (void) putBlock ;
+
+
 
 @end

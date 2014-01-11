@@ -18,11 +18,25 @@
 @synthesize pixal_y_max ;
 
 @synthesize exsitObj ;
-@synthesize objList ;
+@synthesize playerList ;
 
 @synthesize canIn ;
+@synthesize delegate ;
+@synthesize bomb ;
+@synthesize canPutBomb ;
+@synthesize exsitPeople ;
+@synthesize fireType ;
+
+-(void) setDelegate:(id<Square_call_MapData>)inDelegate {
+    
+    delegate = inDelegate ;
+    
+}
 
 -(void) initalLacation: (int) X : (int) Y {
+    bomb = NULL ;
+    fireType = 0 ;
+    
     x = X ;
     y = Y ;
     
@@ -33,10 +47,11 @@
     pixal_y_max = pixal_y + IMG_MAP_SIZE  ;
     
     exsitObj = NOTHING ;
-    
-    objList = [[NSMutableArray alloc] init ] ;
+    exsitPeople = false ;
+    playerList = [[NSMutableArray alloc] init ] ;
     
     canIn = true ;
+    canPutBomb = true ;
     
 }
 
@@ -46,24 +61,70 @@
     return CGPointMake(x, y) ;
 }
 
-
--(void) putThingInSquare :(int) type PutObject : (id) obj {
-    exsitObj = type ;
-    [ objList addObject:obj ] ;
-    
-    if ( type <= ITEM ) canIn = true ;
-    else                canIn = false ;
+-(void) peopleInSquare : (id) peopleObj {
+    exsitPeople = true ;
+    [ playerList addObject:peopleObj ] ;
     
 }
 
--(void) removeThingFromSquare {
+-(void) peopleleaveSquare {
+    exsitPeople = false ;
+    playerList = [[NSMutableArray alloc] init ] ;
+    
+}
+
+-(void) putThingInSquare :(int) type PutObject : (id) obj {
+    exsitObj = type ;
+        
+    if ( exsitObj == BOMB ) {
+        bomb = obj ;
+        canIn = false ;
+        canPutBomb = false ;
+    } // else if
+    
+    else if ( exsitObj == ITEM ) {
+        
+        
+    } // else if
+    
+    else if ( exsitObj == BRICK ) {
+        
+        
+    } // else if
+
+}
+
+
+
+-(void) removeThingFromSquare : (int) firetype {
     // TODO Obj need to release from here ;
-    // Include ( bomb , item, brick )
+    // Include ( item, brick )
+    
+    fireType =  firetype ;
+    
+   
+    
+    if ( exsitPeople ) {
+       [NSThread sleepForTimeInterval:(float)0.5];
+      [ delegate resetPlayerLoc ] ;
+        [self peopleleaveSquare ] ;
+    } // if
+    
+    if ( exsitObj == BOMB ) {       
+        bomb = NULL ;
+        canPutBomb = true ;
+    } // else if
+    
+    
+    
     
     exsitObj = NOTHING ;
-    objList = [[NSMutableArray alloc] init ] ;
+    
     
     canIn = true ;
+  
+    
+  
 }
 
 

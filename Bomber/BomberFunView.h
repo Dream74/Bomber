@@ -13,6 +13,6 @@
 
 @property (nonatomic) CGPoint  lastTouch;
 @property (nonatomic) Kernel * bomber_kernel ;
-
 @property (nonatomic) bool bThreadRunning ;
+
 @end

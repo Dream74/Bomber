@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Player : NSObject{
+@interface Player : NSObject {
 @private
     CGPoint local ;
     UIImage * originalImg;
@@ -23,6 +23,7 @@
 enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
 
 @property (nonatomic) CGPoint local ;
+@property (nonatomic) CGPoint dataLoc ;
 @property (nonatomic) NSMutableArray * playerImages ;
 
 @property (nonatomic) int state    ;
@@ -43,4 +44,6 @@ enum CH_TYPE { FLY = 0, GOLD, CRAWLING, MARIO_RPG, CH_TYPE_LENGTH } ;
 - (void)    removeBomb ;
 - (bool)    putBomb    ;
 - (bool)    isHaveBomb ;
+- (void)    resetLocation : (CGPoint) localPoint ;
+- (void)    addBombNum;
 @end

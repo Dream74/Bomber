@@ -87,10 +87,15 @@
     [bomber_kernel touchesCancelled:&_lastTouch] ;
 }
 
+
+
 - (void)drawRect:(CGRect)rect {
    // NSLog(@"drawRect X:%f Y:%f", rect.size.width, rect.size.height) ;
     [bomber_kernel draw];
+  
 }
+
+
 
 
 @end
