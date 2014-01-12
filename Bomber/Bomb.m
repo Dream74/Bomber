@@ -14,11 +14,12 @@
 static  NSMutableArray * bombImages;
 @synthesize imgIndex  ;
 @synthesize local     ;
-@synthesize canBomb   ;
-@synthesize canPass   ;
 @synthesize bombColor ;
 @synthesize isKilling ;
 @synthesize isKill    ;
+@synthesize fireColumn ;
+@synthesize bombEvent ;
+@synthesize finish ;
 
 #define BOMB_ANTION_NUM      9
 #define UNBOMB_ACTION        14
@@ -28,6 +29,9 @@ static  NSMutableArray * bombImages;
 #define BOMB_SHOW_BIG_SIZE   0.9
 #define BOMB_SHOW_SMAIL_SIZE 0.8
 
+/* initialImage
+ * 預先載入需要的圖片資源
+ */
 +(void) initialImage {
     bombImages = [[NSMutableArray alloc] init ];
     // 炸彈
@@ -56,30 +60,35 @@ static  NSMutableArray * bombImages;
     // right
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE]];
     
+    [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationLeft]];
+    
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationUp   ]] ;
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationLeft ]] ;
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationDown ]] ;
     [ [ bombImages objectAtIndex: 10 ] addObject:[[Kernel class] subImage:[[Resource class] explosion ] offsetWidth:BOMB_IMG_SIZE * 2 offsetHeight:0 imgWidth:BOMB_IMG_SIZE imgHeight:BOMB_IMG_SIZE imgTurn:UIImageOrientationRight]] ;
 }
 
-+ (Bomb *) putBomb:(CGPoint)point :(int) bombColor : (bool) CanBomb : (bool) CanPass{
-    Bomb * bomb = [[Bomb alloc] initWithLocation:point BOMB_COLOR:bombColor :CanBomb :CanPass ] ;
+
+
++ (Bomb *) putBomb:(CGPoint)point :(int) bombColor :(int) FireColumn  {
+    Bomb * bomb = [[Bomb alloc] initWithLocation:point BOMB_COLOR:bombColor : FireColumn ] ;
+    
     [bomb start] ;
     return bomb ;
 }
 
 
--(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor :(bool)CanBomb :(bool)CanPass {
+-(id)initWithLocation:(CGPoint) localPoint BOMB_COLOR:(int)bombcolor : (int) FireColumn {
     self = [super init] ;
     local = localPoint ;
     
     // Bombcolor index : 0 ==> Random Color
     bombColor = ( bombcolor == 0 ) ? random() % 9 + 1 : bombcolor ;
     
-    canBomb   = CanBomb ;
-    canPass   = CanPass ;
+    fireColumn = FireColumn ;
     isKilling = false   ;
     isKill    = false   ;
+    finish = false ;
     return self ;
 }
 
@@ -101,23 +110,42 @@ static  NSMutableArray * bombImages;
         assert( bombColor < BOMB_COLOR_LENGTH  ) ;
         [ [ [ bombImages objectAtIndex:bombColor] objectAtIndex:imgIndex] drawAtPoint:CGPointMake(x, y)]  ;
     }
+    
+  
+}
+
++(void) drawFire :(int) type :(int) x : (int)y {
+    [ [ [ bombImages objectAtIndex:10] objectAtIndex:(type-1)] drawAtPoint:CGPointMake(x, y)]  ;
+    
 }
 
 -(void) start{
-    [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+    
+    //[NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+    [self performSelectorInBackground:@selector(run) withObject:nil];
+    
+    
 }
 
 -(bool) isKill{
-    return isKill ;
+    if ( isKill ) {
+      isKill = false ;
+      return isKill ;
+    } // if
+    
+    else return isKill ;
 }
 
 -(void) run{
+    
     for (int i = 0 ; i < UNBOMB_ACTION ; i++) {
         imgIndex = i ;
         if ( i != ( UNBOMB_ACTION - 1 ) ) [NSThread sleepForTimeInterval:((float) UNBOMB_SEC/UNBOMB_ACTION)];
     } // for
-    
+  
     [self startbomb];
+    
+    
 }
 
 - (void) startbomb{
@@ -126,12 +154,34 @@ static  NSMutableArray * bombImages;
         imgIndex = i ;
         [NSThread sleepForTimeInterval:((float)BOMB_SEC /BOMB_ANTION_NUM)];
     } // for
+    imgIndex = BOMB_ANTION_NUM ; // 使炸彈消失
     
     // 把圖片往前面推一個讓他消失
-    // TODO 正常應該這邊要接 火焰的事情
-    imgIndex++ ;
-    isKill   = true ;
+    
+    // bombevent
+    NSLog(@"BombEvent");
+    
+    [ self fireBomb ] ;
+    
 }
+
+
+
+- ( void ) fireBomb { 
+    isKill  = true ;
+    
+    [ bombEvent reflashMapData : fireColumn : local ] ;
+   
+}
+
+
+- (void) setBombEvent:(id<BombEvent>)inBombEvent {
+   
+    bombEvent = inBombEvent ;
+}
+
+
+
 
 
 @end

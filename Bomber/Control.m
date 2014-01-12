@@ -104,6 +104,7 @@
         
         if ( diffLen <= BOMB_UI_REDIUS ) {
             [mapData putBomb] ;
+           
         }
     }
 }

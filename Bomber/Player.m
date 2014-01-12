@@ -20,11 +20,14 @@ static NSMutableArray * playerAllImages;
 @synthesize speed        ;
 @synthesize fire         ;
 @synthesize bombNum      ;
-@synthesize playerImages ;@synthesize imgIndex_count      ;
+
+@synthesize playerImages ;
+@synthesize imgIndex_count      ;
+@synthesize dataLoc ;
 
 #define PLAYER_SIZE        34
 #define SPEED_MAX          30
-#define FIRE_MAX           9
+#define FIRE_MAX           2
 #define BOMB_NUM           10
 
 #define IMAGE_CHANGE_DELAY 8
@@ -122,30 +125,38 @@ enum DIRECTION { TOP = 0, RIGHT, DOWN, LEFT,  DIRECTION_LENGTH } ;
     }
 }
 
+-(void) addBombNum{
+    bombNum++;
+}
+
 - (void) removeBomb{
-    bombNum ++ ;
-    assert(   bombNum < BOMB_NUM ) ;
+    // FIMEX 為什麼這邊也是 bombNum++ ???
+    bombNum++ ;
+    assert( bombNum < BOMB_NUM ) ;
 }
 
 - (void) doMove:(CGPoint) move{
     local.x += move.x ;
     local.y += move.y ;
     
-    /*
-    if( move.x != 0 || move.y != 0 ){
-        imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
-    } // 玩家沒有動，那圖就定在第一張站著的圖
-    else
-        imgIndex_count = 0;
-    */
-     imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
+    imgIndex_count = imgIndex_count >= ( ANTION_NUM * IMAGE_CHANGE_DELAY - 1 ) ? 0 : imgIndex_count + 1 ;
     
 }
 
+/* setTurn : 根據要移動的方向改變角色的圖片方向
+ 
+ * move    : 要移動的方向
+ */
 - (void) setTurn:(CGPoint) move{
     if      ( fabsf(move.x) > fabsf(move.y) ) state = move.x >= 0 ? RIGHT : LEFT ;
     else if ( move.x != 0 && move.y != 0    ) state = move.y >= 0 ? DOWN  : TOP  ;
 }
+
+-(void) resetLocation : (CGPoint) localPoint {
+    dataLoc = localPoint ;
+    state   = DOWN ;
+}
+
 
 
 @end

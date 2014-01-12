@@ -86,13 +86,20 @@
     [bomber_kernel touchesCancelled:&_lastTouch] ;
 }
 
+<<<<<<< HEAD
 - (void)drawInit{
     NSLog(@"drawInit") ;
 }
+=======
+
+>>>>>>> Dream
 
 - (void)drawRect:(CGRect)rect {
     [bomber_kernel draw];
+  
 }
+
+
 
 
 @end
