@@ -8,13 +8,11 @@
 
 #import "BomberFunView.h"
 #include "kernel.h"
-#define TIME_INTERVAL 0.010
+#define TIME_INTERVAL ( 0.001 )
 
 @implementation BomberFunView
 @synthesize bomber_kernel  ;
 @synthesize bThreadRunning ;
-
-
 
 - (id)initWithCoder:(NSCoder*)coder {
     if (self = [super initWithCoder:coder]) {
@@ -27,6 +25,7 @@
             NSLog(@"multipleTouch is Enabled");
         }
         
+        [self drawInit] ;
         [self start] ;
     }
     return self;
@@ -44,7 +43,7 @@
     [ bomber_kernel stop ] ;
 }
 
-- (void) sceneRun{
+- (void)sceneRun{
     
     @autoreleasepool {
         while(bThreadRunning)
@@ -87,10 +86,15 @@
     [bomber_kernel touchesCancelled:&_lastTouch] ;
 }
 
+<<<<<<< HEAD
+- (void)drawInit{
+    NSLog(@"drawInit") ;
+}
+=======
 
+>>>>>>> Dream
 
 - (void)drawRect:(CGRect)rect {
-   // NSLog(@"drawRect X:%f Y:%f", rect.size.width, rect.size.height) ;
     [bomber_kernel draw];
   
 }

@@ -16,10 +16,12 @@
 
 // #undef DEBUG
 
+
 @synthesize ctrlUI         ;
 @synthesize onePlayer      ;
 @synthesize map            ;
 @synthesize one_block      ;
+@synthesize twoPlayer      ;
 
 
 /*
@@ -93,6 +95,7 @@
     double currentTime = CACurrentMediaTime() ;
     if (count == 0 )  firstTime = currentTime ;
     NSString * fps =  [NSString stringWithFormat:@"FPS :%f", (count/(currentTime - firstTime)) ] ;
+    // NSLog(@"%d", count) ;
     count++ ;
     [[Kernel class] drawText:fps offsetWidth:x offsetHeight:y textSize:size];
 }
@@ -121,13 +124,32 @@
 
 - (id) init{
     self        = [super init] ;
+<<<<<<< HEAD
+    
+    /*
+     for( int i = 0 ; i < 5 ; i++) {
+     [[self.firebase childByAutoId] setValue:@{@"text" :  [NSString stringWithFormat:@"%d",i], @"name": @"Tester"} ] ;
+     }
+     */
+    // Server End
+    
+=======
   
+>>>>>>> Dream
     [[Resource class ] initalResource ] ;
     [[MapData class ]  initialImage ] ;
     [[Player class]    initializeAllImage] ;
     [[Bomb class]      initialImage] ;
     [[Block class]     initializeAllImage] ;
     
+<<<<<<< HEAD
+    // TODO 未來應該是有個地方，給予使用者一個起始位置，然而有了這個起始座標，就可以畫出螢幕畫面
+    CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT/ 2 , SCREEN_WIDTH  / 2 ) ;
+    CGPoint roleStartPoint2   = CGPointMake( SCREEN_HIGHT/ 2-32 , SCREEN_WIDTH  / 2 ) ;
+    //  FIXME 換圖片人物角色會跑掉 .
+    onePlayer   = [[Player  alloc] initial:MARIO_RPG startPoint:roleStartPoint] ;
+    twoPlayer   = [[Player  alloc] initial:FLY startPoint:roleStartPoint2] ;
+=======
     // 人物 螢幕 位置 : 螢幕中間
     CGPoint roleStartPoint = CGPointMake( SCREEN_HIGHT  / 2 , SCREEN_WIDTH  / 2 ) ;
     // 人物 格子 位置 : 30, 40 這個格子上
@@ -136,6 +158,7 @@
     // 人物 角色為 MARIO
     onePlayer   = [[Player  alloc] initial:MARIO_RPG startPoint:roleStartPoint] ;
     // FIMEX 其他角色座標有跑掉的問題
+>>>>>>> Dream
     // onePlayer   = [[Player  alloc] initial :GOLD startPoint:roleStartPoint] ;
 
     onePlayer.dataLoc = roleStartMap ;
@@ -159,7 +182,11 @@
 
 
 - (void)draw{
+<<<<<<< HEAD
+    
+=======
     // 每次要畫前 利用 getMove 我們可以知道玩家在控制器上面移動了多少距離
+>>>>>>> Dream
     const CGPoint ctrlMove    = [ctrlUI getMove] ;
     
     /*
@@ -177,7 +204,11 @@
     [ ctrlUI draw ]        ;
     // 人物的狀態畫上去
     [ onePlayer draw ]     ;
+<<<<<<< HEAD
+    [ twoPlayer draw ]      ;
+=======
     // 畫FPS狀態
+>>>>>>> Dream
     [[Kernel class] drawFPS:20 offsetHeight:30 textSize:24];
     
 }

@@ -24,7 +24,7 @@ static NSMutableArray * groundImages;
 
 @synthesize mapDataStruct ;
 
-#define SPEED 20
+#define SPEED 5
 
 int backGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
@@ -229,7 +229,11 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
 
 - (void) draw {
     // TODO 人物目前，在哪個座標，這個狀況好像要微調一下，不然位置怪怪的
+<<<<<<< HEAD
+    // NSLog(@"User Location Point X :%d Y:%d", (int)roleXYPoint.x, (int)roleXYPoint.y ) ;
+=======
     //NSLog(@"User Location Point X :%d Y:%d", (int)roleXYPoint.x, (int)roleXYPoint.y ) ;
+>>>>>>> Dream
     
     
     
@@ -248,19 +252,44 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
             data = [[MapData class] dataFormal:data] ;
             
             // 每隔的背景
+<<<<<<< HEAD
+            /*
+            [[groundImages objectAtIndex:backGround[(int)data.x][(int)data.y]]
+             drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+            */
+            [[groundImages objectAtIndex:0]
+              drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+            
+            if ( backGround[(int)data.x][(int)data.y] > 5 )
+                [[ [Block blockImages] objectAtIndex:BLANK2]
+                 drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+            
+=======
            [[groundImages objectAtIndex:backGround[(int)data.x][(int)data.y]]
              drawAtPoint:CGPointMake(i*IMG_MAP_SIZE+screenoffsetPoint.x,j*IMG_MAP_SIZE+screenoffsetPoint.y)]  ;
+>>>>>>> Dream
 #ifdef DEBUG
             
+            
             // 畫最外層框框
+<<<<<<< HEAD
+            /*
+            [[Kernel class] drawGrid:CGRectMake((i)*IMG_MAP_SIZE+screenoffsetPoint.x,
+=======
    /*     [[Kernel class] drawGrid:CGRectMake((i)*IMG_MAP_SIZE+screenoffsetPoint.x,
+>>>>>>> Dream
                                                 (j)*IMG_MAP_SIZE+screenoffsetPoint.y,
                                                 IMG_MAP_SIZE ,
                                                 IMG_MAP_SIZE)  lineWidth:1.0] ;
             
             // 這格名稱
             NSString * text = [NSString stringWithFormat:@"%d,%d", (int)data.x, (int)data.y  ] ;
+<<<<<<< HEAD
+            [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+screenoffsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+screenoffsetPoint.y textSize:10] ;
+            */
+=======
             [[Kernel class] drawText:text offsetWidth:(i)*IMG_MAP_SIZE+screenoffsetPoint.x offsetHeight:(j)*IMG_MAP_SIZE+screenoffsetPoint.y textSize:10] ;*/
+>>>>>>> Dream
 #endif
              
             
@@ -269,8 +298,11 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
                example idea :
                DSGround[(int)data.x][(int)data.y].draw() ;
              */
+<<<<<<< HEAD
+=======
         
             Square * tempSquare = [[ mapDataStruct objectAtIndex: (int)data.x ] objectAtIndex: (int)data.y ] ;
+>>>>>>> Dream
             
             if ( [tempSquare exsitObj] == BOMB ) {
                 [[tempSquare bomb] draw:i*IMG_MAP_SIZE+screenoffsetPoint.x :j*IMG_MAP_SIZE+screenoffsetPoint.y] ;
@@ -280,6 +312,13 @@ int objGround[MAP_HIGHT_NUM][MAP_WIDTH_NUM] ;
                 [[Bomb class ] drawFire:[tempSquare fireType] :i*IMG_MAP_SIZE+screenoffsetPoint.x :j*IMG_MAP_SIZE+screenoffsetPoint.y] ;
                 tempSquare.fireType= NOTHING ;
             }
+<<<<<<< HEAD
+             
+            
+            
+            
+=======
+>>>>>>> Dream
         }
     }
 }
