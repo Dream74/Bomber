@@ -29,6 +29,9 @@ static  NSMutableArray * bombImages;
 #define BOMB_SHOW_BIG_SIZE   0.9
 #define BOMB_SHOW_SMAIL_SIZE 0.8
 
+/* initialImage
+ * 預先載入需要的圖片資源
+ */
 +(void) initialImage {
     bombImages = [[NSMutableArray alloc] init ];
     // 炸彈

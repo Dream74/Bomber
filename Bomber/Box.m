@@ -18,10 +18,8 @@
 
 
 -(void) initalLocation : (CGPoint) local  :(bool) CanBomb : (bool) CanPass ; {
-    
     canBomb = CanBomb ;
     canPass = CanPass ;
- 
 }
 
 
